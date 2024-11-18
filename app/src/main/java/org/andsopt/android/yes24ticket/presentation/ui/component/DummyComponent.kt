@@ -6,7 +6,8 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun DummyComponent (
-    modifier: Modifier = Modifier
+    message: String,
+    modifier: Modifier = Modifier,
 ){
-    Text("string 추출 필수")
+    Text(text = message)
 }

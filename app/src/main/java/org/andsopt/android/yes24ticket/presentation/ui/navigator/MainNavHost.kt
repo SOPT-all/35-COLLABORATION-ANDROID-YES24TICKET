@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import org.andsopt.android.yes24ticket.presentation.ui.dummy.dummyNavGraph
 
 @Composable
 fun MainNavHost(
@@ -19,6 +21,13 @@ fun MainNavHost(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surfaceDim)
     ) {
-
+        NavHost(
+            navController = navigator.navHostController,
+            startDestination = navigator.startDestination::class.simpleName.orEmpty()
+        ) {
+            dummyNavGraph(
+                padding = padding
+            )
+        }
     }
 }
