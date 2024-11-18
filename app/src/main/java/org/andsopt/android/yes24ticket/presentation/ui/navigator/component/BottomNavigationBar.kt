@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
@@ -25,7 +26,7 @@ fun BottomNavigationBar(
 ) {
     AnimatedVisibility(visible = isVisible) {
         NavigationBar {
-            navigationBarItems.forEachIndexed { _, mainNavigationBarItemType ->
+            navigationBarItems.forEach { mainNavigationBarItemType ->
                 NavigationBarItem(
                     selected = currentNavigationBarItem == mainNavigationBarItemType,
                     onClick = { onNavigationBarItemSelected(mainNavigationBarItemType) },
@@ -35,7 +36,7 @@ fun BottomNavigationBar(
                             contentDescription = context.getString(mainNavigationBarItemType.description),
                         )
                     },
-                    label = { Text(text = context.getString(mainNavigationBarItemType.description)) },
+                    label = { Text(text = stringResource(mainNavigationBarItemType.description)) },
                 )
             }
         }
