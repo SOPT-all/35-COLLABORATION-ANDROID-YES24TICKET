@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.ui.navigator.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.YES24TICKET">
             <intent-filter>
