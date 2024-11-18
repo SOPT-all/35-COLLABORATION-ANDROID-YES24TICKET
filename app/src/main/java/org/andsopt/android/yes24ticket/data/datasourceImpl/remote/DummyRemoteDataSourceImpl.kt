@@ -7,10 +7,11 @@ import org.andsopt.android.yes24ticket.data.service.DummyService
 import org.andsopt.android.yes24ticket.util.base.BaseResponse
 import javax.inject.Inject
 
-class DummyRemoteDataSourceImpl @Inject constructor(
-    private val dummyService: DummyService
-) : DummyRemoteDataSource {
-    override suspend fun getDummyData(requestDummyDto: RequestDummyDto): BaseResponse<ResponseDummyDto> =
-        dummyService.getDummyData(requestDummyDto)
-
-}
+class DummyRemoteDataSourceImpl
+    @Inject
+    constructor(
+        private val dummyService: DummyService,
+    ) : DummyRemoteDataSource {
+        override suspend fun getDummyData(requestDummyDto: RequestDummyDto): BaseResponse<ResponseDummyDto> =
+            dummyService.getDummyData(requestDummyDto)
+    }

@@ -7,16 +7,17 @@ import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 import org.andsopt.android.yes24ticket.presentation.model.Route
 
-enum class BottomNavigationType (
+enum class BottomNavigationType(
     @DrawableRes val icon: Int,
     @StringRes val description: Int,
-    val route: BottomNavigationRoute
+    val route: BottomNavigationRoute,
 ) {
     DUMMY(
         icon = R.drawable.ic_launcher_foreground,
         description = R.string.app_name,
-        route = BottomNavigationRoute.Dummy
-    );
+        route = BottomNavigationRoute.Dummy,
+    ),
+    ;
 
     companion object {
         @Composable

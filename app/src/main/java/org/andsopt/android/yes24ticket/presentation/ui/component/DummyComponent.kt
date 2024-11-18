@@ -5,9 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun DummyComponent (
+fun DummyComponent(
     message: String,
     modifier: Modifier = Modifier,
-){
+) {
     Text(text = message)
 }

@@ -14,19 +14,20 @@ import org.andsopt.android.yes24ticket.presentation.ui.dummy.dummyNavGraph
 fun MainNavHost(
     modifier: Modifier = Modifier,
     navigator: MainNavigator,
-    padding: PaddingValues
+    padding: PaddingValues,
 ) {
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceDim)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surfaceDim),
     ) {
         NavHost(
             navController = navigator.navHostController,
-            startDestination = navigator.startDestination::class.simpleName.orEmpty()
+            startDestination = navigator.startDestination::class.simpleName.orEmpty(),
         ) {
             dummyNavGraph(
-                padding = padding
+                padding = padding,
             )
         }
     }

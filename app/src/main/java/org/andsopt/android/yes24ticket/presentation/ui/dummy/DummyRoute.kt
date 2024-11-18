@@ -7,7 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun DummyRoute(
     paddingValues: PaddingValues,
-    viewModel: DummyViewModel = hiltViewModel()
-){
+    viewModel: DummyViewModel = hiltViewModel(),
+) {
     DummyScreen(paddingValues = paddingValues)
 }

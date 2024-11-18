@@ -10,24 +10,24 @@ import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
 
 @Composable
 fun MainScreen(
-    navigator: MainNavigator = rememberMainNavigator()
+    navigator: MainNavigator = rememberMainNavigator(),
 ) {
     MainScreenContent(
-        navigator = navigator
+        navigator = navigator,
     )
 }
 
 @Composable
 private fun MainScreenContent(
     modifier: Modifier = Modifier,
-    navigator: MainNavigator
+    navigator: MainNavigator,
 ) {
     Scaffold(
         modifier = modifier,
         content = { padding ->
             MainNavHost(
                 navigator = navigator,
-                padding = padding
+                padding = padding,
             )
         },
         bottomBar = {
@@ -35,9 +35,9 @@ private fun MainScreenContent(
                 isVisible = navigator.showBottomBar(),
                 navigationBarItems = BottomNavigationType.entries.toList(),
                 currentNavigationBarItem = navigator.currentMainNavigationBarItem,
-                onNavigationBarItemSelected = { navigator.navigateMainNavigation(it) }
+                onNavigationBarItemSelected = { navigator.navigateMainNavigation(it) },
             )
-        }
+        },
     )
 }
 

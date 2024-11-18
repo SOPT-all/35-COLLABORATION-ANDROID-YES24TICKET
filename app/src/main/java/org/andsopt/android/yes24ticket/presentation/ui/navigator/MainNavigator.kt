@@ -14,7 +14,7 @@ import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
 import org.andsopt.android.yes24ticket.presentation.ui.dummy.navigationDummy
 
 class MainNavigator(
-    val navHostController: NavHostController
+    val navHostController: NavHostController,
 ) {
     private val currentDestination: NavDestination?
         @Composable get() = navHostController.currentBackStackEntryAsState().value?.destination
@@ -22,9 +22,10 @@ class MainNavigator(
     val startDestination = BottomNavigationType.DUMMY.route
 
     val currentMainNavigationBarItem: BottomNavigationType?
-        @Composable get() = BottomNavigationType.find { mainBottomNavigationRoute ->
-            currentDestination?.route == mainBottomNavigationRoute::class.simpleName
-        }
+        @Composable get() =
+            BottomNavigationType.find { mainBottomNavigationRoute ->
+                currentDestination?.route == mainBottomNavigationRoute::class.simpleName
+            }
 
     fun navigateMainNavigation(bottomNavigationType: BottomNavigationType) {
         navOptions {
@@ -54,14 +55,16 @@ class MainNavigator(
         navHostController.currentDestination?.route == T::class.simpleName
 
     @Composable
-    fun showBottomBar(): Boolean = BottomNavigationType.contains {
-        currentDestination?.route == it::class.simpleName
-    }
+    fun showBottomBar(): Boolean =
+        BottomNavigationType.contains {
+            currentDestination?.route == it::class.simpleName
+        }
 }
 
 @Composable
 fun rememberMainNavigator(
-    navHostController: NavHostController = rememberNavController()
-): MainNavigator = remember(navHostController) {
-    MainNavigator(navHostController = navHostController)
-}
+    navHostController: NavHostController = rememberNavController(),
+): MainNavigator =
+    remember(navHostController) {
+        MainNavigator(navHostController = navHostController)
+    }

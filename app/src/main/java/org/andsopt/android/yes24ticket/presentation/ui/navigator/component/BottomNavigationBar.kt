@@ -21,7 +21,7 @@ fun BottomNavigationBar(
     isVisible: Boolean,
     navigationBarItems: List<BottomNavigationType>,
     currentNavigationBarItem: BottomNavigationType?,
-    onNavigationBarItemSelected: (BottomNavigationType) -> Unit
+    onNavigationBarItemSelected: (BottomNavigationType) -> Unit,
 ) {
     AnimatedVisibility(visible = isVisible) {
         NavigationBar {
@@ -32,10 +32,10 @@ fun BottomNavigationBar(
                     icon = {
                         Icon(
                             painter = painterResource(id = mainNavigationBarItemType.icon),
-                            contentDescription = context.getString(mainNavigationBarItemType.description)
+                            contentDescription = context.getString(mainNavigationBarItemType.description),
                         )
                     },
-                    label = { Text(text = context.getString(mainNavigationBarItemType.description)) }
+                    label = { Text(text = context.getString(mainNavigationBarItemType.description)) },
                 )
             }
         }
@@ -50,7 +50,7 @@ private fun MainBottomBarPreview() {
             isVisible = true,
             navigationBarItems = BottomNavigationType.entries.toList(),
             currentNavigationBarItem = BottomNavigationType.DUMMY,
-            onNavigationBarItemSelected = {}
+            onNavigationBarItemSelected = {},
         )
     }
 }

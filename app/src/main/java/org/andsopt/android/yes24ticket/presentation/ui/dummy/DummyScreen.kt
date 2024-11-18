@@ -15,16 +15,17 @@ import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
 
 @Composable
 fun DummyScreen(
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
 ) {
     Column(
-        modifier = Modifier
-            .padding(paddingValues = paddingValues)
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .padding(paddingValues = paddingValues)
+                .fillMaxSize(),
     ) {
         Text(
             text = "YES24TICKET",
-            fontSize = 50.sp
+            fontSize = 50.sp,
         )
 
         DummyComponent(message = "우리 팀 화이팅")

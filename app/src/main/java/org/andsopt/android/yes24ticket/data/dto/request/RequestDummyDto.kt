@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RequestDummyDto(
     @SerialName("dummyName")
-    val requestDummyName: String
+    val requestDummyName: String,
 )

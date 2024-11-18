@@ -11,9 +11,10 @@ plugins {
     alias(libs.plugins.dagger.hilt)
 }
 
-val properties = Properties().apply {
-    load(project.rootProject.file("local.properties").inputStream())
-}
+val properties =
+    Properties().apply {
+        load(project.rootProject.file("local.properties").inputStream())
+    }
 
 android {
     namespace = "org.andsopt.android.yes24ticket"
@@ -36,7 +37,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

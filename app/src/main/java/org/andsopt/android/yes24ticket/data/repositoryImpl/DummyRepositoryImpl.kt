@@ -6,11 +6,13 @@ import org.andsopt.android.yes24ticket.domain.model.DummyNameEntity
 import org.andsopt.android.yes24ticket.domain.repository.DummyRepository
 import javax.inject.Inject
 
-class DummyRepositoryImpl @Inject constructor(
-    private val dummyRemoteDataSource: DummyRemoteDataSource
-) : DummyRepository {
-    override suspend fun getDummyData(dummyNameEntity: DummyNameEntity): Result<DummyIdEntity> =
-        runCatching {
-            dummyRemoteDataSource.getDummyData(requestDummyDto = dummyNameEntity.toRequestDummyDto()).data.toDummyIdEntity()
-        }
-}
+class DummyRepositoryImpl
+    @Inject
+    constructor(
+        private val dummyRemoteDataSource: DummyRemoteDataSource,
+    ) : DummyRepository {
+        override suspend fun getDummyData(dummyNameEntity: DummyNameEntity): Result<DummyIdEntity> =
+            runCatching {
+                dummyRemoteDataSource.getDummyData(requestDummyDto = dummyNameEntity.toRequestDummyDto()).data.toDummyIdEntity()
+            }
+    }

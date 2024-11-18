@@ -10,12 +10,12 @@ import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 fun NavController.navigationDummy(navOptions: NavOptions) {
     navigate(
         route = BottomNavigationRoute.Dummy::class.simpleName.orEmpty(),
-        navOptions = navOptions
+        navOptions = navOptions,
     )
 }
 
 fun NavGraphBuilder.dummyNavGraph(
-    padding: PaddingValues
+    padding: PaddingValues,
 ) {
     composable(route = BottomNavigationRoute.Dummy::class.simpleName.orEmpty()) {
         DummyRoute(paddingValues = padding)

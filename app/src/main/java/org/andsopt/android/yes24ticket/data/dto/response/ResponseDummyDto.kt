@@ -7,9 +7,10 @@ import org.andsopt.android.yes24ticket.domain.model.DummyIdEntity
 @Serializable
 data class ResponseDummyDto(
     @SerialName("dummy")
-    val responseDummyId: Long
+    val responseDummyId: Long,
 ) {
-    fun toDummyIdEntity() = DummyIdEntity(
-        dummyId = responseDummyId.toString()
-    )
+    fun toDummyIdEntity() =
+        DummyIdEntity(
+            dummyId = responseDummyId.toString(),
+        )
 }
