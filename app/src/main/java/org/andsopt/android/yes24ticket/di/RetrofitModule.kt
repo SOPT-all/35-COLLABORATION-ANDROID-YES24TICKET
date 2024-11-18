@@ -40,12 +40,6 @@ object RetrofitModule {
             writeTimeout(10, TimeUnit.SECONDS)
             readTimeout(10, TimeUnit.SECONDS)
 
-            addInterceptor { chain ->
-                val originalRequest = chain.request()
-                val requestBuilder = originalRequest.newBuilder()
-                chain.proceed(requestBuilder.build())
-            }
-
             if (DEBUG) addInterceptor(loggingInterceptor)
         }.build()
 
