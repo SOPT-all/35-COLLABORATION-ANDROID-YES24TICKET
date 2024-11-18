@@ -1,4 +1,4 @@
-package org.andsopt.android.yes24ticket.presentation.ui.ticket
+package org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation
 
 import androidx.compose.runtime.Composable
 
