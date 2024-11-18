@@ -41,6 +41,12 @@ jobs:
       - name: Touch local properties
         run: touch local.properties
 
+      - name: Access local properties
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+        run: |
+          echo "base.url=\"$BASE_URL\"" >> local.properties
+
       - name: Lint Check
         run: ./gradlew ktlintCheck -PcompileSdkVersion=34
 
