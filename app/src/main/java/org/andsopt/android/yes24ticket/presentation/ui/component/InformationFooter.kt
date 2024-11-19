@@ -1,5 +1,6 @@
 package org.andsopt.android.yes24ticket.presentation.ui.component
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
@@ -61,33 +63,13 @@ fun InformationFooter(
             )
         }
 
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(R.string.information_footer_privacy_policy),
-                style = defaultYes24TicketTypography.bodyRegular12,
-                color = Color.Gray,
-                modifier = Modifier.padding(end = 7.dp)
-            )
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .width(1.dp)
-                    .height(9.dp)
-                    .background(Color.Red)
-            )
-
-            Text(
-                text = stringResource(R.string.information_footer_terms),
-                style = defaultYes24TicketTypography.bodyRegular12,
-                color = Color.Gray,
-                modifier = Modifier.padding(start = 7.dp)
-            )
-        }
+        DividerBetweenText(
+            startText = R.string.information_footer_privacy_policy,
+            endText = R.string.information_footer_terms,
+            padding = 8,
+            textColor = Color.Black,
+            textStyle = defaultYes24TicketTypography.bodyRegular12
+        )
 
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -112,63 +94,17 @@ fun InformationFooter(
 
         Spacer(Modifier.height(2.dp))
 
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(R.string.information_footer_business),
-                style = defaultYes24TicketTypography.captionSemiBold10,
-                color = Color.Gray,
-                modifier = Modifier.padding(end = 7.dp)
-            )
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .width(1.dp)
-                    .height(9.dp)
-                    .background(Color.Red)
-            )
-
-            Text(
-                text = stringResource(R.string.information_footer_report),
-                style = defaultYes24TicketTypography.captionSemiBold10,
-                color = Color.Gray,
-                modifier = Modifier.padding(start = 7.dp)
-            )
-        }
+        DividerBetweenText(
+            startText = R.string.information_footer_business,
+            endText = R.string.information_footer_report
+        )
 
         Spacer(Modifier.height(2.dp))
 
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(R.string.information_footer_email),
-                style = defaultYes24TicketTypography.captionSemiBold10,
-                color = Color.Gray,
-                modifier = Modifier.padding(end = 7.dp)
-            )
-
-            HorizontalDivider(
-                modifier = Modifier
-                    .width(1.dp)
-                    .height(9.dp)
-                    .background(Color.Red)
-            )
-
-            Text(
-                text = stringResource(R.string.information_footer_service_provider),
-                style = defaultYes24TicketTypography.captionSemiBold10,
-                color = Color.Gray,
-                modifier = Modifier.padding(start = 7.dp)
-            )
-        }
+        DividerBetweenText(
+            startText = R.string.information_footer_email,
+            endText = R.string.information_footer_service_provider
+        )
 
         Spacer(Modifier.height(2.dp))
 
@@ -189,7 +125,7 @@ fun InformationFooter(
             Text(
                 text = stringResource(R.string.information_footer_global),
                 style = defaultYes24TicketTypography.captionExtraBold12,
-                color = Color.Gray,
+                color = Color.DarkGray,
                 modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
             )
 
@@ -198,10 +134,48 @@ fun InformationFooter(
             Text(
                 text = stringResource(R.string.information_footer_yes24),
                 style = defaultYes24TicketTypography.captionExtraBold12,
-                color = Color.Gray,
+                color = Color.DarkGray,
                 modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
             )
         }
+    }
+}
+
+@Composable
+fun DividerBetweenText(
+    @StringRes startText: Int,
+    @StringRes endText: Int,
+    modifier: Modifier = Modifier,
+    padding: Int = 6,
+    textColor: Color = Color.Gray,
+    textStyle: TextStyle = defaultYes24TicketTypography.captionSemiBold10,
+) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = stringResource(startText),
+            style = textStyle,
+            color = textColor,
+            modifier = Modifier.padding(end = padding.dp)
+        )
+
+        HorizontalDivider(
+            modifier = Modifier
+                .width(1.dp)
+                .height(9.dp)
+                .background(Color.Red)
+        )
+
+        Text(
+            text = stringResource(endText),
+            style = textStyle,
+            color = textColor,
+            modifier = Modifier.padding(start = padding.dp)
+        )
     }
 }
 
