@@ -17,10 +17,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
+import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooterConstants.END_INDEX
+import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooterConstants.START_INDEX
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
 import org.andsopt.android.yes24ticket.ui.theme.defaultYes24TicketTypography
 
@@ -39,10 +43,20 @@ fun InformationFooter(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 10.dp)
-
         ) {
             Text(
-                text = stringResource(R.string.information_footer_cs),
+                text = buildAnnotatedString {
+                    append(stringResource(R.string.information_footer_cs))
+                    addStyle(
+                        style = SpanStyle(
+                            color = Color.DarkGray,
+                            fontFamily = defaultYes24TicketTypography.titleRegular12.fontFamily,
+                            fontSize = defaultYes24TicketTypography.titleRegular12.fontSize
+                        ),
+                        start = START_INDEX,
+                        end = END_INDEX
+                    )
+                },
                 style = defaultYes24TicketTypography.titleBold12,
                 color = Color.Gray,
                 modifier = Modifier.padding(end = 7.dp)
@@ -177,6 +191,11 @@ fun DividerBetweenText(
             modifier = Modifier.padding(start = padding.dp)
         )
     }
+}
+
+object InformationFooterConstants {
+    const val START_INDEX = 0
+    const val END_INDEX = 4
 }
 
 @Preview
