@@ -66,10 +66,10 @@ fun YES24TICKETTheme(
         content = {
             CompositionLocalProvider(
                 LocalYes24TicketColorScheme provides yes24TicketColorScheme,
-                LocalYes24TicketTypography provides yes24TicketTypography
+                LocalYes24TicketTypography provides yes24TicketTypography,
             ) {
                 content()
             }
-        }
+        },
     )
 }

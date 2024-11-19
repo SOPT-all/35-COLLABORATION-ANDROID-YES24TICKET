@@ -310,6 +310,7 @@ val defaultYes24TicketTypography =
             ),
     )
 
-val LocalYes24TicketTypography = staticCompositionLocalOf {
-    defaultYes24TicketTypography
-}
+val LocalYes24TicketTypography =
+    staticCompositionLocalOf {
+        defaultYes24TicketTypography
+    }

@@ -41,7 +41,7 @@ class Yes24TicketColorScheme(
     val white: Color,
     val black: Color,
     val blackDim: Color,
-    val whiteDim: Color
+    val whiteDim: Color,
 )
 
 internal fun yes24TicketColorScheme(
@@ -82,7 +82,7 @@ internal fun yes24TicketColorScheme(
     white: Color = White,
     black: Color = Black,
     blackDim: Color = BlackDim,
-    whiteDim: Color = WhiteDim
+    whiteDim: Color = WhiteDim,
 ): Yes24TicketColorScheme {
     return Yes24TicketColorScheme(
         red50 = red50,
@@ -122,7 +122,7 @@ internal fun yes24TicketColorScheme(
         white = white,
         black = black,
         blackDim = blackDim,
-        whiteDim = whiteDim
+        whiteDim = whiteDim,
     )
 }
 
