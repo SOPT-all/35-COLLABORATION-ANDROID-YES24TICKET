@@ -30,12 +30,13 @@ import org.andsopt.android.yes24ticket.ui.theme.defaultYes24TicketTypography
 
 @Composable
 fun InformationFooter(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 10.dp, bottom = 19.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp, bottom = 19.dp),
     ) {
         FooterCSAndPCButton()
 
@@ -44,7 +45,7 @@ fun InformationFooter(
             endText = R.string.information_footer_terms,
             padding = 8,
             textColor = Color.Black,
-            textStyle = defaultYes24TicketTypography.bodyRegular12
+            textStyle = defaultYes24TicketTypography.bodyRegular12,
         )
 
         FooterCompanyInformation()
@@ -53,14 +54,14 @@ fun InformationFooter(
 
         DividerBetweenText(
             startText = R.string.information_footer_business,
-            endText = R.string.information_footer_report
+            endText = R.string.information_footer_report,
         )
 
         Spacer(Modifier.height(2.dp))
 
         DividerBetweenText(
             startText = R.string.information_footer_email,
-            endText = R.string.information_footer_service_provider
+            endText = R.string.information_footer_service_provider,
         )
 
         Spacer(Modifier.height(2.dp))
@@ -69,7 +70,7 @@ fun InformationFooter(
             text = stringResource(R.string.information_footer_copyright),
             style = defaultYes24TicketTypography.captionSemiBold10,
             color = Color.Gray,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         )
 
         FooterLinkButton()
@@ -88,119 +89,127 @@ fun DividerBetweenText(
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
+        modifier =
+            modifier
+                .fillMaxWidth(),
     ) {
         Text(
             text = stringResource(startText),
             style = textStyle,
             color = textColor,
-            modifier = Modifier.padding(end = padding.dp)
+            modifier = Modifier.padding(end = padding.dp),
         )
 
         HorizontalDivider(
-            modifier = Modifier
-                .width(1.dp)
-                .height(9.dp)
-                .background(Color.Red)
+            modifier =
+                Modifier
+                    .width(1.dp)
+                    .height(9.dp)
+                    .background(Color.Red),
         )
 
         Text(
             text = stringResource(endText),
             style = textStyle,
             color = textColor,
-            modifier = Modifier.padding(start = padding.dp)
+            modifier = Modifier.padding(start = padding.dp),
         )
     }
 }
 
 @Composable
 fun FooterCSAndPCButton(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(vertical = 10.dp),
     ) {
         Text(
-            text = buildAnnotatedString {
-                append(stringResource(R.string.information_footer_cs))
-                addStyle(
-                    style = SpanStyle(
-                        color = Color.DarkGray,
-                        fontFamily = defaultYes24TicketTypography.titleRegular12.fontFamily,
-                        fontSize = defaultYes24TicketTypography.titleRegular12.fontSize
-                    ),
-                    start = START_INDEX,
-                    end = END_INDEX
-                )
-            },
+            text =
+                buildAnnotatedString {
+                    append(stringResource(R.string.information_footer_cs))
+                    addStyle(
+                        style =
+                            SpanStyle(
+                                color = Color.DarkGray,
+                                fontFamily = defaultYes24TicketTypography.titleRegular12.fontFamily,
+                                fontSize = defaultYes24TicketTypography.titleRegular12.fontSize,
+                            ),
+                        start = START_INDEX,
+                        end = END_INDEX,
+                    )
+                },
             style = defaultYes24TicketTypography.titleBold12,
             color = Color.Gray,
-            modifier = Modifier.padding(end = 7.dp)
+            modifier = Modifier.padding(end = 7.dp),
         )
 
         HorizontalDivider(
-            modifier = Modifier
-                .width(1.dp)
-                .height(9.dp)
-                .background(Color.Red)
+            modifier =
+                Modifier
+                    .width(1.dp)
+                    .height(9.dp)
+                    .background(Color.Red),
         )
 
         Text(
             text = stringResource(R.string.information_footer_pc),
             style = defaultYes24TicketTypography.titleBold12,
             color = Color.Gray,
-            modifier = Modifier.padding(start = 7.dp)
+            modifier = Modifier.padding(start = 7.dp),
         )
     }
 }
 
 @Composable
 fun FooterCompanyInformation(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 6.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(top = 6.dp),
     ) {
         Text(
             text = stringResource(R.string.information_footer_representative),
             style = defaultYes24TicketTypography.captionSemiBold10,
-            color = Color.Gray
+            color = Color.Gray,
         )
 
         Text(
             text = stringResource(R.string.information_footer_address),
             style = defaultYes24TicketTypography.captionSemiBold10,
             color = Color.Gray,
-            modifier = Modifier.padding(start = 9.dp)
+            modifier = Modifier.padding(start = 9.dp),
         )
     }
 }
 
 @Composable
 fun FooterLinkButton(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(vertical = 10.dp),
     ) {
         Text(
             text = stringResource(R.string.information_footer_global),
             style = defaultYes24TicketTypography.captionExtraBold12,
             color = Color.DarkGray,
-            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp),
         )
 
         Spacer(Modifier.width(8.dp))
@@ -209,7 +218,7 @@ fun FooterLinkButton(
             text = stringResource(R.string.information_footer_yes24),
             style = defaultYes24TicketTypography.captionExtraBold12,
             color = Color.DarkGray,
-            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+            modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp),
         )
     }
 }
