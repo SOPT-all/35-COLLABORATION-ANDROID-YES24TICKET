@@ -52,6 +52,7 @@ data class Yes24TicketTypography(
     val bodyMedium13: TextStyle,
     val bodyBold12: TextStyle,
     val bodySemiBold12: TextStyle,
+    val bodyRegular12: TextStyle,
     // Button
     val buttonExtraBold18: TextStyle,
     val buttonSemiBold19: TextStyle,
@@ -209,6 +210,13 @@ val defaultYes24TicketTypography =
         bodySemiBold12 =
             TextStyle(
                 fontFamily = AppleSanDolGothicSemiBold,
+                fontSize = 12.sp,
+                lineHeight = 14.sp,
+                letterSpacing = 0.sp,
+            ),
+        bodyRegular12 =
+            TextStyle(
+                fontFamily = AppleSanDolGothicRegular,
                 fontSize = 12.sp,
                 lineHeight = 14.sp,
                 letterSpacing = 0.sp,
