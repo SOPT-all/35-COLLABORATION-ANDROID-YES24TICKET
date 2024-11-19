@@ -25,6 +25,20 @@ private val LightColorScheme =
         tertiary = Pink40,
     )
 
+/**
+ * Color, Typography 사용법:
+ *
+ * Typography 사용법 : Yes24TicketTheme.typography.~~
+ *
+ * Color 사용법 : Yes24TicketTheme.colorScheme.~~
+ * ```
+ * // 예시 샘플
+ * Text(
+ *     text = "7조 화이팅 yes24",
+ *     style = Yes24TicketTheme.typography.bodyBold14,  // Typography
+ *     color = Yes24TicketTheme.colorScheme.gray900     // Color
+ * )
+ */
 @Composable
 fun YES24TICKETTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
