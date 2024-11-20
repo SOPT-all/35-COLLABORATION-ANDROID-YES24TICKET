@@ -1,6 +1,7 @@
 package org.andsopt.android.yes24ticket.ui.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 class Yes24TicketColorScheme(
@@ -42,6 +43,9 @@ class Yes24TicketColorScheme(
     val black: Color,
     val blackDim: Color,
     val whiteDim: Color,
+    val whiteGd: Brush,
+    val blackGd: Brush,
+    val blackMiniGd: Brush,
 )
 
 internal fun yes24TicketColorScheme(
@@ -83,6 +87,9 @@ internal fun yes24TicketColorScheme(
     black: Color = Black,
     blackDim: Color = BlackDim,
     whiteDim: Color = WhiteDim,
+    whiteGd: Brush = WhiteGd,
+    blackGd: Brush = BlackGd,
+    blackMiniGd: Brush = BlackMiniGd,
 ): Yes24TicketColorScheme {
     return Yes24TicketColorScheme(
         red50 = red50,
@@ -123,6 +130,9 @@ internal fun yes24TicketColorScheme(
         black = black,
         blackDim = blackDim,
         whiteDim = whiteDim,
+        whiteGd = whiteGd,
+        blackGd = blackGd,
+        blackMiniGd = blackMiniGd,
     )
 }
 
