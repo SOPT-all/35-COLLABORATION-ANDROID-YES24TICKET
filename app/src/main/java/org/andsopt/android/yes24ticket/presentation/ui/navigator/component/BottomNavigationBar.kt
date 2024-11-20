@@ -47,7 +47,7 @@ private fun MainBottomBarPreview() {
         BottomNavigationBar(
             isVisible = true,
             navigationBarItems = BottomNavigationType.entries.toList(),
-            currentNavigationBarItem = BottomNavigationType.DUMMY,
+            currentNavigationBarItem = BottomNavigationType.HOME,
             onNavigationBarItemSelected = {},
         )
     }

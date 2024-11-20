@@ -12,12 +12,26 @@ enum class BottomNavigationType(
     @StringRes val description: Int,
     val route: BottomNavigationRoute,
 ) {
-    DUMMY(
-        icon = R.drawable.ic_launcher_foreground,
-        description = R.string.app_name,
-        route = BottomNavigationRoute.Dummy,
+    HOME(
+        icon = R.drawable.ic_bnv_home_selected_24,
+        description = R.string.bottom_navigation_home,
+        route = BottomNavigationRoute.Home,
     ),
-    ;
+    CATEGORY(
+        icon = R.drawable.ic_bnv_category_selected_24,
+        description = R.string.bottom_navigation_category,
+        route = BottomNavigationRoute.Category,
+    ),
+    SEARCH(
+        icon = R.drawable.ic_bnv_search_selected_24,
+        description = R.string.bottom_navigation_search,
+        route = BottomNavigationRoute.Search,
+    ),
+    MY_PAGE(
+        icon = R.drawable.ic_bnv_my_selected_24,
+        description = R.string.bottom_navigation_my,
+        route = BottomNavigationRoute.MyPage,
+    );
 
     companion object {
         @Composable

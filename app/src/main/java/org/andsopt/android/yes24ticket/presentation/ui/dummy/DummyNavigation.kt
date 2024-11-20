@@ -7,7 +7,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 
-fun NavController.navigationDummy(navOptions: NavOptions) {
+fun NavController.navigationHome(navOptions: NavOptions) {
     navigate(
         route = BottomNavigationRoute.Dummy,
         navOptions = navOptions,

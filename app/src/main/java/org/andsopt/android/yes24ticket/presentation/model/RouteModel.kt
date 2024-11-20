@@ -9,4 +9,12 @@ sealed interface Route
 sealed interface BottomNavigationRoute : Route {
     @Serializable
     data object Dummy : BottomNavigationRoute
+    @Serializable
+    data object Home: BottomNavigationRoute
+    @Serializable
+    data object Category: BottomNavigationRoute
+    @Serializable
+    data object Search: BottomNavigationRoute
+    @Serializable
+    data object MyPage: BottomNavigationRoute
 }

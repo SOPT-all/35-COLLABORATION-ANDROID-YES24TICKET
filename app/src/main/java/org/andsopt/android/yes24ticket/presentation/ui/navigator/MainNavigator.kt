@@ -11,7 +11,7 @@ import androidx.navigation.navOptions
 import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 import org.andsopt.android.yes24ticket.presentation.model.Route
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
-import org.andsopt.android.yes24ticket.presentation.ui.dummy.navigationDummy
+import org.andsopt.android.yes24ticket.presentation.ui.dummy.navigationHome
 
 class MainNavigator(
     val navHostController: NavHostController,
@@ -19,7 +19,7 @@ class MainNavigator(
     private val currentDestination: NavDestination?
         @Composable get() = navHostController.currentBackStackEntryAsState().value?.destination
 
-    val startDestination = BottomNavigationType.DUMMY.route
+    val startDestination = BottomNavigationType.HOME.route
 
     val currentMainNavigationBarItem: BottomNavigationType?
         @Composable get() =
@@ -36,7 +36,8 @@ class MainNavigator(
             restoreState = true
         }.let { navOptions ->
             when (bottomNavigationType) {
-                BottomNavigationType.DUMMY -> navHostController.navigationDummy(navOptions)
+                BottomNavigationType.HOME -> navHostController.navigationHome(navOptions)
+                else -> Unit
             }
         }
     }

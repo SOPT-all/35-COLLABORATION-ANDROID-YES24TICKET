@@ -15,4 +15,8 @@
     <string name="information_footer_copyright">Copyright ⓒ YES24 Corp. All Rights Reserved.</string>
     <string name="information_footer_global">GLOBAL</string>
     <string name="information_footer_yes24">YES24</string>
+    <string name="bottom_navigation_home">홈</string>
+    <string name="bottom_navigation_category">카테고리</string>
+    <string name="bottom_navigation_search">검색</string>
+    <string name="bottom_navigation_my">마이</string>
 </resources>
