@@ -26,8 +26,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
-import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooterConstants.END_INDEX
-import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooterConstants.START_INDEX
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
 import org.andsopt.android.yes24ticket.ui.theme.defaultYes24TicketTypography
 
@@ -226,10 +224,8 @@ private fun FooterLinkButton(
     }
 }
 
-object InformationFooterConstants {
-    const val START_INDEX = 0
-    const val END_INDEX = 4
-}
+private const val START_INDEX = 0
+private const val END_INDEX = 4
 
 @Preview
 @Composable
