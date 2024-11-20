@@ -24,7 +24,7 @@ class MainNavigator(
     val currentMainNavigationBarItem: BottomNavigationType?
         @Composable get() =
             BottomNavigationType.find { mainBottomNavigationRoute ->
-                currentDestination?.route == mainBottomNavigationRoute::class.simpleName
+                currentDestination?.route == mainBottomNavigationRoute::class.qualifiedName
             }
 
     fun navigateMainNavigation(bottomNavigationType: BottomNavigationType) {
@@ -52,12 +52,12 @@ class MainNavigator(
     }
 
     private inline fun <reified T : Route> isSameCurrentDestination(): Boolean =
-        navHostController.currentDestination?.route == T::class.simpleName
+        navHostController.currentDestination?.route == T::class.qualifiedName
 
     @Composable
     fun showBottomBar(): Boolean =
         BottomNavigationType.contains {
-            currentDestination?.route == it::class.simpleName
+            currentDestination?.route == it::class.qualifiedName
         }
 }
 

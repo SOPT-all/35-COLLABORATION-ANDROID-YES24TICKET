@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">YES24TICKET</string>
+
+    <!-- component -->
+    <string name="information_footer_cs">고객센터 1544–6399 1:1 문의</string>
+    <string name="information_footer_pc">PC버전</string>
+    <string name="information_footer_privacy_policy">개인정보 처리방침</string>
+    <string name="information_footer_terms">이용약관</string>
+    <string name="information_footer_representative">대표 : 김석환, 최세라</string>
+    <string name="information_footer_address">주소 : 서울시 영등포구 은행로11, 5~6층 (여의도동, 일신빌딩)</string>
+    <string name="information_footer_business">사업자등록번호 : 229–81–37000</string>
+    <string name="information_footer_report">통신판매업신고 : 제2005–02682호</string>
+    <string name="information_footer_email">이메일 : yes24help@yes24.com</string>
+    <string name="information_footer_service_provider">호스팅서비스사업자 : 예스이십사(주)</string>
+    <string name="information_footer_copyright">Copyright ⓒ YES24 Corp. All Rights Reserved.</string>
+    <string name="information_footer_global">GLOBAL</string>
+    <string name="information_footer_yes24">YES24</string>
 </resources>
