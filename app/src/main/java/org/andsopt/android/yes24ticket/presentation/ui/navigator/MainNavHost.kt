@@ -24,7 +24,7 @@ fun MainNavHost(
     ) {
         NavHost(
             navController = navigator.navHostController,
-            startDestination = navigator.startDestination::class.simpleName.orEmpty(),
+            startDestination = navigator.startDestination,
         ) {
             dummyNavGraph(
                 padding = padding,

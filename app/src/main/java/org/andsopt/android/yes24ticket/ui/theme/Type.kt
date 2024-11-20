@@ -2,6 +2,7 @@ package org.andsopt.android.yes24ticket.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -308,3 +309,8 @@ val defaultYes24TicketTypography =
                 letterSpacing = 0.sp,
             ),
     )
+
+val LocalYes24TicketTypography =
+    staticCompositionLocalOf {
+        defaultYes24TicketTypography
+    }
