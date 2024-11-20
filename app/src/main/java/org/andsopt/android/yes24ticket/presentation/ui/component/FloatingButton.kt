@@ -29,47 +29,47 @@ import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 @Composable
 fun ScrollToTopFloatingButton(
     onClick: () -> Unit,
-    sizeDp : Dp = 30.dp,
-    modifier: Modifier = Modifier
+    sizeDp: Dp = 30.dp,
+    modifier: Modifier = Modifier,
 ) {
-    Column (modifier.fillMaxSize().background(Color.White),
+    Column(
+        modifier.fillMaxSize().background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Box(
-            modifier = modifier
-                .size(sizeDp)
-                .clip(RoundedCornerShape(2.dp))
-                .background(color = Yes24TicketTheme.colorScheme.red100)
-                .shadow(
-                    elevation = 4.dp,
-                    shape = RoundedCornerShape(2.dp),
-                    ambientColor = Color.Black.copy(alpha = 0.25f),
-                    spotColor = Color.Black.copy(alpha = 0.25f)
-                )
-                .padding(horizontal = 2.dp, vertical = 1.dp)
-                .clickable {
-                    onClick()
-                },
-            contentAlignment = Alignment.BottomCenter
-
+            modifier =
+                modifier
+                    .size(sizeDp)
+                    .clip(RoundedCornerShape(2.dp))
+                    .background(color = Yes24TicketTheme.colorScheme.red100)
+                    .shadow(
+                        elevation = 4.dp,
+                        shape = RoundedCornerShape(2.dp),
+                        ambientColor = Color.Black.copy(alpha = 0.25f),
+                        spotColor = Color.Black.copy(alpha = 0.25f),
+                    )
+                    .padding(horizontal = 2.dp, vertical = 1.dp)
+                    .clickable {
+                        onClick()
+                    },
+            contentAlignment = Alignment.BottomCenter,
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_up_white_12),
                 contentDescription = "ic_arrow_up_white",
                 modifier = modifier.padding(bottom = 13.5.dp),
-                tint = Color.Unspecified
+                tint = Color.Unspecified,
             )
             Text(
                 text = stringResource(R.string.floating_action_button_top),
                 style = Yes24TicketTheme.typography.captionRegular10,
                 color = Yes24TicketTheme.colorScheme.white,
-                modifier = modifier.padding(bottom = 4.5.dp)
+                modifier = modifier.padding(bottom = 4.5.dp),
             )
         }
     }
 }
-
 
 @Preview
 @Composable
