@@ -31,7 +31,8 @@ enum class BottomNavigationType(
         icon = R.drawable.ic_bnv_my_selected_24,
         description = R.string.bottom_navigation_my,
         route = BottomNavigationRoute.MyPage,
-    );
+    ),
+    ;
 
     companion object {
         @Composable

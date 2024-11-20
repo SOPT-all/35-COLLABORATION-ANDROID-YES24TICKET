@@ -2,7 +2,6 @@ package org.andsopt.android.yes24ticket.presentation.ui.navigator.component
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,23 +9,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
@@ -43,7 +35,7 @@ fun BottomNavigationBar(
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceAround
+        horizontalArrangement = Arrangement.SpaceAround,
     ) {
         navigationBarItems.forEach {
             BottomNavigationItem(
@@ -65,24 +57,25 @@ private fun BottomNavigationItem(
     @DrawableRes icon: Int,
     @StringRes label: Int,
     modifier: Modifier = Modifier,
-    spacing: Dp = 4.dp
+    spacing: Dp = 4.dp,
 ) {
     Column(
-        modifier = modifier.noRippleClickable {
-            onNavigationBarItemSelected(bottomNavType)
-        },
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier =
+            modifier.noRippleClickable {
+                onNavigationBarItemSelected(bottomNavType)
+            },
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             painter = painterResource(id = icon),
             contentDescription = stringResource(label),
-            tint = if (selected) Yes24TicketTheme.colorScheme.white else Yes24TicketTheme.colorScheme.gray300
+            tint = if (selected) Yes24TicketTheme.colorScheme.white else Yes24TicketTheme.colorScheme.gray300,
         )
         Spacer(modifier = Modifier.height(spacing))
         Text(
             text = stringResource(label),
             style = Yes24TicketTheme.typography.captionRegular10,
-            color = if (selected) Yes24TicketTheme.colorScheme.white else Yes24TicketTheme.colorScheme.gray300
+            color = if (selected) Yes24TicketTheme.colorScheme.white else Yes24TicketTheme.colorScheme.gray300,
         )
     }
 }

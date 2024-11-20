@@ -35,13 +35,14 @@ private fun MainScreenContent(
             )
         },
         bottomBar = {
-            if (navigator.showBottomBar())
+            if (navigator.showBottomBar()) {
                 BottomNavigationBar(
                     modifier = Modifier.background(Yes24TicketTheme.colorScheme.black).padding(top = 5.dp, bottom = 10.dp),
                     navigationBarItems = BottomNavigationType.entries.toList(),
                     currentNavigationBarItem = navigator.currentMainNavigationBarItem,
                     onNavigationBarItemSelected = { navigator.navigateMainNavigation(it) },
                 )
+            }
         },
     )
 }
