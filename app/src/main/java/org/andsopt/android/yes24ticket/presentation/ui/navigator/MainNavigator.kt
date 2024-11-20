@@ -47,7 +47,7 @@ class MainNavigator(
     }
 
     fun popBackStackIfNotHome() {
-        if (!isSameCurrentDestination<BottomNavigationRoute.Dummy>()) {
+        if (!isSameCurrentDestination<BottomNavigationRoute.Home>()) {
             popBackStack()
         }
     }
