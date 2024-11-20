@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
-import org.andsopt.android.yes24ticket.ui.theme.defaultYes24TicketTypography
+import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
 @Composable
 fun InformationFooter(
@@ -45,8 +45,8 @@ fun InformationFooter(
             startText = R.string.information_footer_privacy_policy,
             endText = R.string.information_footer_terms,
             contentPadding = PaddingValues(8.dp),
-            textColor = Color.Black,
-            textStyle = defaultYes24TicketTypography.bodyRegular12,
+            textColor = Yes24TicketTheme.colorScheme.gray800,
+            textStyle = Yes24TicketTheme.typography.bodyRegular12,
         )
 
         FooterCompanyInformation()
@@ -69,8 +69,8 @@ fun InformationFooter(
 
         Text(
             text = stringResource(R.string.information_footer_copyright),
-            style = defaultYes24TicketTypography.captionSemiBold10,
-            color = Color.Gray,
+            style = Yes24TicketTheme.typography.captionSemiBold10,
+            color = Yes24TicketTheme.colorScheme.gray400,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
 
@@ -84,8 +84,8 @@ fun DividerBetweenText(
     @StringRes endText: Int,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(6.dp),
-    textColor: Color = Color.Gray,
-    textStyle: TextStyle = defaultYes24TicketTypography.captionSemiBold10,
+    textColor: Color = Yes24TicketTheme.colorScheme.gray400,
+    textStyle: TextStyle = Yes24TicketTheme.typography.captionSemiBold10,
 ) {
     Row(
         horizontalArrangement = Arrangement.Center,
@@ -106,7 +106,7 @@ fun DividerBetweenText(
                 Modifier
                     .height(9.dp),
             thickness = 1.dp,
-            color = Color.Red,
+            color = Yes24TicketTheme.colorScheme.gray200,
         )
 
         Text(
@@ -137,16 +137,15 @@ fun FooterCSAndPCButton(
                     addStyle(
                         style =
                             SpanStyle(
-                                color = Color.DarkGray,
-                                fontFamily = defaultYes24TicketTypography.titleRegular12.fontFamily,
-                                fontSize = defaultYes24TicketTypography.titleRegular12.fontSize,
+                                fontFamily = Yes24TicketTheme.typography.titleRegular12.fontFamily,
+                                fontSize = Yes24TicketTheme.typography.titleRegular12.fontSize,
                             ),
                         start = START_INDEX,
                         end = END_INDEX,
                     )
                 },
-            style = defaultYes24TicketTypography.titleBold12,
-            color = Color.Gray,
+            style = Yes24TicketTheme.typography.titleBold12,
+            color = Yes24TicketTheme.colorScheme.gray600,
             modifier = Modifier.padding(end = 7.dp),
         )
 
@@ -155,13 +154,13 @@ fun FooterCSAndPCButton(
                 Modifier
                     .height(9.dp),
             thickness = 1.dp,
-            color = Color.Red,
+            color = Yes24TicketTheme.colorScheme.gray200,
         )
 
         Text(
             text = stringResource(R.string.information_footer_pc),
-            style = defaultYes24TicketTypography.titleBold12,
-            color = Color.Gray,
+            style = Yes24TicketTheme.typography.titleBold12,
+            color = Yes24TicketTheme.colorScheme.gray600,
             modifier = Modifier.padding(start = 7.dp),
         )
     }
@@ -181,14 +180,14 @@ private fun FooterCompanyInformation(
     ) {
         Text(
             text = stringResource(R.string.information_footer_representative),
-            style = defaultYes24TicketTypography.captionSemiBold10,
-            color = Color.Gray,
+            style = Yes24TicketTheme.typography.captionSemiBold10,
+            color = Yes24TicketTheme.colorScheme.gray400,
         )
 
         Text(
             text = stringResource(R.string.information_footer_address),
-            style = defaultYes24TicketTypography.captionSemiBold10,
-            color = Color.Gray,
+            style = Yes24TicketTheme.typography.captionSemiBold10,
+            color = Yes24TicketTheme.colorScheme.gray400,
             modifier = Modifier.padding(start = 9.dp),
         )
     }
@@ -208,8 +207,8 @@ private fun FooterLinkButton(
     ) {
         Text(
             text = stringResource(R.string.information_footer_global),
-            style = defaultYes24TicketTypography.captionExtraBold12,
-            color = Color.DarkGray,
+            style = Yes24TicketTheme.typography.captionExtraBold12,
+            color = Yes24TicketTheme.colorScheme.gray600,
             modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp),
         )
 
@@ -217,8 +216,8 @@ private fun FooterLinkButton(
 
         Text(
             text = stringResource(R.string.information_footer_yes24),
-            style = defaultYes24TicketTypography.captionExtraBold12,
-            color = Color.DarkGray,
+            style = Yes24TicketTheme.typography.captionExtraBold12,
+            color = Yes24TicketTheme.colorScheme.gray600,
             modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp),
         )
     }
