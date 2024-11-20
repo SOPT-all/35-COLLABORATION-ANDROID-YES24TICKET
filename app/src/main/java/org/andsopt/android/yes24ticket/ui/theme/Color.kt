@@ -1,9 +1,7 @@
 package org.andsopt.android.yes24ticket.ui.theme
 
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.TileMode
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -58,12 +56,15 @@ val Black = Color(0xFF000000)
 val BlackDim = Color(0xCC000000)
 val WhiteDim = Color(0x1E000000)
 
-val WhiteGd = Brush.verticalGradient(
-    colors = listOf(Color(0xCCFFFFFF), Color(0xFFFFFFFF))
-)
-val BlackGd = Brush.verticalGradient(
-    colors = listOf(Color(0x99000000), Color(0x00666666), Color(0x99000000), Color(0x00666666), Color(0x99000000)),
-)
-val BlackMiniGd = Brush.verticalGradient(
-    colors = listOf(Color(0x00000000), Color(0x40000000)),
-)
+val WhiteGd =
+    Brush.verticalGradient(
+        colors = listOf(Color(0xCCFFFFFF), Color(0xFFFFFFFF)),
+    )
+val BlackGd =
+    Brush.verticalGradient(
+        colors = listOf(Color(0x99000000), Color(0x00666666), Color(0x99000000), Color(0x00666666), Color(0x99000000)),
+    )
+val BlackMiniGd =
+    Brush.verticalGradient(
+        colors = listOf(Color(0x00000000), Color(0x40000000)),
+    )
