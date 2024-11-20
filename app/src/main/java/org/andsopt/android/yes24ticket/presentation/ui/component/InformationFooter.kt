@@ -1,21 +1,24 @@
 package org.andsopt.android.yes24ticket.presentation.ui.component
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -43,7 +46,7 @@ fun InformationFooter(
         DividerBetweenText(
             startText = R.string.information_footer_privacy_policy,
             endText = R.string.information_footer_terms,
-            padding = 8,
+            contentPadding = PaddingValues(8.dp),
             textColor = Color.Black,
             textStyle = defaultYes24TicketTypography.bodyRegular12,
         )
@@ -82,7 +85,7 @@ fun DividerBetweenText(
     @StringRes startText: Int,
     @StringRes endText: Int,
     modifier: Modifier = Modifier,
-    padding: Int = 6,
+    contentPadding: PaddingValues = PaddingValues(6.dp),
     textColor: Color = Color.Gray,
     textStyle: TextStyle = defaultYes24TicketTypography.captionSemiBold10,
 ) {
@@ -97,22 +100,22 @@ fun DividerBetweenText(
             text = stringResource(startText),
             style = textStyle,
             color = textColor,
-            modifier = Modifier.padding(end = padding.dp),
+            modifier = Modifier.padding(end = contentPadding.calculateEndPadding(LocalLayoutDirection.current)),
         )
 
-        HorizontalDivider(
+        VerticalDivider(
             modifier =
                 Modifier
-                    .width(1.dp)
-                    .height(9.dp)
-                    .background(Color.Red),
+                    .height(9.dp),
+            thickness = 1.dp,
+            color = Color.Red,
         )
 
         Text(
             text = stringResource(endText),
             style = textStyle,
             color = textColor,
-            modifier = Modifier.padding(start = padding.dp),
+            modifier = Modifier.padding(start = contentPadding.calculateStartPadding(LocalLayoutDirection.current)),
         )
     }
 }
@@ -149,12 +152,12 @@ fun FooterCSAndPCButton(
             modifier = Modifier.padding(end = 7.dp),
         )
 
-        HorizontalDivider(
+        VerticalDivider(
             modifier =
                 Modifier
-                    .width(1.dp)
-                    .height(9.dp)
-                    .background(Color.Red),
+                    .height(9.dp),
+            thickness = 1.dp,
+            color = Color.Red,
         )
 
         Text(
@@ -167,7 +170,7 @@ fun FooterCSAndPCButton(
 }
 
 @Composable
-fun FooterCompanyInformation(
+private fun FooterCompanyInformation(
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -194,7 +197,7 @@ fun FooterCompanyInformation(
 }
 
 @Composable
-fun FooterLinkButton(
+private fun FooterLinkButton(
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -230,7 +233,7 @@ object InformationFooterConstants {
 
 @Preview
 @Composable
-fun InformationFooterPreview() {
+private fun InformationFooterPreview() {
     YES24TICKETTheme {
         InformationFooter()
     }
