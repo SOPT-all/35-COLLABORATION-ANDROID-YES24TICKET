@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,16 +30,17 @@ fun ScrollToTopFloatingButton(
         modifier = modifier
             .size(30.dp)
             .clip(RoundedCornerShape(2.dp))
-            .graphicsLayer {
-                shadowElevation = 4.dp.toPx() // 블러 반경에 해당
-                clip = true
-            }
+            .shadow(
+                elevation = 4.dp,
+                shape = RoundedCornerShape(2.dp),
+                ambientColor = Color.Black.copy(alpha = 0.25f),
+                spotColor = Color.Black.copy(alpha = 0.25f)
+            )
             .background(Color.Red)
             .padding(horizontal = 2.dp, vertical = 1.dp)
             .clickable {
                 onClick()
-            }
-           ,
+            },
         contentAlignment = Alignment.BottomCenter
 
     ) {
@@ -56,6 +57,7 @@ fun ScrollToTopFloatingButton(
         )
     }
 }
+
 
 @Preview
 @Composable
