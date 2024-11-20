@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.andsopt.android.yes24ticket.R
@@ -24,11 +25,12 @@ import org.andsopt.android.yes24ticket.R
 @Composable
 fun ScrollToTopFloatingButton(
     onClick: () -> Unit,
+    sizeDp : Dp = 30.dp,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
-            .size(30.dp)
+            .size(sizeDp)
             .clip(RoundedCornerShape(2.dp))
             .shadow(
                 elevation = 4.dp,
