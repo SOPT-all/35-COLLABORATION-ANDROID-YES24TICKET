@@ -18,17 +18,17 @@ enum class BottomNavigationType(
         route = BottomNavigationRoute.Home,
     ),
     CATEGORY(
-        icon = R.drawable.ic_bnv_category_selected_24,
+        icon = R.drawable.ic_bnv_category_deselected_24,
         description = R.string.bottom_navigation_category,
         route = BottomNavigationRoute.Category,
     ),
     SEARCH(
-        icon = R.drawable.ic_bnv_search_selected_24,
+        icon = R.drawable.ic_bnv_search_deselected_24,
         description = R.string.bottom_navigation_search,
         route = BottomNavigationRoute.Search,
     ),
     MY_PAGE(
-        icon = R.drawable.ic_bnv_my_selected_24,
+        icon = R.drawable.ic_bnv_my_deselected_24,
         description = R.string.bottom_navigation_my,
         route = BottomNavigationRoute.MyPage,
     ),

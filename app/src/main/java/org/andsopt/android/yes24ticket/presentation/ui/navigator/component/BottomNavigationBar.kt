@@ -37,13 +37,13 @@ fun BottomNavigationBar(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround,
     ) {
-        navigationBarItems.forEach {
+        navigationBarItems.forEach { navItem ->
             BottomNavigationItem(
-                selected = currentNavigationBarItem == it,
-                bottomNavType = it,
+                selected = currentNavigationBarItem == navItem,
+                bottomNavType = navItem,
                 onNavigationBarItemSelected = onNavigationBarItemSelected,
-                icon = it.icon,
-                label = it.description,
+                icon = navItem.icon,
+                label = navItem.description,
             )
         }
     }
@@ -69,13 +69,19 @@ private fun BottomNavigationItem(
         Icon(
             painter = painterResource(id = icon),
             contentDescription = stringResource(label),
-            tint = if (selected) Yes24TicketTheme.colorScheme.white else Yes24TicketTheme.colorScheme.gray300,
+            tint = if (selected)
+                Yes24TicketTheme.colorScheme.white
+            else
+                Yes24TicketTheme.colorScheme.gray300,
         )
         Spacer(modifier = Modifier.height(spacing))
         Text(
             text = stringResource(label),
             style = Yes24TicketTheme.typography.captionRegular10,
-            color = if (selected) Yes24TicketTheme.colorScheme.white else Yes24TicketTheme.colorScheme.gray300,
+            color = if (selected)
+                Yes24TicketTheme.colorScheme.white
+            else
+                Yes24TicketTheme.colorScheme.gray300,
         )
     }
 }
