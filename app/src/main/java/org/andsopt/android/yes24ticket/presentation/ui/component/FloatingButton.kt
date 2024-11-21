@@ -13,8 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
@@ -42,10 +43,10 @@ fun ScrollToTopFloatingButton(
         contentAlignment = Alignment.BottomCenter,
     ) {
         Icon(
-            painter = painterResource(R.drawable.ic_arrow_up_white_12),
+            imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_up_white_12),
             contentDescription = stringResource(R.string.floating_action_button_icon_desription),
             modifier =
-                modifier
+                Modifier
                     .padding(bottom = 13.5.dp, top = 4.5.dp),
             tint = Color.Unspecified,
         )
@@ -54,7 +55,7 @@ fun ScrollToTopFloatingButton(
             style = Yes24TicketTheme.typography.captionRegular11,
             color = Yes24TicketTheme.colorScheme.white,
             modifier =
-                modifier
+                Modifier
                     .padding(horizontal = 5.dp)
                     .padding(bottom = 4.5.dp),
         )

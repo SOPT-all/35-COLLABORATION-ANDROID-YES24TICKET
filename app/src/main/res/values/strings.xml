@@ -15,6 +15,7 @@
     <string name="information_footer_copyright">Copyright ⓒ YES24 Corp. All Rights Reserved.</string>
     <string name="information_footer_global">GLOBAL</string>
     <string name="information_footer_yes24">YES24</string>
+    <!-- component- FAB -->
     <string name="floating_action_button_top">TOP</string>
     <string name="floating_action_button_icon_desription">Go To Top</string>
 </resources>
