@@ -50,6 +50,7 @@ fun ScrollToTopFloatingButton(
                     .padding(bottom = 13.5.dp, top = 4.5.dp),
             tint = Color.Unspecified,
         )
+
         Text(
             text = stringResource(R.string.floating_action_button_top),
             style = Yes24TicketTheme.typography.captionRegular11,
