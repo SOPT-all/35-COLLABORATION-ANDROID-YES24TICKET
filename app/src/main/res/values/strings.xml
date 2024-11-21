@@ -18,4 +18,7 @@
     <!-- component- FAB -->
     <string name="floating_action_button_top">TOP</string>
     <string name="floating_action_button_icon_desription">Go To Top</string>
+    <!-- component-TopAppBar -->
+    <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
+    <string name="top_app_bar_search_icon_description">Search Icon</string>
 </resources>
