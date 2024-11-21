@@ -16,4 +16,5 @@
     <string name="information_footer_global">GLOBAL</string>
     <string name="information_footer_yes24">YES24</string>
     <string name="floating_action_button_top">TOP</string>
+    <string name="floating_action_button_icon_desription">Go To Top</string>
 </resources>
