@@ -15,4 +15,6 @@
     <string name="information_footer_copyright">Copyright ⓒ YES24 Corp. All Rights Reserved.</string>
     <string name="information_footer_global">GLOBAL</string>
     <string name="information_footer_yes24">YES24</string>
+    <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
+    <string name="top_app_bar_search_icon_description">Search Icon</string>
 </resources>
