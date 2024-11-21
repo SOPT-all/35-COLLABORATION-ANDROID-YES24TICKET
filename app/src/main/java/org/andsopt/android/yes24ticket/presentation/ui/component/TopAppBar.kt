@@ -36,6 +36,7 @@ fun Yes24TopAppBar(modifier: Modifier = Modifier) {
             imageVector = ImageVector.vectorResource(R.drawable.img_logo_yes24_84_37),
             contentDescription = stringResource(R.string.top_app_bar_logo_description),
         )
+
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_bnv_search_selected_24),
             contentDescription = stringResource(R.string.top_app_bar_search_icon_description),
