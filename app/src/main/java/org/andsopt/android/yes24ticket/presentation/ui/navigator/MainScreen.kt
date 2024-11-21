@@ -1,12 +1,16 @@
 package org.andsopt.android.yes24ticket.presentation.ui.navigator
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
 import org.andsopt.android.yes24ticket.presentation.ui.navigator.component.BottomNavigationBar
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
+import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
 @Composable
 fun MainScreen(
@@ -31,12 +35,14 @@ private fun MainScreenContent(
             )
         },
         bottomBar = {
-            BottomNavigationBar(
-                isVisible = navigator.showBottomBar(),
-                navigationBarItems = BottomNavigationType.entries.toList(),
-                currentNavigationBarItem = navigator.currentMainNavigationBarItem,
-                onNavigationBarItemSelected = { navigator.navigateMainNavigation(it) },
-            )
+            if (navigator.showBottomBar()) {
+                BottomNavigationBar(
+                    modifier = Modifier.background(Yes24TicketTheme.colorScheme.black).padding(top = 5.dp, bottom = 10.dp),
+                    navigationBarItems = BottomNavigationType.entries.toList(),
+                    currentNavigationBarItem = navigator.currentMainNavigationBarItem,
+                    onNavigationBarItemSelected = { navigator.navigateMainNavigation(it) },
+                )
+            }
         },
     )
 }

@@ -12,10 +12,25 @@ enum class BottomNavigationType(
     @StringRes val description: Int,
     val route: BottomNavigationRoute,
 ) {
-    DUMMY(
-        icon = R.drawable.ic_launcher_foreground,
-        description = R.string.app_name,
-        route = BottomNavigationRoute.Dummy,
+    HOME(
+        icon = R.drawable.ic_bnv_home_selected_24,
+        description = R.string.bottom_navigation_home,
+        route = BottomNavigationRoute.Home,
+    ),
+    CATEGORY(
+        icon = R.drawable.ic_bnv_category_deselected_24,
+        description = R.string.bottom_navigation_category,
+        route = BottomNavigationRoute.Category,
+    ),
+    SEARCH(
+        icon = R.drawable.ic_bnv_search_deselected_24,
+        description = R.string.bottom_navigation_search,
+        route = BottomNavigationRoute.Search,
+    ),
+    MY_PAGE(
+        icon = R.drawable.ic_bnv_my_deselected_24,
+        description = R.string.bottom_navigation_my,
+        route = BottomNavigationRoute.MyPage,
     ),
     ;
 
@@ -26,7 +41,7 @@ enum class BottomNavigationType(
         }
 
         @Composable
-        fun contains(predicate: @Composable (Route) -> Boolean): Boolean {
+        fun any(predicate: @Composable (Route) -> Boolean): Boolean {
             return entries.map { it.route }.any { predicate(it) }
         }
     }
