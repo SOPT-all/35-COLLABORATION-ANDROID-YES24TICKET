@@ -41,7 +41,7 @@ enum class BottomNavigationType(
         }
 
         @Composable
-        fun contains(predicate: @Composable (Route) -> Boolean): Boolean {
+        fun any(predicate: @Composable (Route) -> Boolean): Boolean {
             return entries.map { it.route }.any { predicate(it) }
         }
     }

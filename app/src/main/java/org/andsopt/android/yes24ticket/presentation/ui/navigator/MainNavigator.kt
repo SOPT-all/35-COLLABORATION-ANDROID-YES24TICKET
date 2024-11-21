@@ -57,7 +57,7 @@ class MainNavigator(
 
     @Composable
     fun showBottomBar(): Boolean =
-        BottomNavigationType.contains {
+        BottomNavigationType.any {
             currentDestination?.route == it::class.qualifiedName
         }
 }
