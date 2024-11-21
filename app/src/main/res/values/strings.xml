@@ -16,8 +16,16 @@
     <string name="information_footer_global">GLOBAL</string>
     <string name="information_footer_yes24">YES24</string>
 
+    <!-- component- BottomNavigation -->
     <string name="bottom_navigation_home">홈</string>
     <string name="bottom_navigation_category">카테고리</string>
     <string name="bottom_navigation_search">검색</string>
     <string name="bottom_navigation_my">마이</string>
+
+    <!-- component- FAB -->
+    <string name="floating_action_button_top">TOP</string>
+    <string name="floating_action_button_icon_desription">Go To Top</string>
+    <!-- component-TopAppBar -->
+    <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
+    <string name="top_app_bar_search_icon_description">Search Icon</string>
 </resources>
