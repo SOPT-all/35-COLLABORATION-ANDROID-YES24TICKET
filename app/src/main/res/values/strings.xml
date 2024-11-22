@@ -28,4 +28,5 @@
     <!-- component-TopAppBar -->
     <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
     <string name="top_app_bar_search_icon_description">Search Icon</string>
+    <string name="home_main_banner_item_image_description">Main Banner Image</string>
 </resources>
