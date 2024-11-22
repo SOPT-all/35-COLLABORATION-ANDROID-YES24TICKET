@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import java.time.DayOfWeek
@@ -44,6 +45,23 @@ class TicketReservationViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = emptyList()
     )
+
+    val selectableDays = flow {
+        // TODO: API
+        emit(listOf(11, 14, 20))
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = emptyList()
+    )
+
+    private val _selectedDay = MutableStateFlow(-1)
+    val selectedDay = _selectedDay.asStateFlow()
+
+    fun onDaySelected(day: Int) {
+        if (day == 0) return
+        _selectedDay.value = day
+    }
 
     fun onNextMonth() {
         _currentCalendar.value = _currentCalendar.value.plusMonths(1)
