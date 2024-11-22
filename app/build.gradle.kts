@@ -82,7 +82,8 @@ dependencies {
     implementation(libs.kotlin.serialization.json)
 
     // Coil
-    implementation(libs.coil)
+    implementation(libs.coil3)
+    implementation(libs.coil3.network)
 
     // Timber
     implementation(libs.timber)
