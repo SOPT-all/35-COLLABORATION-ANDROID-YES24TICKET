@@ -31,17 +31,20 @@ import java.util.Locale
 fun CalendarView(
     selectableDays: List<Int>,
     days: List<List<Int>>,
+    selectedDay: Int,
     modifier: Modifier = Modifier,
 ) {
 
     Column(
-        modifier = modifier.border(
-            width = 1.dp,
-            color = Yes24TicketTheme.colorScheme.gray150,
-            shape = RoundedCornerShape(4.dp)
-        ).background(
-            color = Yes24TicketTheme.colorScheme.white,
-        )
+        modifier = modifier
+            .border(
+                width = 1.dp,
+                color = Yes24TicketTheme.colorScheme.gray150,
+                shape = RoundedCornerShape(4.dp)
+            )
+            .background(
+                color = Yes24TicketTheme.colorScheme.white,
+            )
     ) {
         CalendarDayOfWeeksRow(
             modifier = Modifier.fillMaxWidth()
@@ -55,9 +58,12 @@ fun CalendarView(
             CalendarDaysRow(
                 days = weekDays,
                 selectableDays = selectableDays,
-                modifier = Modifier.fillMaxWidth().background(
-                    color = Yes24TicketTheme.colorScheme.white,
-                )
+                selectedDay = selectedDay,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = Yes24TicketTheme.colorScheme.white,
+                    )
             )
             if (weekDays != days.last()) {
                 HorizontalDivider(
@@ -121,6 +127,7 @@ private fun CalendarDayOfWeeksRow(
 private fun CalendarDaysRow(
     days: List<Int>,
     selectableDays: List<Int>,
+    selectedDay: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -133,7 +140,9 @@ private fun CalendarDaysRow(
                     .weight(1f)
                     .aspectRatio(43f / 37f)
                     .background(
-                        color = if (selectableDays.contains(day))
+                        color = if (selectedDay == day)
+                            Yes24TicketTheme.colorScheme.red100
+                        else if (selectableDays.contains(day))
                             Yes24TicketTheme.colorScheme.blue50
                         else Yes24TicketTheme.colorScheme.white,
                     ),
@@ -144,7 +153,9 @@ private fun CalendarDaysRow(
                         modifier = Modifier.padding(vertical = 6.dp),
                         text = day.toString(),
                         style = Yes24TicketTheme.typography.buttonSemiBold19,
-                        color = Yes24TicketTheme.colorScheme.gray900
+                        color = if (selectedDay == day)
+                            Yes24TicketTheme.colorScheme.white
+                        else Yes24TicketTheme.colorScheme.gray900
                     )
                 if (index != days.lastIndex) {
                     VerticalDivider(
@@ -165,6 +176,7 @@ private fun CalendarViewPreview() {
         selectableDays = listOf(
             11, 14, 20,
         ),
+        selectedDay = 11,
         days = listOf(0, 0, 0, 0, 0, 1, 2,
             3, 4, 5, 6, 7, 8, 9,
             10, 11, 12, 13, 14, 15, 16,
