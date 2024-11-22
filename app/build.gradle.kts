@@ -83,6 +83,7 @@ dependencies {
 
     // Coil
     implementation(libs.coil)
+    implementation(libs.coil3.network)
 
     // Timber
     implementation(libs.timber)

@@ -59,6 +59,7 @@ hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin"
 
 # Third Party
 coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil3-network = {group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil"}
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttp" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp" }
