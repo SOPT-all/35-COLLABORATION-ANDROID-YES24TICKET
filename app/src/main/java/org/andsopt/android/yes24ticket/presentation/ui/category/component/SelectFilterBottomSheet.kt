@@ -80,7 +80,7 @@ fun SelectFilterBottomSheet(
                         modifier = Modifier.weight(1f),
                         isSelected = isSelected,
                         onSelectedChange = {
-                            onSelectedFilterChanged(filterType)
+                            if (index == ZERO) onSelectedFilterChanged(filterType)
                         },
                     )
 
@@ -92,6 +92,8 @@ fun SelectFilterBottomSheet(
         }
     }
 }
+
+private const val ZERO = 0
 
 @Preview
 @Composable
