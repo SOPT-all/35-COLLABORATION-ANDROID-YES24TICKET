@@ -5,17 +5,16 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
-import org.andsopt.android.yes24ticket.presentation.ui.home.HomeScreen
 
-fun NavController.navigationHome(navOptions: NavOptions) {
+fun NavController.navigationDummy(navOptions: NavOptions) {
     navigate(
         route = BottomNavigationRoute.Home,
         navOptions = navOptions,
     )
 }
 
-fun NavGraphBuilder.homeNavGraph() {
+fun NavGraphBuilder.dummyNavGraph() {
     composable<BottomNavigationRoute.Home> {
-        HomeScreen()
+        DummyRoute()
     }
 }
