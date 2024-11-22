@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
+import org.andsopt.android.yes24ticket.util.compose.noRippleClickable
 import java.time.DayOfWeek
-import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
 
@@ -33,6 +33,7 @@ fun CalendarView(
     days: List<List<Int>>,
     selectedDay: Int,
     modifier: Modifier = Modifier,
+    onDaySelected: (Int) -> Unit = {},
 ) {
 
     Column(
@@ -63,7 +64,8 @@ fun CalendarView(
                     .fillMaxWidth()
                     .background(
                         color = Yes24TicketTheme.colorScheme.white,
-                    )
+                    ),
+                onDaySelected = onDaySelected
             )
             if (weekDays != days.last()) {
                 HorizontalDivider(
@@ -128,7 +130,8 @@ private fun CalendarDaysRow(
     days: List<Int>,
     selectableDays: List<Int>,
     selectedDay: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDaySelected: (Int) -> Unit = {},
 ) {
     Row(
         modifier = modifier.fillMaxWidth()
@@ -145,7 +148,9 @@ private fun CalendarDaysRow(
                         else if (selectableDays.contains(day))
                             Yes24TicketTheme.colorScheme.blue50
                         else Yes24TicketTheme.colorScheme.white,
-                    ),
+                    ).noRippleClickable {
+                         onDaySelected(day)
+                    },
                 contentAlignment = Alignment.Center
             ) {
                 if (day != 0)
