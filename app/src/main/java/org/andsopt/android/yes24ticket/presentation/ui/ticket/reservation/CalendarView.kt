@@ -29,7 +29,7 @@ import java.util.Locale
 
 @Composable
 fun CalendarView(
-    selectableDates: List<LocalDate>,
+    selectableDays: List<Int>,
     days: List<List<Int>>,
     modifier: Modifier = Modifier,
 ) {
@@ -54,7 +54,7 @@ fun CalendarView(
         days.fastForEach { weekDays ->
             CalendarDaysRow(
                 days = weekDays,
-                selectableDates = selectableDates,
+                selectableDays = selectableDays,
                 modifier = Modifier.fillMaxWidth().background(
                     color = Yes24TicketTheme.colorScheme.white,
                 )
@@ -120,7 +120,7 @@ private fun CalendarDayOfWeeksRow(
 @Composable
 private fun CalendarDaysRow(
     days: List<Int>,
-    selectableDates: List<LocalDate>,
+    selectableDays: List<Int>,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -133,7 +133,9 @@ private fun CalendarDaysRow(
                     .weight(1f)
                     .aspectRatio(43f / 37f)
                     .background(
-                        color = Yes24TicketTheme.colorScheme.white,
+                        color = if (selectableDays.contains(day))
+                            Yes24TicketTheme.colorScheme.blue50
+                        else Yes24TicketTheme.colorScheme.white,
                     ),
                 contentAlignment = Alignment.Center
             ) {
@@ -160,8 +162,8 @@ private fun CalendarDaysRow(
 @Preview
 private fun CalendarViewPreview() {
     CalendarView(
-        selectableDates = listOf(
-            LocalDate.parse("2024-11-11"),
+        selectableDays = listOf(
+            11, 14, 20,
         ),
         days = listOf(0, 0, 0, 0, 0, 1, 2,
             3, 4, 5, 6, 7, 8, 9,
