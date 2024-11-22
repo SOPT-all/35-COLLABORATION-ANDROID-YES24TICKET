@@ -29,6 +29,7 @@ import java.util.Locale
 
 @Composable
 fun CalendarView(
+    dayOfWeeks: List<DayOfWeek>,
     selectableDays: List<Int>,
     days: List<List<Int>>,
     selectedDay: Int,
@@ -48,6 +49,7 @@ fun CalendarView(
             )
     ) {
         CalendarDayOfWeeksRow(
+            dayOfWeeks = dayOfWeeks,
             modifier = Modifier.fillMaxWidth()
         )
         HorizontalDivider(
@@ -80,15 +82,9 @@ fun CalendarView(
 
 @Composable
 private fun CalendarDayOfWeeksRow(
+    dayOfWeeks: List<DayOfWeek>,
     modifier: Modifier = Modifier
 ) {
-    val dayOfWeeks = buildList {
-        add(DayOfWeek.SUNDAY)
-        addAll(DayOfWeek.entries.filter {
-            it != DayOfWeek.SUNDAY && it != DayOfWeek.SATURDAY
-        })
-        add(DayOfWeek.SATURDAY)
-    }
 
     Row(
         modifier = modifier.fillMaxWidth()
@@ -178,6 +174,15 @@ private fun CalendarDaysRow(
 @Preview
 private fun CalendarViewPreview() {
     CalendarView(
+        dayOfWeeks = listOf(
+            DayOfWeek.SUNDAY,
+            DayOfWeek.MONDAY,
+            DayOfWeek.TUESDAY,
+            DayOfWeek.WEDNESDAY,
+            DayOfWeek.THURSDAY,
+            DayOfWeek.FRIDAY,
+            DayOfWeek.SATURDAY,
+        ),
         selectableDays = listOf(
             11, 14, 20,
         ),
