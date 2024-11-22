@@ -25,11 +25,11 @@ import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 fun Yes24TopAppBar(modifier: Modifier = Modifier) {
     Row(
         modifier =
-        modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .background(Yes24TicketTheme.colorScheme.black)
-            .padding(vertical = 5.dp, horizontal = 14.dp),
+            modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(Yes24TicketTheme.colorScheme.black)
+                .padding(vertical = 5.dp, horizontal = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
