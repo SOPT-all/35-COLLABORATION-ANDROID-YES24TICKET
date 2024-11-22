@@ -8,18 +8,17 @@ import org.andsopt.android.yes24ticket.domain.repository.DummyRepository
 import javax.inject.Inject
 
 class DummyRepositoryImpl
-@Inject
-constructor(
-    private val dummyRemoteDataSource: DummyRemoteDataSource,
-) : DummyRepository {
-    override suspend fun getDummyData(dummyNameEntity: DummyNameEntity): Result<DummyIdEntity> =
-        runCatching {
-            dummyRemoteDataSource.getDummyData(requestDummyDto = dummyNameEntity.toRequestDummyDto()).data.toDummyIdEntity()
-        }
+    @Inject
+    constructor(
+        private val dummyRemoteDataSource: DummyRemoteDataSource,
+    ) : DummyRepository {
+        override suspend fun getDummyData(dummyNameEntity: DummyNameEntity): Result<DummyIdEntity> =
+            runCatching {
+                dummyRemoteDataSource.getDummyData(requestDummyDto = dummyNameEntity.toRequestDummyDto()).data.toDummyIdEntity()
+            }
 
-    override suspend fun getDummyExampleData(): Result<DummyEntity> =
-        runCatching {
-            dummyRemoteDataSource.getDummyExampleDate().toDummyEntity()
-        }
-
-}
+        override suspend fun getDummyExampleData(): Result<DummyEntity> =
+            runCatching {
+                dummyRemoteDataSource.getDummyExampleDate().toDummyEntity()
+            }
+    }

@@ -17,6 +17,6 @@ data class ResponseDummyExampleDto(
         DummyEntity(
             dummyA = dummyA,
             dummyB = dummyB,
-            dummyC = dummyC
+            dummyC = dummyC,
         )
 }

@@ -35,7 +35,7 @@ fun DummyScreenPreview() {
     YES24TICKETTheme {
         DummyScreen(
             dummyData = "YES24TICKET",
-            dummySecondData = "우리 팀 화이팅"
+            dummySecondData = "우리 팀 화이팅",
         )
     }
 }

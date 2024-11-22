@@ -32,7 +32,7 @@ fun DummyRoute(
                 LoadState.Success -> {
                     DummyScreen(
                         dummyData = state.dummyString,
-                        dummySecondData = state.dummySecondString
+                        dummySecondData = state.dummySecondString,
                     )
                 }
 

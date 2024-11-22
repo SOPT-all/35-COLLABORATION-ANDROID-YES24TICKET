@@ -16,59 +16,61 @@ import org.andsopt.android.yes24ticket.util.view.LoadState
 import javax.inject.Inject
 
 @HiltViewModel
-class DummyViewModel @Inject constructor(
-    private val dummyRepository: DummyRepository,
-) : ViewModel() {
-    private val _uiState = MutableStateFlow<UiState>(DummyUiState())
-    val uiState: StateFlow<UiState>
-        get() = _uiState.asStateFlow()
+class DummyViewModel
+    @Inject
+    constructor(
+        private val dummyRepository: DummyRepository,
+    ) : ViewModel() {
+        private val _uiState = MutableStateFlow<UiState>(DummyUiState())
+        val uiState: StateFlow<UiState>
+            get() = _uiState.asStateFlow()
 
-    fun getDummyData() {
-        viewModelScope.launch {
-            val currentState = _uiState.value as DummyUiState
-            _uiState.update { currentState.copy(loadState = LoadState.Loading) }
+        fun getDummyData() {
+            viewModelScope.launch {
+                val currentState = _uiState.value as DummyUiState
+                _uiState.update { currentState.copy(loadState = LoadState.Loading) }
 
-            dummyRepository.getDummyData(
-                dummyNameEntity =
-                    DummyNameEntity(
-                        dummyName = "더미더미",
-                    ),
-            ).onSuccess { dummyIdEntity ->
-                _uiState.update {
-                    currentState.copy(
-                        dummyString = dummyIdEntity.dummyId,
-                        loadState = LoadState.Success
-                    )
+                dummyRepository.getDummyData(
+                    dummyNameEntity =
+                        DummyNameEntity(
+                            dummyName = "더미더미",
+                        ),
+                ).onSuccess { dummyIdEntity ->
+                    _uiState.update {
+                        currentState.copy(
+                            dummyString = dummyIdEntity.dummyId,
+                            loadState = LoadState.Success,
+                        )
+                    }
+                }.onFailure {
+                    _uiState.update {
+                        currentState.copy(
+                            loadState = LoadState.Fail,
+                        )
+                    }
                 }
-            }.onFailure {
-                _uiState.update {
-                    currentState.copy(
-                        loadState = LoadState.Fail
-                    )
+            }
+        }
+
+        fun getDummyExampleDate() {
+            viewModelScope.launch {
+                val currentState = _uiState.value as DummyUiState
+                _uiState.update { currentState.copy(loadState = LoadState.Loading) }
+
+                dummyRepository.getDummyExampleData().onSuccess { dummyEntity ->
+                    _uiState.update {
+                        currentState.copy(
+                            dummySecondString = dummyEntity.dummyA,
+                            loadState = LoadState.Loading,
+                        )
+                    }
+                }.onFailure {
+                    _uiState.update {
+                        currentState.copy(
+                            loadState = LoadState.Fail,
+                        )
+                    }
                 }
             }
         }
     }
-
-    fun getDummyExampleDate() {
-        viewModelScope.launch {
-            val currentState = _uiState.value as DummyUiState
-            _uiState.update { currentState.copy(loadState = LoadState.Loading) }
-
-            dummyRepository.getDummyExampleData().onSuccess { dummyEntity ->
-                _uiState.update {
-                    currentState.copy(
-                        dummySecondString = dummyEntity.dummyA,
-                        loadState = LoadState.Loading
-                    )
-                }
-            }.onFailure {
-                _uiState.update {
-                    currentState.copy(
-                        loadState = LoadState.Fail
-                    )
-                }
-            }
-        }
-    }
-}

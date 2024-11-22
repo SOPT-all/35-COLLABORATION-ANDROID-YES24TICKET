@@ -16,6 +16,6 @@ class DummyRemoteDataSourceImpl
         override suspend fun getDummyData(requestDummyDto: RequestDummyDto): BaseResponse<ResponseDummyDto> =
             dummyService.getDummyData(requestDummyDto)
 
-    override suspend fun getDummyExampleDate(): ResponseDummyExampleDto =
-        dummyService.getDummyExampleData()
+        override suspend fun getDummyExampleDate(): ResponseDummyExampleDto =
+            dummyService.getDummyExampleData()
     }

@@ -6,5 +6,5 @@ import org.andsopt.android.yes24ticket.util.view.LoadState
 data class DummyUiState(
     val dummyString: String = "",
     val dummySecondString: String = "",
-    val loadState: LoadState = LoadState.Idle
-): UiState
+    val loadState: LoadState = LoadState.Idle,
+) : UiState
