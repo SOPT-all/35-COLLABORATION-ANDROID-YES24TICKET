@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +34,7 @@ fun Yes24TopAppBar(modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Image(
-            imageVector = ImageVector.vectorResource(R.drawable.img_logo_yes24_84_37),
+            painter = painterResource(R.drawable.img_logo_yes24_84_37),
             contentDescription = stringResource(R.string.top_app_bar_logo_description),
         )
 
