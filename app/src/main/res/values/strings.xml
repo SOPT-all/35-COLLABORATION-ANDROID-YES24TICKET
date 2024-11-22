@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">YES24TICKET</string>
 
-    <!-- component -->
+    <!-- component - Information Footer -->
     <string name="information_footer_cs">고객센터 1544–6399 1:1 문의</string>
     <string name="information_footer_pc">PC버전</string>
     <string name="information_footer_privacy_policy">개인정보 처리방침</string>
@@ -22,10 +22,23 @@
     <string name="bottom_navigation_search">검색</string>
     <string name="bottom_navigation_my">마이</string>
 
-    <!-- component- FAB -->
+    <!-- component - FAB -->
     <string name="floating_action_button_top">TOP</string>
     <string name="floating_action_button_icon_desription">Go To Top</string>
-    <!-- component-TopAppBar -->
+    
+    <!-- component - TopAppBar -->
     <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
     <string name="top_app_bar_search_icon_description">Search Icon</string>
+    
+    <!-- category detail view -->
+    <string name="category_detail_title_concert">콘서트</string>
+    <string name="category_detail_sub_title_recommend_concert">추천공연</string>
+    <string name="category_detail_sub_title_ranking">예매랭킹</string>
+    <string name="category_detail_sub_title_list">전체리스트</string>
+    <string name="category_detail_filter">정렬</string>
+    <string name="category_detail_filter_order">정렬 순서</string>
+    <string name="category_detail_filter_popularity">인기순</string>
+    <string name="category_detail_filter_ranking">랭킹순</string>
+    <string name="category_detail_filter_reviews">리뷰 많은순</string>
+    <string name="category_detail_filter_end">종료 임박순</string>
 </resources>
