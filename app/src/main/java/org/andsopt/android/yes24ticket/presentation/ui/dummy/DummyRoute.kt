@@ -14,6 +14,7 @@ fun DummyRoute(
     viewModel: DummyViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val yes24UiState by viewModel.dummyYes24UiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.apply {
@@ -22,6 +23,7 @@ fun DummyRoute(
         }
     }
 
+    // LoadState를 이용한 방식
     when (val state: UiState = uiState) {
         is DummyUiState -> {
             when (state.loadState) {
@@ -40,4 +42,10 @@ fun DummyRoute(
             }
         }
     }
+
+    // combine을 이용한 방식
+    DummyScreen(
+        dummyData = yes24UiState.dummyYes,
+        dummySecondData = yes24UiState.dummy24.toString()
+    )
 }
