@@ -21,72 +21,74 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DummyViewModel
-@Inject
-constructor(
-    private val dummyRepository: DummyRepository,
-) : ViewModel() {
-    private val _uiState = MutableStateFlow<UiState>(DummyUiState())
-    val uiState: StateFlow<UiState>
-        get() = _uiState.asStateFlow()
+    @Inject
+    constructor(
+        private val dummyRepository: DummyRepository,
+    ) : ViewModel() {
+        private val _uiState = MutableStateFlow<UiState>(DummyUiState())
+        val uiState: StateFlow<UiState>
+            get() = _uiState.asStateFlow()
 
-    private val _dummyYes = MutableStateFlow(0)
-    private val _dummy24 = MutableStateFlow("")
+        private val _dummyYes = MutableStateFlow(0)
+        private val _dummy24 = MutableStateFlow("")
 
-    val dummyYes24UiState: StateFlow<DummyYes24UiState> =
-        combine(_dummyYes, _dummy24) { dummyYes, dummy24 ->
-            DummyYes24UiState(dummyYes = dummyYes.toString(), dummy24 = dummy24.toInt())
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = DummyYes24UiState()
-        )
+        // _dummyYes, _dummy24에 서버 통신으로 받아온 값을 저장하는 로직 생략(getDummyData, getDummyExampleData와 같이 하면 됨)
 
-    fun getDummyData() {
-        viewModelScope.launch {
-            val currentState = _uiState.value as DummyUiState
-            _uiState.update { currentState.copy(loadState = LoadState.Loading) }
+        val dummyYes24UiState: StateFlow<DummyYes24UiState> =
+            combine(_dummyYes, _dummy24) { dummyYes, dummy24 ->
+                DummyYes24UiState(dummyYes = dummyYes.toString(), dummy24 = dummy24.toInt())
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = DummyYes24UiState(),
+            )
 
-            dummyRepository.getDummyData(
-                dummyNameEntity =
-                    DummyNameEntity(
-                        dummyName = "더미더미",
-                    ),
-            ).onSuccess { dummyIdEntity ->
-                _uiState.update {
-                    currentState.copy(
-                        dummyString = dummyIdEntity.dummyId,
-                        loadState = LoadState.Success,
-                    )
+        fun getDummyData() {
+            viewModelScope.launch {
+                val currentState = _uiState.value as DummyUiState
+                _uiState.update { currentState.copy(loadState = LoadState.Loading) }
+
+                dummyRepository.getDummyData(
+                    dummyNameEntity =
+                        DummyNameEntity(
+                            dummyName = "더미더미",
+                        ),
+                ).onSuccess { dummyIdEntity ->
+                    _uiState.update {
+                        currentState.copy(
+                            dummyString = dummyIdEntity.dummyId,
+                            loadState = LoadState.Success,
+                        )
+                    }
+                }.onFailure {
+                    _uiState.update {
+                        currentState.copy(
+                            loadState = LoadState.Fail,
+                        )
+                    }
                 }
-            }.onFailure {
-                _uiState.update {
-                    currentState.copy(
-                        loadState = LoadState.Fail,
-                    )
+            }
+        }
+
+        fun getDummyExampleDate() {
+            viewModelScope.launch {
+                val currentState = _uiState.value as DummyUiState
+                _uiState.update { currentState.copy(loadState = LoadState.Loading) }
+
+                dummyRepository.getDummyExampleData().onSuccess { dummyEntity ->
+                    _uiState.update {
+                        currentState.copy(
+                            dummySecondString = dummyEntity.dummyA,
+                            loadState = LoadState.Loading,
+                        )
+                    }
+                }.onFailure {
+                    _uiState.update {
+                        currentState.copy(
+                            loadState = LoadState.Fail,
+                        )
+                    }
                 }
             }
         }
     }
-
-    fun getDummyExampleDate() {
-        viewModelScope.launch {
-            val currentState = _uiState.value as DummyUiState
-            _uiState.update { currentState.copy(loadState = LoadState.Loading) }
-
-            dummyRepository.getDummyExampleData().onSuccess { dummyEntity ->
-                _uiState.update {
-                    currentState.copy(
-                        dummySecondString = dummyEntity.dummyA,
-                        loadState = LoadState.Loading,
-                    )
-                }
-            }.onFailure {
-                _uiState.update {
-                    currentState.copy(
-                        loadState = LoadState.Fail,
-                    )
-                }
-            }
-        }
-    }
-}

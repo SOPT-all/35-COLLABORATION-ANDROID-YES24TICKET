@@ -46,6 +46,6 @@ fun DummyRoute(
     // combine을 이용한 방식
     DummyScreen(
         dummyData = yes24UiState.dummyYes,
-        dummySecondData = yes24UiState.dummy24.toString()
+        dummySecondData = yes24UiState.dummy24.toString(),
     )
 }
