@@ -29,13 +29,13 @@ class DummyViewModel
         val uiState: StateFlow<UiState>
             get() = _uiState.asStateFlow()
 
-        private val _dummyYes = MutableStateFlow(0)
-        private val _dummy24 = MutableStateFlow("")
+        private val dummyYes = MutableStateFlow(0)
+        private val dummy24 = MutableStateFlow("")
 
         // _dummyYes, _dummy24에 서버 통신으로 받아온 값을 저장하는 로직 생략(getDummyData, getDummyExampleData와 같이 하면 됨)
 
         val dummyYes24UiState: StateFlow<DummyYes24UiState> =
-            combine(_dummyYes, _dummy24) { dummyYes, dummy24 ->
+            combine(dummyYes, dummy24) { dummyYes, dummy24 ->
                 DummyYes24UiState(dummyYes = dummyYes.toString(), dummy24 = dummy24.toInt())
             }.stateIn(
                 scope = viewModelScope,
