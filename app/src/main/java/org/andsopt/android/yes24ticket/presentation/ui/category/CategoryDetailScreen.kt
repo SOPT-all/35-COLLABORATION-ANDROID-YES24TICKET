@@ -9,12 +9,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -44,6 +47,7 @@ import coil3.request.crossfade
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.CategoryContentEntity
 import org.andsopt.android.yes24ticket.presentation.type.FilterType
+import org.andsopt.android.yes24ticket.presentation.ui.category.component.SelectFilterBottomSheet
 import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.ScrollToTopFloatingButton
 import org.andsopt.android.yes24ticket.presentation.ui.component.Yes24TopAppBar
@@ -56,12 +60,18 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 
 @Composable
 fun CategoryDetailScreen(
-    categoryContentList: List<CategoryContentEntity>
+    categoryContentList: List<CategoryContentEntity>,
+    isBottomSheetVisible: Boolean,
+    selectedFilterType: FilterType?,
+    onSelectedFilterChanged: (FilterType) -> Unit,
+    onCloseButtonClick: (FilterType?) -> Unit,
+    onClickFilterSelector: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .wrapContentHeight(Alignment.CenterVertically)
+            .background(Yes24TicketTheme.colorScheme.white)
     ) {
         Yes24TopAppBar()
 
@@ -86,7 +96,8 @@ fun CategoryDetailScreen(
                 horizontalArrangement = Arrangement.End,
             ) {
                 FilterSelector(
-                    onClickFilterSelector = {}
+                    onClickFilterSelector = onClickFilterSelector,
+                    selectedType = selectedFilterType
                 )
             }
 
@@ -102,6 +113,14 @@ fun CategoryDetailScreen(
                 )
             }
         }
+
+        SelectFilterBottomSheet(
+            onDismissRequest = { },
+            isBottomSheetVisible = isBottomSheetVisible,
+            selectedFilter = selectedFilterType,
+            onSelectedFilterChanged = onSelectedFilterChanged,
+            onCloseButtonClick = onCloseButtonClick
+        )
     }
 }
 
@@ -187,34 +206,33 @@ private fun FilterSelector(
     onClickFilterSelector: () -> Unit,
     modifier: Modifier = Modifier,
     filterText: String = stringResource(R.string.category_detail_filter),
-    isSelected: Boolean = false,
-    selectedType: FilterType = FilterType.POPULAR,
+    selectedType: FilterType? = null,
 ) {
     Row(
         modifier = modifier
             .background(
-                color = if (!isSelected) Yes24TicketTheme.colorScheme.gray50 else Yes24TicketTheme.colorScheme.red50
+                color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray50 else Yes24TicketTheme.colorScheme.red50
             )
             .border(
                 width = 1.dp,
-                color = if (!isSelected) Yes24TicketTheme.colorScheme.gray150 else Yes24TicketTheme.colorScheme.red100,
+                color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray150 else Yes24TicketTheme.colorScheme.red100,
                 shape = RoundedCornerShape(2.dp)
             )
             .noRippleClickable { onClickFilterSelector() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = if (!isSelected) filterText else stringResource(selectedType.filter),
+            text = if (selectedType == null) filterText else stringResource(selectedType.filter),
             modifier = Modifier
                 .padding(start = 6.dp),
             style = Yes24TicketTheme.typography.captionRegular11,
-            color = if (!isSelected) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
+            color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
         )
 
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_category_array_deselected_18),
             contentDescription = stringResource(R.string.category_detail_filter_description),
-            tint = if (!isSelected) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
+            tint = if (selectedType == null) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
             modifier = Modifier.padding(top = 3.dp, bottom = 3.dp, end = 2.dp)
         )
     }
@@ -274,7 +292,8 @@ private fun CategoryContentCard(
     onContentClick: () -> Unit = {}
 ) {
     Column(
-        modifier = modifier.noRippleClickable { onContentClick() }
+        modifier = modifier
+            .noRippleClickable { onContentClick() }
     ) {
         AsyncImage(
             model = ImageRequest.Builder(context = LocalContext.current)
@@ -318,6 +337,8 @@ private fun CategoryContentCard(
             textAlign = TextAlign.Center,
             style = Yes24TicketTheme.typography.captionMedium11
         )
+
+        Spacer(Modifier.height(12.dp))
     }
 }
 
@@ -393,6 +414,13 @@ private fun CategoryDetailScreenPreview() {
             ),
         )
 
-        CategoryDetailScreen(categoryContentList = categoryContentList)
+        CategoryDetailScreen(
+            categoryContentList = categoryContentList,
+            isBottomSheetVisible = true,
+            selectedFilterType = null,
+            onSelectedFilterChanged = {},
+            onCloseButtonClick = {},
+            onClickFilterSelector = {},
+        )
     }
 }
