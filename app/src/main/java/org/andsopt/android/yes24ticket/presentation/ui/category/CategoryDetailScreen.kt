@@ -1,5 +1,6 @@
 package org.andsopt.android.yes24ticket.presentation.ui.category
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -48,7 +49,10 @@ import org.andsopt.android.yes24ticket.presentation.ui.component.ScrollToTopFloa
 import org.andsopt.android.yes24ticket.presentation.ui.component.Yes24TopAppBar
 import org.andsopt.android.yes24ticket.ui.theme.YES24TICKETTheme
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
+import org.andsopt.android.yes24ticket.util.compose.bottomBorder
+import org.andsopt.android.yes24ticket.util.compose.leftBorder
 import org.andsopt.android.yes24ticket.util.compose.noRippleClickable
+import org.andsopt.android.yes24ticket.util.compose.topBorder
 
 @Composable
 fun CategoryDetailScreen(
@@ -64,6 +68,8 @@ fun CategoryDetailScreen(
         CategoryTitleRow()
 
         Spacer(Modifier.height(10.dp))
+
+        CategoryTabRow()
 
         Box(
             modifier = Modifier
@@ -115,6 +121,64 @@ private fun CategoryTitleRow() {
     HorizontalDivider(
         thickness = 1.dp,
         color = Yes24TicketTheme.colorScheme.gray200
+    )
+}
+
+@Composable
+private fun CategoryTabRow() {
+    Row(
+        modifier =
+            Modifier.fillMaxWidth()
+    ) {
+        TabWithTopBorder(
+            tabTitleText = R.string.category_detail_sub_title_recommend_concert,
+            modifier = Modifier.weight(1f)
+        )
+
+        TabWithTopStartBottomBorder(
+            tabTitleText = R.string.category_detail_sub_title_ranking,
+            modifier = Modifier.weight(1f)
+        )
+
+        TabWithTopStartBottomBorder(
+            tabTitleText = R.string.category_detail_sub_title_list,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+@Composable
+private fun TabWithTopBorder(
+    @StringRes tabTitleText: Int,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = stringResource(tabTitleText),
+        modifier = modifier
+            .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+            .padding(vertical = 10.dp),
+        color = Yes24TicketTheme.colorScheme.gray900,
+        textAlign = TextAlign.Center,
+        style = Yes24TicketTheme.typography.buttonBold13
+    )
+}
+
+@Composable
+private fun TabWithTopStartBottomBorder(
+    @StringRes tabTitleText: Int,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = stringResource(tabTitleText),
+        modifier = modifier
+            .leftBorder(color = Yes24TicketTheme.colorScheme.gray200, width = 1f)
+            .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+            .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+            .background(Yes24TicketTheme.colorScheme.gray100)
+            .padding(vertical = 10.dp),
+        color = Yes24TicketTheme.colorScheme.gray700,
+        textAlign = TextAlign.Center,
+        style = Yes24TicketTheme.typography.buttonRegular13
     )
 }
 
