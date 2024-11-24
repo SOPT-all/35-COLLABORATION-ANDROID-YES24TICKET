@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,6 +47,11 @@ fun SelectFilterBottomSheet(
                 .padding(start = 13.dp, end = 13.dp, top = 16.dp, bottom = 38.dp),
         isBottomSheetVisible = isBottomSheetVisible,
         onDismissRequest = onDismissRequest,
+        sheetState = rememberModalBottomSheetState(
+            confirmValueChange = { newState ->
+                !(newState == SheetValue.Hidden && isBottomSheetVisible)
+            }
+        )
     ) {
         Column {
             Row(
