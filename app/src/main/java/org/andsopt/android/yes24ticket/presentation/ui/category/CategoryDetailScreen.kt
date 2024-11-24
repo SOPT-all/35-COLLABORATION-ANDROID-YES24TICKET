@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,6 +61,10 @@ fun CategoryDetailScreen(
     ) {
         Yes24TopAppBar()
 
+        CategoryTitleRow()
+
+        Spacer(Modifier.height(10.dp))
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -92,6 +97,25 @@ fun CategoryDetailScreen(
             }
         }
     }
+}
+
+@Composable
+private fun CategoryTitleRow() {
+    Text(
+        text = stringResource(R.string.category_detail_title_concert),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Yes24TicketTheme.colorScheme.gray50)
+            .padding(vertical = 10.dp),
+        color = Yes24TicketTheme.colorScheme.gray700,
+        textAlign = TextAlign.Center,
+        style = Yes24TicketTheme.typography.headBold15
+    )
+
+    HorizontalDivider(
+        thickness = 1.dp,
+        color = Yes24TicketTheme.colorScheme.gray200
+    )
 }
 
 @Composable
