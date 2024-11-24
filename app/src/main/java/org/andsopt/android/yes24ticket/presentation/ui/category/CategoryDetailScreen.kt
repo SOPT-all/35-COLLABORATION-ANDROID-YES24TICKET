@@ -95,6 +95,44 @@ fun CategoryDetailScreen(
 }
 
 @Composable
+private fun FilterSelector(
+    onClickFilterSelector: () -> Unit,
+    modifier: Modifier = Modifier,
+    filterText: String = stringResource(R.string.category_detail_filter),
+    isSelected: Boolean = false,
+    selectedType: FilterType = FilterType.POPULAR,
+) {
+    Row(
+        modifier = modifier
+            .background(
+                color = if (!isSelected) Yes24TicketTheme.colorScheme.gray50 else Yes24TicketTheme.colorScheme.red50
+            )
+            .border(
+                width = 1.dp,
+                color = if (!isSelected) Yes24TicketTheme.colorScheme.gray150 else Yes24TicketTheme.colorScheme.red100,
+                shape = RoundedCornerShape(2.dp)
+            )
+            .noRippleClickable { onClickFilterSelector() },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = if (!isSelected) filterText else stringResource(selectedType.filter),
+            modifier = Modifier
+                .padding(start = 6.dp),
+            style = Yes24TicketTheme.typography.captionRegular11,
+            color = if (!isSelected) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
+        )
+
+        Icon(
+            imageVector = ImageVector.vectorResource(R.drawable.ic_category_array_deselected_18),
+            contentDescription = stringResource(R.string.category_detail_filter_description),
+            tint = if (!isSelected) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
+            modifier = Modifier.padding(top = 3.dp, bottom = 3.dp, end = 2.dp)
+        )
+    }
+}
+
+@Composable
 private fun CategoryContentLazyVerticalGrid(
     categoryContentList: List<CategoryContentEntity>,
     modifier: Modifier = Modifier
