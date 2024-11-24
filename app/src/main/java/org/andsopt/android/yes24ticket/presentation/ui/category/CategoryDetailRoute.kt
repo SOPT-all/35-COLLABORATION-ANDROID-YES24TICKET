@@ -4,12 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import timber.log.Timber
 
 @Composable
 fun CategoryDetailRoute(
     viewModel: CategoryDetailViewModel = hiltViewModel(),
-    moveToBackStack: () -> Unit
+    moveToBackStack: () -> Unit,
 ) {
     val bottomSheetState by viewModel.bottomSheetState.collectAsStateWithLifecycle()
 
@@ -24,6 +23,6 @@ fun CategoryDetailRoute(
             }
         },
         onCloseButtonClick = { viewModel.changeBottomSheetVisibility() },
-        onClickFilterSelector = { viewModel.changeBottomSheetVisibility() }
+        onClickFilterSelector = { viewModel.changeBottomSheetVisibility() },
     )
 }

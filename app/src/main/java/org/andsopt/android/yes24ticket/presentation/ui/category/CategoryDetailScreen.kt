@@ -72,7 +72,7 @@ fun CategoryDetailScreen(
     selectedFilterType: FilterType?,
     onSelectedFilterChanged: (FilterType) -> Unit,
     onCloseButtonClick: (FilterType?) -> Unit,
-    onClickFilterSelector: () -> Unit
+    onClickFilterSelector: () -> Unit,
 ) {
     val lazyScrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
@@ -83,10 +83,11 @@ fun CategoryDetailScreen(
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentHeight(Alignment.CenterVertically)
-            .background(Yes24TicketTheme.colorScheme.white),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .wrapContentHeight(Alignment.CenterVertically)
+                .background(Yes24TicketTheme.colorScheme.white),
     ) {
         Yes24TopAppBar()
 
@@ -97,44 +98,47 @@ fun CategoryDetailScreen(
         CategoryTabRow()
 
         Box(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier =
+                Modifier
+                    .fillMaxSize(),
         ) {
             CategoryContentLazyVerticalGrid(
                 categoryContentList = categoryContentList,
-                lazyScrollState = lazyScrollState
+                lazyScrollState = lazyScrollState,
             )
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 10.dp, top = 10.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(end = 10.dp, top = 10.dp),
                 horizontalArrangement = Arrangement.End,
             ) {
                 FilterSelector(
                     onClickFilterSelector = onClickFilterSelector,
-                    selectedType = selectedFilterType
+                    selectedType = selectedFilterType,
                 )
             }
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 10.dp, bottom = 10.dp)
-                    .align(Alignment.BottomEnd),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(end = 10.dp, bottom = 10.dp)
+                        .align(Alignment.BottomEnd),
                 horizontalArrangement = Arrangement.End,
             ) {
                 AnimatedVisibility(
                     visible = showButton,
                     enter = fadeIn(),
-                    exit = fadeOut()
+                    exit = fadeOut(),
                 ) {
                     ScrollToTopFloatingButton(
                         onClick = {
                             coroutineScope.launch {
                                 lazyScrollState.animateScrollToItem(0)
                             }
-                        }
+                        },
                     )
                 }
             }
@@ -145,7 +149,7 @@ fun CategoryDetailScreen(
             isBottomSheetVisible = isBottomSheetVisible,
             selectedFilter = selectedFilterType,
             onSelectedFilterChanged = onSelectedFilterChanged,
-            onCloseButtonClick = onCloseButtonClick
+            onCloseButtonClick = onCloseButtonClick,
         )
     }
 }
@@ -154,18 +158,19 @@ fun CategoryDetailScreen(
 private fun CategoryTitleRow() {
     Text(
         text = stringResource(R.string.category_detail_title_concert),
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Yes24TicketTheme.colorScheme.gray50)
-            .padding(vertical = 10.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(Yes24TicketTheme.colorScheme.gray50)
+                .padding(vertical = 10.dp),
         color = Yes24TicketTheme.colorScheme.gray700,
         textAlign = TextAlign.Center,
-        style = Yes24TicketTheme.typography.headBold15
+        style = Yes24TicketTheme.typography.headBold15,
     )
 
     HorizontalDivider(
         thickness = 1.dp,
-        color = Yes24TicketTheme.colorScheme.gray200
+        color = Yes24TicketTheme.colorScheme.gray200,
     )
 }
 
@@ -173,21 +178,21 @@ private fun CategoryTitleRow() {
 private fun CategoryTabRow() {
     Row(
         modifier =
-            Modifier.fillMaxWidth()
+            Modifier.fillMaxWidth(),
     ) {
         TabWithTopBorder(
             tabTitleText = R.string.category_detail_sub_title_recommend_concert,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         TabWithTopStartBottomBorder(
             tabTitleText = R.string.category_detail_sub_title_ranking,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         TabWithTopStartBottomBorder(
             tabTitleText = R.string.category_detail_sub_title_list,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }
@@ -195,35 +200,37 @@ private fun CategoryTabRow() {
 @Composable
 private fun TabWithTopBorder(
     @StringRes tabTitleText: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = stringResource(tabTitleText),
-        modifier = modifier
-            .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-            .padding(vertical = 10.dp),
+        modifier =
+            modifier
+                .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+                .padding(vertical = 10.dp),
         color = Yes24TicketTheme.colorScheme.gray900,
         textAlign = TextAlign.Center,
-        style = Yes24TicketTheme.typography.buttonBold13
+        style = Yes24TicketTheme.typography.buttonBold13,
     )
 }
 
 @Composable
 private fun TabWithTopStartBottomBorder(
     @StringRes tabTitleText: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = stringResource(tabTitleText),
-        modifier = modifier
-            .leftBorder(color = Yes24TicketTheme.colorScheme.gray200, width = 1f)
-            .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-            .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-            .background(Yes24TicketTheme.colorScheme.gray100)
-            .padding(vertical = 10.dp),
+        modifier =
+            modifier
+                .leftBorder(color = Yes24TicketTheme.colorScheme.gray200, width = 1f)
+                .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+                .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+                .background(Yes24TicketTheme.colorScheme.gray100)
+                .padding(vertical = 10.dp),
         color = Yes24TicketTheme.colorScheme.gray700,
         textAlign = TextAlign.Center,
-        style = Yes24TicketTheme.typography.buttonRegular13
+        style = Yes24TicketTheme.typography.buttonRegular13,
     )
 }
 
@@ -235,22 +242,24 @@ private fun FilterSelector(
     selectedType: FilterType? = null,
 ) {
     Row(
-        modifier = modifier
-            .background(
-                color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray50 else Yes24TicketTheme.colorScheme.red50
-            )
-            .border(
-                width = 1.dp,
-                color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray150 else Yes24TicketTheme.colorScheme.red100,
-                shape = RoundedCornerShape(2.dp)
-            )
-            .noRippleClickable { onClickFilterSelector() },
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            modifier
+                .background(
+                    color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray50 else Yes24TicketTheme.colorScheme.red50,
+                )
+                .border(
+                    width = 1.dp,
+                    color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray150 else Yes24TicketTheme.colorScheme.red100,
+                    shape = RoundedCornerShape(2.dp),
+                )
+                .noRippleClickable { onClickFilterSelector() },
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = if (selectedType == null) filterText else stringResource(selectedType.filter),
-            modifier = Modifier
-                .padding(start = 6.dp),
+            modifier =
+                Modifier
+                    .padding(start = 6.dp),
             style = Yes24TicketTheme.typography.captionRegular11,
             color = if (selectedType == null) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
         )
@@ -259,7 +268,7 @@ private fun FilterSelector(
             imageVector = ImageVector.vectorResource(R.drawable.ic_category_array_deselected_18),
             contentDescription = stringResource(R.string.category_detail_filter_description),
             tint = if (selectedType == null) Yes24TicketTheme.colorScheme.gray400 else Yes24TicketTheme.colorScheme.red100,
-            modifier = Modifier.padding(top = 3.dp, bottom = 3.dp, end = 2.dp)
+            modifier = Modifier.padding(top = 3.dp, bottom = 3.dp, end = 2.dp),
         )
     }
 }
@@ -268,15 +277,16 @@ private fun FilterSelector(
 private fun CategoryContentLazyVerticalGrid(
     categoryContentList: List<CategoryContentEntity>,
     modifier: Modifier = Modifier,
-    lazyScrollState: LazyGridState = rememberLazyGridState()
+    lazyScrollState: LazyGridState = rememberLazyGridState(),
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(GRID_CELLS_DEFAULT),
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier =
+            modifier
+                .fillMaxWidth(),
         contentPadding = PaddingValues(top = 44.dp, start = 10.dp, end = 10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
-        state = lazyScrollState
+        state = lazyScrollState,
     ) {
         itemsIndexed(
             categoryContentList,
@@ -288,7 +298,7 @@ private fun CategoryContentLazyVerticalGrid(
                 contentTitle = item.contentTitle,
                 contentPlace = item.contentPlace,
                 contentPeriod = item.contentPeriod,
-                imageWidth = (LocalConfiguration.current.screenWidthDp.dp) / 2
+                imageWidth = (LocalConfiguration.current.screenWidthDp.dp) / 2,
             )
         }
 
@@ -300,7 +310,6 @@ private fun CategoryContentLazyVerticalGrid(
             InformationFooter()
         }
     }
-
 }
 
 @Composable
@@ -311,41 +320,46 @@ private fun CategoryContentCard(
     contentPeriod: String,
     imageWidth: Dp,
     modifier: Modifier = Modifier,
-    onContentClick: () -> Unit = {}
+    onContentClick: () -> Unit = {},
 ) {
     Column(
-        modifier = modifier
-            .noRippleClickable { onContentClick() }
+        modifier =
+            modifier
+                .noRippleClickable { onContentClick() },
     ) {
         AsyncImage(
-            model = ImageRequest.Builder(context = LocalContext.current)
-                .data(data = contentImg)
-                .crossfade(enable = true)
-                .build(),
+            model =
+                ImageRequest.Builder(context = LocalContext.current)
+                    .data(data = contentImg)
+                    .crossfade(enable = true)
+                    .build(),
             contentDescription = stringResource(R.string.category_detail_content_description),
             contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .width(imageWidth)
-                .aspectRatio(1f / 1.4f)
+            modifier =
+                Modifier
+                    .width(imageWidth)
+                    .aspectRatio(1f / 1.4f),
         )
 
         Spacer(Modifier.height(4.dp))
 
         Text(
             text = contentTitle,
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
             color = Yes24TicketTheme.colorScheme.gray900,
             textAlign = TextAlign.Center,
             style = Yes24TicketTheme.typography.titleBold13,
             overflow = TextOverflow.Ellipsis,
-            maxLines = 1
+            maxLines = 1,
         )
 
         Text(
             text = contentPlace,
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
             color = Yes24TicketTheme.colorScheme.gray800,
             textAlign = TextAlign.Center,
             style = Yes24TicketTheme.typography.captionMedium11,
@@ -353,11 +367,12 @@ private fun CategoryContentCard(
 
         Text(
             text = contentPeriod,
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
             color = Yes24TicketTheme.colorScheme.gray300,
             textAlign = TextAlign.Center,
-            style = Yes24TicketTheme.typography.captionMedium11
+            style = Yes24TicketTheme.typography.captionMedium11,
         )
 
         Spacer(Modifier.height(12.dp))
@@ -370,43 +385,44 @@ private const val GRID_CELLS_DEFAULT = 2
 @Composable
 private fun CategoryDetailScreenPreview() {
     YES24TICKETTheme {
-        val categoryContentList = listOf(
-            CategoryContentEntity(
-                contentId = 1,
-                contentImg = "https://tkfile.yes24.com/upload2/perfblog/202411/20241119/20241119-51767.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 2,
-                contentImg = "http://tkfile.yes24.com/upload2/perfblog/202411/20241108/20241108-51651.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트 플라워 25주년 콘서트 플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 3,
-                contentImg = "http://tkfile.yes24.com/upload2/perfblog/202408/20240813/20240813-50694.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 4,
-                contentImg = "http://tkfile.yes24.com/upload2/perfblog/202411/20241114/20241114-51722.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트 플라워 25주년 콘서트 플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 1,
-                contentImg = "https://tkfile.yes24.com/upload2/perfblog/202411/20241119/20241119-51767.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
+        val categoryContentList =
+            listOf(
+                CategoryContentEntity(
+                    contentId = 1,
+                    contentImg = "https://tkfile.yes24.com/upload2/perfblog/202411/20241119/20241119-51767.jpg/dims/quality/70/",
+                    contentTitle = "플라워 25주년 콘서트",
+                    contentPlace = "건국대학교 새천년관",
+                    contentPeriod = "2024. 12. 01 - 01. 15",
+                ),
+                CategoryContentEntity(
+                    contentId = 2,
+                    contentImg = "http://tkfile.yes24.com/upload2/perfblog/202411/20241108/20241108-51651.jpg/dims/quality/70/",
+                    contentTitle = "플라워 25주년 콘서트 플라워 25주년 콘서트 플라워 25주년 콘서트",
+                    contentPlace = "건국대학교 새천년관",
+                    contentPeriod = "2024. 12. 01 - 01. 15",
+                ),
+                CategoryContentEntity(
+                    contentId = 3,
+                    contentImg = "http://tkfile.yes24.com/upload2/perfblog/202408/20240813/20240813-50694.jpg/dims/quality/70/",
+                    contentTitle = "플라워 25주년 콘서트",
+                    contentPlace = "건국대학교 새천년관",
+                    contentPeriod = "2024. 12. 01 - 01. 15",
+                ),
+                CategoryContentEntity(
+                    contentId = 4,
+                    contentImg = "http://tkfile.yes24.com/upload2/perfblog/202411/20241114/20241114-51722.jpg/dims/quality/70/",
+                    contentTitle = "플라워 25주년 콘서트 플라워 25주년 콘서트 플라워 25주년 콘서트",
+                    contentPlace = "건국대학교 새천년관",
+                    contentPeriod = "2024. 12. 01 - 01. 15",
+                ),
+                CategoryContentEntity(
+                    contentId = 1,
+                    contentImg = "https://tkfile.yes24.com/upload2/perfblog/202411/20241119/20241119-51767.jpg/dims/quality/70/",
+                    contentTitle = "플라워 25주년 콘서트",
+                    contentPlace = "건국대학교 새천년관",
+                    contentPeriod = "2024. 12. 01 - 01. 15",
+                ),
             )
-        )
 
         CategoryDetailScreen(
             categoryContentList = categoryContentList,

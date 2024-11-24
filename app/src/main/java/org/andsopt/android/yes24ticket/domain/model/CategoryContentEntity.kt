@@ -5,5 +5,5 @@ data class CategoryContentEntity(
     val contentImg: String,
     val contentTitle: String,
     val contentPlace: String,
-    val contentPeriod: String
+    val contentPeriod: String,
 )

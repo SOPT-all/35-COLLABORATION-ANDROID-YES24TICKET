@@ -47,11 +47,12 @@ fun SelectFilterBottomSheet(
                 .padding(start = 13.dp, end = 13.dp, top = 16.dp, bottom = 38.dp),
         isBottomSheetVisible = isBottomSheetVisible,
         onDismissRequest = onDismissRequest,
-        sheetState = rememberModalBottomSheetState(
-            confirmValueChange = { newState ->
-                !(newState == SheetValue.Hidden && isBottomSheetVisible)
-            }
-        )
+        sheetState =
+            rememberModalBottomSheetState(
+                confirmValueChange = { newState ->
+                    !(newState == SheetValue.Hidden && isBottomSheetVisible)
+                },
+            ),
     ) {
         Column {
             Row(
