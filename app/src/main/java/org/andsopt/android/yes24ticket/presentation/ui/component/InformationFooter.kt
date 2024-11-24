@@ -40,12 +40,12 @@ fun InformationFooter(
         modifier =
             modifier
                 .fillMaxWidth()
-                .padding(top = 10.dp, bottom = 19.dp)
                 .background(Yes24TicketTheme.colorScheme.gray50)
+                .padding(bottom = 19.dp)
     ) {
         HorizontalDivider(thickness = 1.dp, color = Yes24TicketTheme.colorScheme.gray200)
 
-        Spacer(Modifier.height(10.dp))
+        Spacer(Modifier.height(20.dp))
 
         FooterCSAndPCButton()
 

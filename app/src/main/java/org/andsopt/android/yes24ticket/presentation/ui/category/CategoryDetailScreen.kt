@@ -273,13 +273,11 @@ private fun CategoryContentLazyVerticalGrid(
     LazyVerticalGrid(
         columns = GridCells.Fixed(GRID_CELLS_DEFAULT),
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.dp),
-        contentPadding = PaddingValues(top = 44.dp),
+            .fillMaxWidth(),
+        contentPadding = PaddingValues(top = 44.dp, start = 10.dp, end = 10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         state = lazyScrollState
     ) {
-
         itemsIndexed(
             categoryContentList,
             key = { index, _ -> index },
@@ -300,10 +298,6 @@ private fun CategoryContentLazyVerticalGrid(
 
         item(span = { GridItemSpan(GRID_CELLS_DEFAULT) }) {
             InformationFooter()
-        }
-
-        item(span = { GridItemSpan(GRID_CELLS_DEFAULT) }) {
-            Spacer(Modifier.height(19.dp))
         }
     }
 
