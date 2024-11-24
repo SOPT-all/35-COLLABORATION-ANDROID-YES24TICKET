@@ -19,7 +19,7 @@ fun DummyRoute(
 
             DummyScreen(
                 dummyData = dummyAData.dummyId,
-                dummySecondData = dummyBData.dummyB
+                dummySecondData = dummyBData.dummyB,
             )
         }
 
