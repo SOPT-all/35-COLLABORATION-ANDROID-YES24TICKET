@@ -1,51 +1,29 @@
 package org.andsopt.android.yes24ticket.presentation.ui.dummy
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.andsopt.android.yes24ticket.presentation.ui.dummy.state.DummyUiState
-import org.andsopt.android.yes24ticket.util.base.UiState
-import org.andsopt.android.yes24ticket.util.view.LoadState
+import org.andsopt.android.yes24ticket.presentation.ui.dummy.state.DummyYes24UiState
 
 @Composable
 fun DummyRoute(
     viewModel: DummyViewModel = hiltViewModel(),
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val yes24UiState by viewModel.dummyYes24UiState.collectAsStateWithLifecycle()
+    val dummyYes24UiState by viewModel.dummyYes24UiState.collectAsStateWithLifecycle()
 
-    LaunchedEffect(Unit) {
-        viewModel.apply {
-            getDummyData()
-            getDummyExampleDate()
+    when (dummyYes24UiState) {
+        is DummyYes24UiState.Success -> {
+            val dummyAData = (dummyYes24UiState as DummyYes24UiState.Success).dummyA
+            val dummyBData = (dummyYes24UiState as DummyYes24UiState.Success).dummyB
+
+            DummyScreen(
+                dummyData = dummyAData.dummyId,
+                dummySecondData = dummyBData.dummyB
+            )
         }
+
+        is DummyYes24UiState.Loading -> Unit
+        is DummyYes24UiState.Error -> Unit
     }
-
-    // LoadState를 이용한 방식
-    when (val state: UiState = uiState) {
-        is DummyUiState -> {
-            when (state.loadState) {
-                LoadState.Idle -> Unit
-
-                LoadState.Loading -> Unit
-
-                LoadState.Success -> {
-                    DummyScreen(
-                        dummyData = state.dummyString,
-                        dummySecondData = state.dummySecondString,
-                    )
-                }
-
-                LoadState.Fail -> Unit
-            }
-        }
-    }
-
-    // combine을 이용한 방식
-    DummyScreen(
-        dummyData = yes24UiState.dummyYes,
-        dummySecondData = yes24UiState.dummy24.toString(),
-    )
 }
