@@ -36,10 +36,12 @@
     <string name="category_detail_sub_title_ranking">예매랭킹</string>
     <string name="category_detail_sub_title_list">전체리스트</string>
     <string name="category_detail_filter">정렬</string>
+    <string name="category_detail_filter_description">open filter selector</string>
     <string name="category_detail_filter_order">정렬 순서</string>
     <string name="category_detail_filter_close_description">close filter selector</string>
     <string name="category_detail_filter_popularity">인기순</string>
     <string name="category_detail_filter_ranking">랭킹순</string>
     <string name="category_detail_filter_reviews">리뷰 많은순</string>
     <string name="category_detail_filter_end">종료 임박순</string>
+    <string name="category_detail_content_description">content poster image</string>
 </resources>
