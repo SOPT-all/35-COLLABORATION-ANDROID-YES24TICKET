@@ -1,6 +1,9 @@
 package org.andsopt.android.yes24ticket.presentation.ui.category
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -9,25 +12,28 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -44,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import kotlinx.coroutines.launch
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.CategoryContentEntity
 import org.andsopt.android.yes24ticket.presentation.type.FilterType
@@ -67,11 +74,19 @@ fun CategoryDetailScreen(
     onCloseButtonClick: (FilterType?) -> Unit,
     onClickFilterSelector: () -> Unit
 ) {
+    val lazyScrollState = rememberLazyGridState()
+    val coroutineScope = rememberCoroutineScope()
+    val showButton by remember {
+        derivedStateOf {
+            lazyScrollState.firstVisibleItemScrollOffset > 0
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .wrapContentHeight(Alignment.CenterVertically)
-            .background(Yes24TicketTheme.colorScheme.white)
+            .background(Yes24TicketTheme.colorScheme.white),
     ) {
         Yes24TopAppBar()
 
@@ -87,6 +102,7 @@ fun CategoryDetailScreen(
         ) {
             CategoryContentLazyVerticalGrid(
                 categoryContentList = categoryContentList,
+                lazyScrollState = lazyScrollState
             )
 
             Row(
@@ -108,9 +124,19 @@ fun CategoryDetailScreen(
                     .align(Alignment.BottomEnd),
                 horizontalArrangement = Arrangement.End,
             ) {
-                ScrollToTopFloatingButton(
-                    onClick = {}
-                )
+                AnimatedVisibility(
+                    visible = showButton,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    ScrollToTopFloatingButton(
+                        onClick = {
+                            coroutineScope.launch {
+                                lazyScrollState.animateScrollToItem(0)
+                            }
+                        }
+                    )
+                }
             }
         }
 
@@ -241,7 +267,8 @@ private fun FilterSelector(
 @Composable
 private fun CategoryContentLazyVerticalGrid(
     categoryContentList: List<CategoryContentEntity>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    lazyScrollState: LazyGridState = rememberLazyGridState()
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(GRID_CELLS_DEFAULT),
@@ -249,7 +276,8 @@ private fun CategoryContentLazyVerticalGrid(
             .fillMaxWidth()
             .padding(horizontal = 10.dp),
         contentPadding = PaddingValues(top = 44.dp),
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        state = lazyScrollState
     ) {
 
         itemsIndexed(
@@ -383,35 +411,7 @@ private fun CategoryDetailScreenPreview() {
                 contentTitle = "플라워 25주년 콘서트",
                 contentPlace = "건국대학교 새천년관",
                 contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 2,
-                contentImg = "http://tkfile.yes24.com/upload2/perfblog/202411/20241108/20241108-51651.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 3,
-                contentImg = "http://tkfile.yes24.com/upload2/perfblog/202408/20240813/20240813-50694.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 4,
-                contentImg = "http://tkfile.yes24.com/upload2/perfblog/202411/20241114/20241114-51722.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
-            CategoryContentEntity(
-                contentId = 1,
-                contentImg = "https://tkfile.yes24.com/upload2/perfblog/202411/20241119/20241119-51767.jpg/dims/quality/70/",
-                contentTitle = "플라워 25주년 콘서트",
-                contentPlace = "건국대학교 새천년관",
-                contentPeriod = "2024. 12. 01 - 01. 15"
-            ),
+            )
         )
 
         CategoryDetailScreen(
