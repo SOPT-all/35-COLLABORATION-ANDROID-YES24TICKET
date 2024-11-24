@@ -49,14 +49,15 @@ fun HomeHeadDisplayedHorizontalPager(
     }
 
     HorizontalPager(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier =
+            modifier
+                .fillMaxWidth(),
         state = state,
     ) { index ->
         DisplayedBannerItem(
             bannerItem = mainBannerList[index % totalPageNum],
             totalPage = totalPageNum,
-            currentPage = index % totalPageNum + 1
+            currentPage = index % totalPageNum + 1,
         )
     }
 }
@@ -67,35 +68,37 @@ fun DisplayedBannerItem(
     bannerItem: MainBannerEntity,
     totalPage: Int,
     currentPage: Int,
-
-    ) {
+) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(20.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(20.dp),
     ) {
         AsyncImage(
-            model = ImageRequest.Builder(context = LocalContext.current)
-                .data(bannerItem.imgUrl)
-                .build(),
+            model =
+                ImageRequest.Builder(context = LocalContext.current)
+                    .data(bannerItem.imgUrl)
+                    .build(),
             contentDescription = stringResource(R.string.home_main_banner_item_image_description),
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(1.4f / 1f)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1.4f / 1f),
         )
 
         BannerPageIndicator(
             currentPage = currentPage,
             totalPage = totalPage,
-            modifier = Modifier.align(Alignment.BottomEnd)
+            modifier = Modifier.align(Alignment.BottomEnd),
         )
 
         MainBannerTextInfo(
             title = bannerItem.title,
             area = bannerItem.area,
             date = bannerItem.date,
-            modifier = Modifier.align(Alignment.BottomStart)
+            modifier = Modifier.align(Alignment.BottomStart),
         )
     }
 }
@@ -107,17 +110,18 @@ fun MainBannerTextInfo(
     date: String,
     modifier: Modifier = Modifier,
 ) {
-    val shadowModifier = Modifier.shadow(
-        elevation = 4.dp,
-        ambientColor = Color.Black.copy(alpha = 0.25f),
-        spotColor = Color.Black.copy(alpha = 0.25f)
-    )
+    val shadowModifier =
+        Modifier.shadow(
+            elevation = 4.dp,
+            ambientColor = Color.Black.copy(alpha = 0.25f),
+            spotColor = Color.Black.copy(alpha = 0.25f),
+        )
     Column(modifier = modifier) {
         Text(
             text = title,
             style = Yes24TicketTheme.typography.headExtraBold24,
             color = Yes24TicketTheme.colorScheme.white,
-            modifier = shadowModifier
+            modifier = shadowModifier,
         )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -126,7 +130,7 @@ fun MainBannerTextInfo(
             text = area,
             style = Yes24TicketTheme.typography.titleBold13,
             color = Yes24TicketTheme.colorScheme.yellow50,
-            modifier = shadowModifier
+            modifier = shadowModifier,
         )
 
         Spacer(modifier = Modifier.height(2.dp))
@@ -135,7 +139,7 @@ fun MainBannerTextInfo(
             text = date,
             style = Yes24TicketTheme.typography.titleBold13,
             color = Yes24TicketTheme.colorScheme.white,
-            modifier = shadowModifier
+            modifier = shadowModifier,
         )
     }
 }
@@ -143,16 +147,17 @@ fun MainBannerTextInfo(
 @Preview
 @Composable
 private fun HeadDisplayedBannerPreview() {
-    val dummyBannerItem = MainBannerEntity(
-        id = "1",
-        imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1725362669902656119.webp",
-        title = "뮤지컬 시지프스",
-        area = "예스24스테이지 2관",
-        date = "2024. 12 - 2025. 03"
-    )
+    val dummyBannerItem =
+        MainBannerEntity(
+            id = "1",
+            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1725362669902656119.webp",
+            title = "뮤지컬 시지프스",
+            area = "예스24스테이지 2관",
+            date = "2024. 12 - 2025. 03",
+        )
     DisplayedBannerItem(
         bannerItem = dummyBannerItem,
-        totalPage = 5, // 전체 페이지 수
-        currentPage = 1 // 현재 페이지
+        totalPage = 5,
+        currentPage = 1,
     )
 }

@@ -15,19 +15,20 @@ import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 fun BannerPageIndicator(
     totalPage: Int,
     currentPage: Int,
-    modifier: Modifier
+    modifier: Modifier,
 ) {
     Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(32.dp))
-            .background(color = Yes24TicketTheme.colorScheme.whiteDim)
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+        modifier =
+            modifier
+                .clip(RoundedCornerShape(32.dp))
+                .background(color = Yes24TicketTheme.colorScheme.whiteDim)
+                .padding(horizontal = 8.dp, vertical = 4.dp),
     ) {
         Text(
             text = "$currentPage/$totalPage",
             style = Yes24TicketTheme.typography.captionBold10,
             color = Yes24TicketTheme.colorScheme.white,
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
         )
     }
 }

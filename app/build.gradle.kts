@@ -85,6 +85,8 @@ dependencies {
     implementation(libs.coil3)
     implementation(libs.coil3.network)
 
+    // Grid
+    implementation(libs.cheonjaeung.grid)
     // Timber
     implementation(libs.timber)
 }
