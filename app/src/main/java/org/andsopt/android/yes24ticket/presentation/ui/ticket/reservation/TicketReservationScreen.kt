@@ -25,6 +25,7 @@ fun TicketReservationScreen(
     val days by viewModel.days.collectAsStateWithLifecycle()
     val selectableDays by viewModel.selectableDays.collectAsStateWithLifecycle()
     val selectedDay by viewModel.selectedDay.collectAsStateWithLifecycle()
+    val currentCalendar by viewModel.currentCalendar.collectAsStateWithLifecycle()
 
     Column(
         modifier = modifier.verticalScroll(rememberScrollState())
@@ -41,7 +42,11 @@ fun TicketReservationScreen(
             onDaySelected = viewModel::onDaySelected,
             modifier = Modifier
                 .padding(top = 10.dp)
-                .padding(horizontal = 56.dp)
+                .padding(horizontal = 56.dp),
+            currentYear = currentCalendar.year,
+            currentMonth = currentCalendar.month.value,
+            onNextMonthClicked = viewModel::onNextMonth,
+            onPrevMonthClicked = viewModel::onPrevMonth
         )
     }
 }

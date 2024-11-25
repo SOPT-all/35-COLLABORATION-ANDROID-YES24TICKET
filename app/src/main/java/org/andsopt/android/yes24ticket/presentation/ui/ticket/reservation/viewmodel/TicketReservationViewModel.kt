@@ -30,7 +30,7 @@ class TicketReservationViewModel @Inject constructor(
     private val _currentCalendar = MutableStateFlow(LocalDate.now())
     val currentCalendar = _currentCalendar.asStateFlow()
 
-    val days: StateFlow<List<List<Int>>> = _currentCalendar.map {
+    val days: StateFlow<List<List<Int>>> = currentCalendar.map {
         buildList {
             repeat(dayOfWeeks.indexOfFirst { dow -> dow == it.dayOfWeek }) {
                 add(0)

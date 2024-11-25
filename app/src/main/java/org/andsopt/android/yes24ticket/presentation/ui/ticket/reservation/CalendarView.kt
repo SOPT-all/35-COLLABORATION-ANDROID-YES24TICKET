@@ -12,15 +12,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
+import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 import org.andsopt.android.yes24ticket.util.compose.noRippleClickable
 import java.time.DayOfWeek
@@ -33,48 +39,66 @@ fun CalendarView(
     selectableDays: List<Int>,
     days: List<List<Int>>,
     selectedDay: Int,
+    currentYear: Int,
+    currentMonth: Int,
     modifier: Modifier = Modifier,
     onDaySelected: (Int) -> Unit = {},
+    onNextMonthClicked: () -> Unit = {},
+    onPrevMonthClicked: () -> Unit = {},
 ) {
 
     Column(
-        modifier = modifier
-            .border(
-                width = 1.dp,
-                color = Yes24TicketTheme.colorScheme.gray150,
-                shape = RoundedCornerShape(4.dp)
-            )
-            .background(
-                color = Yes24TicketTheme.colorScheme.white,
-            )
+        modifier = modifier,
     ) {
-        CalendarDayOfWeeksRow(
-            dayOfWeeks = dayOfWeeks,
-            modifier = Modifier.fillMaxWidth()
+        CalendarMonthRow(
+            onNextClicked = onNextMonthClicked,
+            onPrevClicked = onPrevMonthClicked,
+            year = currentYear,
+            month = currentMonth,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-        HorizontalDivider(
-            modifier = Modifier.fillMaxWidth(),
-            thickness = 1.dp,
-            color = Yes24TicketTheme.colorScheme.gray150
-        )
-        days.fastForEach { weekDays ->
-            CalendarDaysRow(
-                days = weekDays,
-                selectableDays = selectableDays,
-                selectedDay = selectedDay,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = Yes24TicketTheme.colorScheme.white,
-                    ),
-                onDaySelected = onDaySelected
-            )
-            if (weekDays != days.last()) {
-                HorizontalDivider(
-                    modifier = Modifier.fillMaxWidth(),
-                    thickness = 1.dp,
-                    color = Yes24TicketTheme.colorScheme.gray150
+        Column(
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .border(
+                    width = 1.dp,
+                    color = Yes24TicketTheme.colorScheme.gray150,
+                    shape = RoundedCornerShape(4.dp)
                 )
+                .background(
+                    color = Yes24TicketTheme.colorScheme.white,
+                )
+        ) {
+            CalendarDayOfWeeksRow(
+                dayOfWeeks = dayOfWeeks,
+                modifier = Modifier.fillMaxWidth().clip(
+                    RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp)
+                )
+            )
+            HorizontalDivider(
+                modifier = Modifier.fillMaxWidth(),
+                thickness = 1.dp,
+                color = Yes24TicketTheme.colorScheme.gray150
+            )
+            days.fastForEach { weekDays ->
+                CalendarDaysRow(
+                    days = weekDays,
+                    selectableDays = selectableDays,
+                    selectedDay = selectedDay,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            color = Yes24TicketTheme.colorScheme.white,
+                        ),
+                    onDaySelected = onDaySelected
+                )
+                if (weekDays != days.last()) {
+                    HorizontalDivider(
+                        modifier = Modifier.fillMaxWidth(),
+                        thickness = 1.dp,
+                        color = Yes24TicketTheme.colorScheme.gray150
+                    )
+                }
             }
         }
     }
@@ -171,6 +195,40 @@ private fun CalendarDaysRow(
 }
 
 @Composable
+private fun CalendarMonthRow(
+    onNextClicked: () -> Unit,
+    onPrevClicked: () -> Unit,
+    year: Int,
+    month: Int,
+    modifier: Modifier = Modifier
+) {
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            modifier = Modifier.noRippleClickable { onPrevClicked() },
+            imageVector = ImageVector.vectorResource(R.drawable.ic_reservation_arrow_left_24),
+            contentDescription = "이전 달",
+            tint = Color.Unspecified
+        )
+        Text(
+            text = "${year}. $month",
+            style = Yes24TicketTheme.typography.titleSemiBold22,
+            color = Yes24TicketTheme.colorScheme.gray900,
+            modifier = Modifier.padding(horizontal = 10.dp)
+        )
+        Icon(
+            modifier = Modifier.noRippleClickable { onNextClicked() },
+            imageVector = ImageVector.vectorResource(R.drawable.ic_reservation_arrow_right_24),
+            contentDescription = "다음 달",
+            tint = Color.Unspecified
+        )
+    }
+}
+
+@Composable
 @Preview
 private fun CalendarViewPreview() {
     CalendarView(
@@ -194,5 +252,7 @@ private fun CalendarViewPreview() {
             24, 25, 26, 27, 28, 29, 30,
             31, 0, 0, 0, 0, 0, 0
         ).chunked(7),
+        currentYear = 2024,
+        currentMonth = 11
     )
 }
