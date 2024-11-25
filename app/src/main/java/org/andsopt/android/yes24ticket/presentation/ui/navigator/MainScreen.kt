@@ -1,6 +1,9 @@
 package org.andsopt.android.yes24ticket.presentation.ui.navigator
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -27,7 +30,7 @@ private fun MainScreenContent(
     navigator: MainNavigator,
 ) {
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.padding(WindowInsets.navigationBars.asPaddingValues()),
         content = { padding ->
             MainNavHost(
                 navigator = navigator,
