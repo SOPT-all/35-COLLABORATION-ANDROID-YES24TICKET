@@ -11,9 +11,9 @@ import androidx.navigation.navOptions
 import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 import org.andsopt.android.yes24ticket.presentation.model.Route
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
-import org.andsopt.android.yes24ticket.presentation.ui.home.navigationHome
 import org.andsopt.android.yes24ticket.presentation.ui.category.CategoryDetailRoute
 import org.andsopt.android.yes24ticket.presentation.ui.category.navigationCategoryDetail
+import org.andsopt.android.yes24ticket.presentation.ui.home.navigationHome
 
 class MainNavigator(
     val navHostController: NavHostController,
