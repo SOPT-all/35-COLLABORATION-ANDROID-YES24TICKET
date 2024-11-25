@@ -18,4 +18,3 @@ fun NavGraphBuilder.homeNavGraph() {
         HomeRoute()
     }
 }
-
