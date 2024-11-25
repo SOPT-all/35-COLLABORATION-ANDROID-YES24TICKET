@@ -12,6 +12,8 @@ import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 import org.andsopt.android.yes24ticket.presentation.model.Route
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
 import org.andsopt.android.yes24ticket.presentation.ui.home.navigationHome
+import org.andsopt.android.yes24ticket.presentation.ui.category.CategoryDetailRoute
+import org.andsopt.android.yes24ticket.presentation.ui.category.navigationCategoryDetail
 
 class MainNavigator(
     val navHostController: NavHostController,
@@ -42,6 +44,10 @@ class MainNavigator(
         }
     }
 
+    fun navigateToCategoryDetail() {
+        navHostController.navigationCategoryDetail()
+    }
+
     private fun popBackStack() {
         navHostController.popBackStack()
     }
@@ -59,7 +65,7 @@ class MainNavigator(
     fun showBottomBar(): Boolean =
         BottomNavigationType.any {
             currentDestination?.route == it::class.qualifiedName
-        }
+        } || currentDestination?.route == CategoryDetailRoute.ROUTE
 }
 
 @Composable

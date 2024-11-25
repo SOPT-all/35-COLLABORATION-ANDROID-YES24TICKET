@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import org.andsopt.android.yes24ticket.presentation.ui.home.homeNavGraph
+import org.andsopt.android.yes24ticket.presentation.ui.category.categoryDetailNavGraph
 
 @Composable
 fun MainNavHost(
@@ -28,7 +29,11 @@ fun MainNavHost(
             navController = navigator.navHostController,
             startDestination = navigator.startDestination,
         ) {
-            homeNavGraph()
+            homeNavGraph(
+                navigateToCategoryDetail = navigator::navigateToCategoryDetail,
+            )
+
+            categoryDetailNavGraph(moveToBackStack = navigator::popBackStackIfNotHome)
         }
     }
 }
