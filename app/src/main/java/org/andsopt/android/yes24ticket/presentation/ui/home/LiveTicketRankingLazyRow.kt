@@ -42,7 +42,7 @@ fun LiveTicketRankingLazyRow(
             key = { ticketRanking -> ticketRanking.rank },
             contentType = { ticketRanking -> ticketRanking.imgUrl },
         ) { ticketRanking ->
-            TicketRankingContent(
+            TicketRankingItem(
                 ticketRanking = ticketRanking,
                 imageWidth = 122.dp,
             )
@@ -51,7 +51,7 @@ fun LiveTicketRankingLazyRow(
 }
 
 @Composable
-fun TicketRankingContent(
+fun TicketRankingItem(
     ticketRanking: LiveTicketRankingEntity,
     imageWidth: Dp,
     modifier: Modifier = Modifier,
@@ -88,10 +88,10 @@ fun TicketRankingContent(
 @Preview
 @Composable
 private fun RankingCardPreview() {
-    TicketRankingContent(
+    TicketRankingItem(
         ticketRanking =
         LiveTicketRankingEntity(
-            id =1,
+            id = 1,
             rank = 2,
             imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
         ),

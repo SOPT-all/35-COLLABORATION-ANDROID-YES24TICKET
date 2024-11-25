@@ -5,35 +5,48 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.cheonjaeung.compose.grid.SimpleGridCells
 import com.cheonjaeung.compose.grid.VerticalGrid
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.AdBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.LiveTicketRankingEntity
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
+import org.andsopt.android.yes24ticket.domain.model.WhatsHotEntity
+import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.Yes24TopAppBar
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
@@ -114,6 +127,7 @@ fun HomeRoute(modifier: Modifier = Modifier) {
             imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp"
         )
     )
+
     val dummyAdBannerList = listOf(
         AdBannerEntity(
             id = 1,
@@ -137,6 +151,46 @@ fun HomeRoute(modifier: Modifier = Modifier) {
         )
     )
 
+    val dummyWhatsHotItems = listOf(
+        WhatsHotEntity(
+            id = 1,
+            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
+            title = "뮤지컬 시지프스",
+            area = "예스24스테이지 2관",
+            date = "2024. 12 - 2025. 03",
+            comment = "안녕"
+        ),
+        WhatsHotEntity(
+            id = 2,
+            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
+            title = "오페라의 유령",
+            area = "예스24스테이지 1관",
+            date = "2024. 10 - 2024. 12",
+            comment = "안녕"
+        ),
+        WhatsHotEntity(
+            id = 3,
+            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
+            title = "레미제라블",
+            area = "예스24스테이지 3관",
+            date = "2025. 01 - 2025. 03"
+        ),
+        WhatsHotEntity(
+            id = 4,
+            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
+            title = "햄릿",
+            area = "예스24스테이지 4관",
+            date = "2024. 11 - 2025. 02"
+        ),
+        WhatsHotEntity(
+            id = 5,
+            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
+            title = "킹키부츠",
+            area = "예스24스테이지 5관",
+            date = "2024. 09 - 2024. 12"
+        )
+    )
+
     HomeScreen(
         headDisplayedPagerState = headDisplayPagerState,
         adDisplayedPagerState = adDisplayedPagerState,
@@ -144,6 +198,7 @@ fun HomeRoute(modifier: Modifier = Modifier) {
         categoryList = categoryList,
         ticketRankingItemList = dummyRankingList,
         adBannerItemList = dummyAdBannerList,
+        whatsHotItemList = dummyWhatsHotItems,
         modifier = modifier
     )
 }
@@ -157,10 +212,13 @@ fun HomeScreen(
     categoryList: List<String>,
     ticketRankingItemList: List<LiveTicketRankingEntity>,
     adBannerItemList: List<AdBannerEntity>,
+    whatsHotItemList: List<WhatsHotEntity>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier.background(color = Yes24TicketTheme.colorScheme.gray100),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         stickyHeader {
             Yes24TopAppBar()
@@ -206,7 +264,34 @@ fun HomeScreen(
                 adBannerList = adBannerItemList
             )
         }
+
+        item {
+            WhatsHotText(
+                text = R.string.home_whats_hot
+            )
+        }
+
+        items(
+            items = whatsHotItemList,
+            key = { item -> item.id },
+            contentType = { item -> item.title }
+        ) { hotItem ->
+            HotContentItem(
+                whatsHotItem = hotItem
+            )
+        }
+
+        item {
+            InformationFooter()
+        }
+
+
     }
+}
+
+@Composable
+fun HomeYes24TopAppBar(modifier: Modifier = Modifier) {
+
 }
 
 @Composable
@@ -304,7 +389,8 @@ fun TicketOpenAnnouncement(modifier: Modifier = Modifier) {
 
             Text(
                 text = stringResource(R.string.home_ticket_annoucement_example_text),
-                style = Yes24TicketTheme.typography.bodySemiBold12
+                style = Yes24TicketTheme.typography.bodySemiBold12,
+                color = Yes24TicketTheme.colorScheme.gray500
             )
         }
 
@@ -328,6 +414,90 @@ private fun CategoryPreview() {
 private fun TicketAnnouncementPreview() {
     TicketOpenAnnouncement()
 
+}
+
+@Composable
+fun WhatsHotText(
+    @StringRes text: Int,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = stringResource(text),
+        style = Yes24TicketTheme.typography.headExtraBold20,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 36.dp, bottom = 24.dp),
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+fun HotContentItem(
+    whatsHotItem: WhatsHotEntity,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(horizontal = 5.dp)
+    ) {
+        AsyncImage(
+            model =
+            ImageRequest.Builder(context = LocalContext.current)
+                .data(whatsHotItem.imgUrl)
+                .crossfade(true)
+                .build(),
+            contentDescription = stringResource(R.string.home_hot_content_image_description),
+            modifier =
+            Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f / 0.45f)
+                .clip(RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp)),
+        )
+
+        Column(
+            modifier
+                .fillMaxWidth()
+                .background(color = Yes24TicketTheme.colorScheme.white)
+                .padding(horizontal = 10.dp, vertical = 7.dp)
+        ) {
+            if (!whatsHotItem.comment.isNullOrEmpty()) {
+                Text(
+                    text = whatsHotItem.comment,
+                    style = Yes24TicketTheme.typography.bodySemiBold12,
+                    color = Yes24TicketTheme.colorScheme.gray400
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+            }
+
+            Text(
+                text = whatsHotItem.title,
+                style = Yes24TicketTheme.typography.titleExtraBold17
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = whatsHotItem.area,
+                    style = Yes24TicketTheme.typography.bodyBold14
+                )
+
+                Icon(
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_divide_line_17),
+                    contentDescription = stringResource(R.string.icon_divider_desription),
+                    tint = Color.Unspecified
+                )
+
+                Text(
+                    text = whatsHotItem.date,
+                    style = Yes24TicketTheme.typography.bodyBold13,
+                    color = Yes24TicketTheme.colorScheme.gray400
+                )
+            }
+
+        }
+    }
 }
 
 @Preview

@@ -32,6 +32,7 @@
 
     <!-- icon -->
     <string name="icon_arrow_down_16_description">아래로 향하는 화살표입니다</string>
+    <string name="icon_divider_desription">크기가 17dp인 divider입니다</string>
 
     <!-- home -->
     <string name="home_main_banner_item_image_description">Main Banner Image</string>
@@ -41,4 +42,6 @@
     <string name="home_section_header_ticket_announcement_text">티켓 오픈/공지</string>
     <string name="home_ticket_annoucement_example_text"><![CDATA[뮤지컬<시라노>2차 티켓오픈 안내]]></string>
     <string name="home_ad_banner_item_image_description">광고 배너 아이템입니다.</string>
+    <string name="home_hot_content_image_description">What\'s Hot 이미지입니다</string>
+    <string name="home_whats_hot">WHAT\'S HOT</string>
 </resources>
