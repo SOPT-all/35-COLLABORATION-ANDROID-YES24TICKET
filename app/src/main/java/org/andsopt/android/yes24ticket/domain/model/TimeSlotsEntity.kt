@@ -1,7 +1,7 @@
 package org.andsopt.android.yes24ticket.domain.model
 
 
-data class TimeSlotsData(
+data class TimeSlotsDataEntity(
     val slots: List<TimeSlots>
 )
 

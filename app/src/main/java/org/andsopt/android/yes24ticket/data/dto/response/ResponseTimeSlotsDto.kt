@@ -4,13 +4,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.andsopt.android.yes24ticket.domain.model.RemainingSeat
 import org.andsopt.android.yes24ticket.domain.model.TimeSlots
-import org.andsopt.android.yes24ticket.domain.model.TimeSlotsData
+import org.andsopt.android.yes24ticket.domain.model.TimeSlotsDataEntity
 
 @Serializable
 data class ResponseTimeSlotsDataDto(
     @SerialName("data") val data: List<ResponseTimeSlotsDto>
 ) {
-    fun toTimeSlotsData() = TimeSlotsData(
+    fun toTimeSlotsData() = TimeSlotsDataEntity(
         slots = data.map {
             TimeSlots(
                 performanceTime = it.performanceTime,
