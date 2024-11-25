@@ -19,10 +19,10 @@ fun CategoryDetailRoute(
         onSelectedFilterChanged = { newFilterType ->
             viewModel.apply {
                 setFilterType(selectedFilterType = newFilterType)
-                viewModel.changeBottomSheetVisibility()
+                changeBottomSheetVisibility()
             }
         },
         onCloseButtonClick = { viewModel.changeBottomSheetVisibility() },
-        onClickFilterSelector = { viewModel.changeBottomSheetVisibility() },
+        onClickFilterSelector = viewModel::changeBottomSheetVisibility,
     )
 }

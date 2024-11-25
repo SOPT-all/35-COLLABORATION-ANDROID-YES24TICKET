@@ -41,59 +41,60 @@ fun SelectFilterBottomSheet(
     onCloseButtonClick: (FilterType?) -> Unit = {},
     onDismissRequest: () -> Unit = {},
 ) {
-    BasicModalBottomSheet(
-        modifier =
-            modifier
-                .padding(start = 13.dp, end = 13.dp, top = 16.dp, bottom = 38.dp),
-        isBottomSheetVisible = isBottomSheetVisible,
-        onDismissRequest = onDismissRequest,
-        sheetState =
-            rememberModalBottomSheetState(
-                confirmValueChange = { newState ->
-                    !(newState == SheetValue.Hidden && isBottomSheetVisible)
-                },
-            ),
-    ) {
-        Column {
-            Row(
-                modifier =
-                    Modifier
-                        .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(
-                    text = bottomSheetTitleText,
-                    style = Yes24TicketTheme.typography.titleBold15,
-                    color = Yes24TicketTheme.colorScheme.gray900,
-                )
-
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_reservation_close_24),
-                    contentDescription = stringResource(R.string.category_detail_filter_close_description),
+    if (isBottomSheetVisible) {
+        BasicModalBottomSheet(
+            modifier =
+                modifier
+                    .padding(start = 13.dp, end = 13.dp, top = 16.dp, bottom = 38.dp),
+            onDismissRequest = onDismissRequest,
+            sheetState =
+                rememberModalBottomSheetState(
+                    confirmValueChange = { newState ->
+                        !(newState == SheetValue.Hidden && isBottomSheetVisible)
+                    },
+                ),
+        ) {
+            Column {
+                Row(
                     modifier =
                         Modifier
-                            .noRippleClickable { onCloseButtonClick(selectedFilter) },
-                )
-            }
-
-            Spacer(modifier = Modifier.height(25.dp))
-
-            Row {
-                FilterType.entries.forEachIndexed { index, filterType ->
-                    val isSelected = selectedFilter == filterType
-
-                    Yes24FilterChip(
-                        chipTitle = stringResource(filterType.filter),
-                        modifier = Modifier.weight(1f),
-                        isSelected = isSelected,
-                        onSelectedChange = {
-                            if (index == ZERO) onSelectedFilterChanged(filterType)
-                        },
+                            .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Text(
+                        text = bottomSheetTitleText,
+                        style = Yes24TicketTheme.typography.titleBold15,
+                        color = Yes24TicketTheme.colorScheme.gray900,
                     )
 
-                    if (index != FilterType.entries.size - 1) {
-                        Spacer(modifier = Modifier.width(12.dp))
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.ic_reservation_close_24),
+                        contentDescription = stringResource(R.string.category_detail_filter_close_description),
+                        modifier =
+                            Modifier
+                                .noRippleClickable { onCloseButtonClick(selectedFilter) },
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(25.dp))
+
+                Row {
+                    FilterType.entries.forEachIndexed { index, filterType ->
+                        val isSelected = selectedFilter == filterType
+
+                        Yes24FilterChip(
+                            chipTitle = stringResource(filterType.filter),
+                            modifier = Modifier.weight(1f),
+                            isSelected = isSelected,
+                            onSelectedChange = {
+                                if (index == ZERO) onSelectedFilterChanged(filterType)
+                            },
+                        )
+
+                        if (index != FilterType.entries.size - 1) {
+                            Spacer(modifier = Modifier.width(12.dp))
+                        }
                     }
                 }
             }

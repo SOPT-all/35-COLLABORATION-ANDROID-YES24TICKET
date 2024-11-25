@@ -33,37 +33,34 @@ import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 fun BasicModalBottomSheet(
     modifier: Modifier = Modifier,
     sheetState: SheetState = rememberModalBottomSheetState(),
-    isBottomSheetVisible: Boolean,
     onDismissRequest: () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    if (isBottomSheetVisible) {
-        coroutineScope.launch {
-            sheetState.show()
-        }
+    coroutineScope.launch {
+        sheetState.show()
+    }
 
-        ModalBottomSheet(
-            onDismissRequest = onDismissRequest,
-            modifier =
-                Modifier
-                    .padding(
-                        bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
-                    ),
-            sheetState = sheetState,
-            shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
-            containerColor = Yes24TicketTheme.colorScheme.white,
-            scrimColor = Yes24TicketTheme.colorScheme.blackDim,
-            dragHandle = null,
+    ModalBottomSheet(
+        onDismissRequest = onDismissRequest,
+        modifier =
+            Modifier
+                .padding(
+                    bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding(),
+                ),
+        sheetState = sheetState,
+        shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp),
+        containerColor = Yes24TicketTheme.colorScheme.white,
+        scrimColor = Yes24TicketTheme.colorScheme.blackDim,
+        dragHandle = null,
+    ) {
+        Column(
+            modifier = modifier,
         ) {
-            Column(
-                modifier = modifier,
-            ) {
-                content()
+            content()
 
-                Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
-            }
+            Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
         }
     }
 }
@@ -77,7 +74,6 @@ private fun BasicModalBottomSheetPreview() {
 
         BasicModalBottomSheet(
             modifier = Modifier.padding(horizontal = 14.dp),
-            isBottomSheetVisible = isBottomSheetVisible,
             onDismissRequest = { isBottomSheetVisible = !isBottomSheetVisible },
             content = {
                 Text(text = "Basic Modal Bottom Sheet")

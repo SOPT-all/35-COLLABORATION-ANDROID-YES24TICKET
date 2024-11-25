@@ -145,8 +145,8 @@ fun CategoryDetailScreen(
         }
 
         SelectFilterBottomSheet(
-            onDismissRequest = { },
             isBottomSheetVisible = isBottomSheetVisible,
+            onDismissRequest = { },
             selectedFilter = selectedFilterType,
             onSelectedFilterChanged = onSelectedFilterChanged,
             onCloseButtonClick = onCloseButtonClick,
