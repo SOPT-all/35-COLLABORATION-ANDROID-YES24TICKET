@@ -6,5 +6,5 @@ data class WhatsHotEntity(
     val area: String,
     val date: String,
     val imgUrl: String,
-    val comment: String? = ""
+    val comment: String? = "",
 )

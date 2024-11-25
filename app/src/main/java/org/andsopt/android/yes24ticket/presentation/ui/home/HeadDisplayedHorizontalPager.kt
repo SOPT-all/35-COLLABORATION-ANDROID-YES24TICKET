@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,7 +53,8 @@ fun HeadDisplayedHorizontalPager(
     HorizontalPager(
         modifier =
             modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .wrapContentHeight(),
         state = state,
     ) { index ->
         HeadDisplayedBannerItem(
@@ -74,8 +76,7 @@ fun HeadDisplayedBannerItem(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(20.dp),
+                .wrapContentHeight(),
     ) {
         AsyncImage(
             model =
@@ -88,19 +89,26 @@ fun HeadDisplayedBannerItem(
                 Modifier
                     .fillMaxWidth()
                     .aspectRatio(1.3f / 1f),
+            contentScale = ContentScale.FillBounds,
         )
 
         BannerPageIndicator(
             currentPage = currentPage,
             totalPage = totalPage,
-            modifier = Modifier.align(Alignment.BottomEnd),
+            modifier =
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(20.dp),
         )
 
         MainBannerTextInfo(
             title = bannerItem.title,
             area = bannerItem.area,
             date = bannerItem.date,
-            modifier = Modifier.align(Alignment.BottomStart),
+            modifier =
+                Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(20.dp),
         )
     }
 }

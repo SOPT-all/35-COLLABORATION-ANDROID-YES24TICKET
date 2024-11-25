@@ -59,21 +59,21 @@ fun TicketRankingItem(
     Box(
         contentAlignment = Alignment.BottomStart,
         modifier =
-        modifier
-            .wrapContentSize(),
+            modifier
+                .wrapContentSize(),
     ) {
         AsyncImage(
             model =
-            ImageRequest.Builder(context = LocalContext.current)
-                .data(ticketRanking.imgUrl)
-                .crossfade(true)
-                .build(),
+                ImageRequest.Builder(context = LocalContext.current)
+                    .data(ticketRanking.imgUrl)
+                    .crossfade(true)
+                    .build(),
             contentDescription = stringResource(R.string.home_ticket_ranking_content_description),
             modifier =
-            Modifier
-                .width(imageWidth)
-                .aspectRatio(1f / 1.45f)
-                .clip(RoundedCornerShape(8.dp)),
+                Modifier
+                    .width(imageWidth)
+                    .aspectRatio(1f / 1.45f)
+                    .clip(RoundedCornerShape(8.dp)),
         )
 
         Text(
@@ -90,11 +90,11 @@ fun TicketRankingItem(
 private fun RankingCardPreview() {
     TicketRankingItem(
         ticketRanking =
-        LiveTicketRankingEntity(
-            id = 1,
-            rank = 2,
-            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
-        ),
+            LiveTicketRankingEntity(
+                id = 1,
+                rank = 2,
+                imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
+            ),
         imageWidth = 122.dp,
     )
 }

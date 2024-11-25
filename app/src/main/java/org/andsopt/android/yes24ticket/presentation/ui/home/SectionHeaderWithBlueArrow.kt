@@ -2,7 +2,6 @@ package org.andsopt.android.yes24ticket.presentation.ui.home
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -35,6 +34,7 @@ fun SectionHeaderWithBlueArrow(
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_right_blue_16),
             contentDescription = stringResource(R.string.home_arrow_blue_icon_decription),
             tint = Color.Unspecified,
+            modifier = Modifier.padding(top = 1.dp),
         )
     }
 }

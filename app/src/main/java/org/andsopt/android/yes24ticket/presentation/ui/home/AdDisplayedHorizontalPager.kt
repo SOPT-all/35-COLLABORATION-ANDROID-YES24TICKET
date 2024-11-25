@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -43,8 +44,8 @@ fun AdDisplayedHorizontalPager(
 
     HorizontalPager(
         modifier =
-        modifier
-            .fillMaxWidth(),
+            modifier
+                .fillMaxWidth(),
         state = state,
     ) { index ->
         AdDisplayedBannerItem(
@@ -63,28 +64,31 @@ fun AdDisplayedBannerItem(
 ) {
     Box(
         modifier =
-        Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(8.dp),
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
     ) {
         AsyncImage(
             model =
-            ImageRequest.Builder(context = LocalContext.current)
-                .data(bannerItem.imgUrl)
-                .crossfade(true)
-                .build(),
+                ImageRequest.Builder(context = LocalContext.current)
+                    .data(bannerItem.imgUrl)
+                    .crossfade(true)
+                    .build(),
             contentDescription = stringResource(R.string.home_ad_banner_item_image_description),
             modifier =
-            Modifier
-                .fillMaxWidth()
-                .aspectRatio(2.4f / 1f),
+                Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(2.4f / 1f),
+            contentScale = ContentScale.FillBounds,
         )
 
         BannerPageIndicator(
             currentPage = currentPage,
             totalPage = totalPage,
-            modifier = Modifier.align(Alignment.BottomEnd),
+            modifier =
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(8.dp),
         )
     }
 }
