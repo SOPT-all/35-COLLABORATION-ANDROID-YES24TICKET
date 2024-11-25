@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
+import coil3.request.crossfade
 import kotlinx.coroutines.delay
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
@@ -80,12 +81,13 @@ fun DisplayedBannerItem(
             model =
                 ImageRequest.Builder(context = LocalContext.current)
                     .data(bannerItem.imgUrl)
+                    .crossfade(true)
                     .build(),
             contentDescription = stringResource(R.string.home_main_banner_item_image_description),
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .aspectRatio(1.4f / 1f),
+                    .aspectRatio(1.3f / 1f),
         )
 
         BannerPageIndicator(
@@ -149,7 +151,6 @@ fun MainBannerTextInfo(
 private fun HeadDisplayedBannerPreview() {
     val dummyBannerItem =
         MainBannerEntity(
-            id = "1",
             imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1725362669902656119.webp",
             title = "뮤지컬 시지프스",
             area = "예스24스테이지 2관",

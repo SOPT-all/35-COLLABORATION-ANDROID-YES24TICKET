@@ -25,8 +25,13 @@
     <!-- component- FAB -->
     <string name="floating_action_button_top">TOP</string>
     <string name="floating_action_button_icon_desription">Go To Top</string>
+
     <!-- component-TopAppBar -->
     <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
     <string name="top_app_bar_search_icon_description">Search Icon</string>
+
+    <!-- home -->
     <string name="home_main_banner_item_image_description">Main Banner Image</string>
+    <string name="home_ticket_ranking_content_description">티켓 랭킹 내용입니다.</string>
+    <string name="home_arrow_blue_icon_decription">오른쪽을 향하는 파란색 화살표입니다.</string>
 </resources>

@@ -15,6 +15,6 @@ fun NavController.navigationHome(navOptions: NavOptions) {
 
 fun NavGraphBuilder.homeNavGraph() {
     composable<BottomNavigationRoute.Home> {
-        HomeScreen()
+        HomeRoute()
     }
 }
