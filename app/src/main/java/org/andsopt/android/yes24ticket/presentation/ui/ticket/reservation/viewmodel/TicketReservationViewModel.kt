@@ -69,9 +69,11 @@ class TicketReservationViewModel @Inject constructor(
 
     fun onNextMonth() {
         _currentCalendar.value = _currentCalendar.value.plusMonths(1)
+        _selectedDay.value = -1
     }
 
     fun onPrevMonth() {
         _currentCalendar.value = _currentCalendar.value.minusMonths(1)
+        _selectedDay.value = -1
     }
 }

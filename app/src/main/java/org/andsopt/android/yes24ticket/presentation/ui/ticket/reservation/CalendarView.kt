@@ -2,14 +2,18 @@ package org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -71,9 +75,11 @@ fun CalendarView(
         ) {
             CalendarDayOfWeeksRow(
                 dayOfWeeks = dayOfWeeks,
-                modifier = Modifier.fillMaxWidth().clip(
-                    RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp)
-                )
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(
+                        RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp)
+                    )
             )
             HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
@@ -101,6 +107,31 @@ fun CalendarView(
                 }
             }
         }
+        Row(
+            modifier = Modifier
+                .padding(top = 17.dp)
+                .align(Alignment.End),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            listOf(
+                "예매가능" to Yes24TicketTheme.colorScheme.blue50,
+                "선택" to Yes24TicketTheme.colorScheme.red100
+            ).fastForEachIndexed { index, (text, color) ->
+                Box(
+                    modifier = Modifier
+                        .size(9.dp)
+                        .background(color = color)
+                )
+                Text(
+                    text = text,
+                    style = Yes24TicketTheme.typography.captionRegular10,
+                    color = Yes24TicketTheme.colorScheme.gray400,
+                    modifier = Modifier.padding(start = 3.dp)
+                )
+                if (index != 1)
+                    Spacer(modifier = Modifier.width(7.dp))
+            }
+        }
     }
 }
 
@@ -114,7 +145,7 @@ private fun CalendarDayOfWeeksRow(
         modifier = modifier.fillMaxWidth()
     ) {
         dayOfWeeks.fastForEach { dayOfWeek ->
-            Box (
+            Box(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
                     .weight(1f)
@@ -127,7 +158,7 @@ private fun CalendarDayOfWeeksRow(
                     modifier = Modifier.padding(vertical = 3.dp),
                     text = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.KOREAN),
                     style = Yes24TicketTheme.typography.titleExtraBold12,
-                    color = when(dayOfWeek) {
+                    color = when (dayOfWeek) {
                         DayOfWeek.SUNDAY -> Yes24TicketTheme.colorScheme.red100
                         DayOfWeek.SATURDAY -> Yes24TicketTheme.colorScheme.blue200
                         else -> Yes24TicketTheme.colorScheme.gray700
@@ -157,7 +188,7 @@ private fun CalendarDaysRow(
         modifier = modifier.fillMaxWidth()
     ) {
         days.fastForEachIndexed { index, day ->
-            Box (
+            Box(
                 modifier = Modifier
                     .height(IntrinsicSize.Min)
                     .weight(1f)
@@ -168,8 +199,9 @@ private fun CalendarDaysRow(
                         else if (selectableDays.contains(day))
                             Yes24TicketTheme.colorScheme.blue50
                         else Yes24TicketTheme.colorScheme.white,
-                    ).noRippleClickable {
-                         onDaySelected(day)
+                    )
+                    .noRippleClickable {
+                        onDaySelected(day)
                     },
                 contentAlignment = Alignment.Center
             ) {
@@ -245,7 +277,8 @@ private fun CalendarViewPreview() {
             11, 14, 20,
         ),
         selectedDay = 11,
-        days = listOf(0, 0, 0, 0, 0, 1, 2,
+        days = listOf(
+            0, 0, 0, 0, 0, 1, 2,
             3, 4, 5, 6, 7, 8, 9,
             10, 11, 12, 13, 14, 15, 16,
             17, 18, 19, 20, 21, 22, 23,
