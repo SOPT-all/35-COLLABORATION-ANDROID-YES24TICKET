@@ -1,5 +1,6 @@
 package org.andsopt.android.yes24ticket.presentation.ui.home
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,16 +19,16 @@ import org.andsopt.android.yes24ticket.R
 
 @Composable
 fun SectionHeaderWithBlueArrow(
-    text: String,
+    @StringRes text: Int,
     style: TextStyle,
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().padding(start = 10.dp),
+        modifier = modifier.padding(start = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = text,
+            text = stringResource(text),
             style = style,
         )
         Icon(

@@ -31,7 +31,7 @@ import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
 @Composable
-fun HomeHeadDisplayedHorizontalPager(
+fun HeadDisplayedHorizontalPager(
     state: PagerState,
     mainBannerList: List<MainBannerEntity>,
     modifier: Modifier = Modifier,
@@ -55,7 +55,7 @@ fun HomeHeadDisplayedHorizontalPager(
                 .fillMaxWidth(),
         state = state,
     ) { index ->
-        DisplayedBannerItem(
+        HeadDisplayedBannerItem(
             bannerItem = mainBannerList[index % totalPageNum],
             totalPage = totalPageNum,
             currentPage = index % totalPageNum + 1,
@@ -65,7 +65,7 @@ fun HomeHeadDisplayedHorizontalPager(
 
 @SuppressLint("LogNotTimber")
 @Composable
-fun DisplayedBannerItem(
+fun HeadDisplayedBannerItem(
     bannerItem: MainBannerEntity,
     totalPage: Int,
     currentPage: Int,
@@ -151,12 +151,13 @@ fun MainBannerTextInfo(
 private fun HeadDisplayedBannerPreview() {
     val dummyBannerItem =
         MainBannerEntity(
+            id = 1,
             imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1725362669902656119.webp",
             title = "뮤지컬 시지프스",
             area = "예스24스테이지 2관",
             date = "2024. 12 - 2025. 03",
         )
-    DisplayedBannerItem(
+    HeadDisplayedBannerItem(
         bannerItem = dummyBannerItem,
         totalPage = 5,
         currentPage = 1,
