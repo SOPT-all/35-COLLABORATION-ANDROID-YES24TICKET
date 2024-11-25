@@ -59,7 +59,11 @@ class TicketReservationViewModel @Inject constructor(
     val selectedDay = _selectedDay.asStateFlow()
 
     fun onDaySelected(day: Int) {
-        if (day == 0) return
+        if (day !in selectableDays.value) return
+        if (selectedDay.value == day) {
+            _selectedDay.value = -1
+            return
+        }
         _selectedDay.value = day
     }
 
