@@ -1,10 +1,12 @@
 package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,66 +54,58 @@ fun TicketDetailScreen(
     onExpandedChanged: () -> Unit = {},
     onLikedChanged: () -> Unit = {}
 ) {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
+        Yes24TopAppBar()
+
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
         ) {
-            Yes24TopAppBar()
+            TicketDetailBox(
+                ticketTitle = ticketTitle,
+                ticketPosterImg = ticketPosterImg,
+                ticketGenre = ticketGenre,
+                ticketDate = ticketDate,
+                ticketPlace = ticketPlace,
+                ticketRatings = ticketRatings,
+                ticketRunningTime = ticketRunningTime,
+                likedCount = likedCount,
+                isLiked = isLiked,
+                onLikedChanged = onLikedChanged
+            )
 
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-            ) {
-                TicketDetailBox(
-                    ticketTitle = ticketTitle,
-                    ticketPosterImg = ticketPosterImg,
-                    ticketGenre = ticketGenre,
-                    ticketDate = ticketDate,
-                    ticketPlace = ticketPlace,
-                    ticketRatings = ticketRatings,
-                    ticketRunningTime = ticketRunningTime,
-                    likedCount = likedCount,
-                    isLiked = isLiked,
-                    onLikedChanged = onLikedChanged
-                )
+            TicketDetailSeatAndTime(
+                ticketTime = ticketTime,
+                ticketTypeList = ticketTypeList
+            )
 
-                TicketDetailSeatAndTime(
-                    ticketTime = ticketTime,
-                    ticketTypeList = ticketTypeList
-                )
+            TicketDetailNotice(
+                isExpanded = isExpanded,
+                onExpandedChanged = onExpandedChanged,
+                noticeText = noticeText,
+                hyperText = hyperText,
+            )
 
-                TicketDetailNotice(
-                    isExpanded = isExpanded,
-                    onExpandedChanged = onExpandedChanged,
-                    noticeText = noticeText,
-                    hyperText = hyperText,
-                )
+            TicketDetailRow(titleText = R.string.ticket_detail_title_detail)
 
-                TicketDetailRow(titleText = R.string.ticket_detail_title_detail)
+            TicketDetailRow(titleText = R.string.ticket_detail_title_discount)
 
-                TicketDetailRow(titleText = R.string.ticket_detail_title_discount)
+            TicketDetailRow(titleText = R.string.ticket_detail_title_expectations)
 
-                TicketDetailRow(titleText = R.string.ticket_detail_title_expectations)
+            TicketDetailRow(titleText = R.string.ticket_detail_title_image)
 
-                TicketDetailRow(titleText = R.string.ticket_detail_title_image)
+            TicketDetailRow(titleText = R.string.ticket_detail_title_information)
 
-                TicketDetailRow(titleText = R.string.ticket_detail_title_information)
-
-                InformationFooter()
-            }
+            InformationFooter()
         }
 
-        TicketDetailReserveButton(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-        )
+        TicketDetailReserveButton()
     }
-
 }
 
 @Composable
@@ -159,7 +153,9 @@ private fun TicketDetailRow(
     @StringRes titleText: Int
 ) {
     Row(
-        modifier = Modifier.bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f),
+        modifier = Modifier
+            .background(Yes24TicketTheme.colorScheme.white)
+            .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
