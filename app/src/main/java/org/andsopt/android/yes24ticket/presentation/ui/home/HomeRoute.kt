@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.delay
+import org.andsopt.android.yes24ticket.presentation.type.HomeCategoryType
 
 @Composable
 fun HomeRoute(
@@ -56,7 +57,7 @@ fun HomeRoute(
         headDisplayedPagerState = headDisplayPagerState,
         adDisplayedPagerState = adDisplayedPagerState,
         mainBannerItemList = viewModel.dummyBannerItems,
-        categoryList = viewModel.categoryList,
+        categoryList = HomeCategoryType.entries,
         ticketRankingItemList = viewModel.dummyRankingList,
         adBannerItemList = viewModel.dummyAdBannerList,
         whatsHotItemList = viewModel.dummyWhatsHotItems,

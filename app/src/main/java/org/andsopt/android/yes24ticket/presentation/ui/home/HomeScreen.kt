@@ -61,6 +61,7 @@ import org.andsopt.android.yes24ticket.domain.model.AdBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.LiveTicketRankingEntity
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.WhatsHotEntity
+import org.andsopt.android.yes24ticket.presentation.type.HomeCategoryType
 import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.ScrollToTopFloatingButton
 import org.andsopt.android.yes24ticket.presentation.ui.home.component.AdDisplayedHorizontalPager
@@ -80,7 +81,7 @@ fun HomeScreen(
     headDisplayedPagerState: PagerState,
     adDisplayedPagerState: PagerState,
     mainBannerItemList: List<MainBannerEntity>,
-    categoryList: List<String>,
+    categoryList: List<HomeCategoryType>,
     ticketRankingItemList: List<LiveTicketRankingEntity>,
     adBannerItemList: List<AdBannerEntity>,
     whatsHotItemList: List<WhatsHotEntity>,
@@ -283,7 +284,7 @@ fun TopAppBarTextField(
 
 @Composable
 fun HomeGridCategory(
-    categoryList: List<String>,
+    categoryList: List<HomeCategoryType>,
     navigateToCategoryDetail: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -291,7 +292,7 @@ fun HomeGridCategory(
         columns = SimpleGridCells.Fixed(3),
         modifier = modifier.fillMaxWidth(),
     ) {
-        categoryList.forEachIndexed { idx, category ->
+        categoryList.forEachIndexed { idx, categoryType ->
             Box(
                 modifier =
                     Modifier
@@ -301,7 +302,7 @@ fun HomeGridCategory(
                         .rightBorder(color = Yes24TicketTheme.colorScheme.gray150, width = 1f),
             ) {
                 Text(
-                    text = category,
+                    text = stringResource(categoryType.category),
                     style = Yes24TicketTheme.typography.buttonBold14,
                     modifier =
                         Modifier

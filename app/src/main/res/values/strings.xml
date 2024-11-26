@@ -61,5 +61,15 @@
     <string name="home_whats_hot">WHAT\'S HOT</string>
     <string name="home_icon_search_description">홈화면 Search 아이콘</string>
     <string name="home_top_bar_placeholder">검색어를 입력하세요</string>
+    <string name="home_category_type_concert">콘서트</string>
+    <string name="home_category_type_musical">뮤지컬</string>
+    <string name="home_category_type_play">연극</string>
+    <string name="home_category_type_classic_dance">클래식/무용</string>
+    <string name="home_category_type_exhibition_event">전시/행사</string>
+    <string name="home_category_type_family_children">가족/어린이</string>
+
+
+
+
 
 </resources>
