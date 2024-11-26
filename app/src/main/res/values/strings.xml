@@ -50,6 +50,7 @@
     <string name="ticket_detail_genre">장르</string>
     <string name="ticket_detail_date">일시</string>
     <string name="ticket_detail_place">장소</string>
+    <string name="ticket_detail_place_description">go to location information</string>
     <string name="ticket_detail_film_ratings">관람등급</string>
     <string name="ticket_detail_running_time">관람시간</string>
     <string name="ticket_detail_poster_description">ticket poster image</string>
