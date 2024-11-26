@@ -7,20 +7,24 @@ import org.andsopt.android.yes24ticket.domain.model.TimeSlotsDataEntity
 import org.andsopt.android.yes24ticket.domain.repository.TicketingRepository
 import javax.inject.Inject
 
-class TicketingRepositoryImpl @Inject constructor(
-    private val ticketingRemoteDataSource: TicketingRemoteDataSource
-) : TicketingRepository {
+class TicketingRepositoryImpl
+    @Inject
+    constructor(
+        private val ticketingRemoteDataSource: TicketingRemoteDataSource,
+    ) : TicketingRepository {
+        override suspend fun fetchAvailableTimes(ticketId: Int): TicketAvailableTimesEntity {
+            return ticketingRemoteDataSource.fetchAvailableTimes(ticketId).toTicketAvailableTimes()
+        }
 
-    override suspend fun fetchAvailableTimes(ticketId: Int): TicketAvailableTimesEntity {
-        return ticketingRemoteDataSource.fetchAvailableTimes(ticketId).toTicketAvailableTimes()
+        override suspend fun fetchTimeSlots(
+            concertId: String,
+            performanceTime: String,
+        ): TimeSlotsDataEntity {
+            return ticketingRemoteDataSource.fetchTimeSlots(
+                RequestTimeSlotsDto(
+                    concertId = concertId,
+                    performanceTime = performanceTime,
+                ),
+            ).toTimeSlotsData()
+        }
     }
-
-    override suspend fun fetchTimeSlots(concertId: String, performanceTime: String): TimeSlotsDataEntity {
-        return ticketingRemoteDataSource.fetchTimeSlots(
-            RequestTimeSlotsDto(
-                concertId = concertId,
-                performanceTime = performanceTime
-            )
-        ).toTimeSlotsData()
-    }
-}
