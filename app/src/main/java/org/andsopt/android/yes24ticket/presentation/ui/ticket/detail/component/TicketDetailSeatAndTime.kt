@@ -30,7 +30,7 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 
 @Composable
 fun TicketDetailSeatAndTime(
-    ticketTime: String,
+    ticketTime: List<String>,
     ticketTypeList: List<TicketPricingEntity>
 ) {
     Column(
@@ -58,11 +58,13 @@ fun TicketDetailSeatAndTime(
             style = Yes24TicketTheme.typography.titleBold15
         )
 
-        Text(
-            text = ticketTime,
-            color = Yes24TicketTheme.colorScheme.gray700,
-            style = Yes24TicketTheme.typography.bodyMedium13
-        )
+        ticketTime.forEach { ticketTime ->
+            Text(
+                text = ticketTime,
+                color = Yes24TicketTheme.colorScheme.gray700,
+                style = Yes24TicketTheme.typography.bodyMedium13
+            )
+        }
     }
 }
 
@@ -73,8 +75,8 @@ private fun SeatTypeAndPriceRow(
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Column{
-            ticketTypeList.forEach{ ticketType ->
+        Column {
+            ticketTypeList.forEach { ticketType ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -129,7 +131,7 @@ private fun TicketDetailSeatAndTimePreview() {
         )
 
         TicketDetailSeatAndTime(
-            ticketTime = "2024년 11월 10일(일) 5시 30분",
+            ticketTime = listOf("2024년 11월 10일(일) 5시 30분", "2024년 11월 11일(화) 7시 30분"),
             ticketTypeList = ticketType
         )
     }

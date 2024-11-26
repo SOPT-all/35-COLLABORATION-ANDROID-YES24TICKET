@@ -44,10 +44,10 @@ fun TicketDetailScreen(
     ticketRunningTime: String,
     likedCount: String,
     isLiked: Boolean,
-    ticketTime: String,
+    ticketTime: List<String>,
     ticketTypeList: List<TicketPricingEntity>,
     isExpanded: Boolean,
-    noticeText: String,
+    noticeText: List<String>,
     hyperText: String,
     onExpandedChanged: () -> Unit = {},
     onLikedChanged: () -> Unit = {}
@@ -118,7 +118,7 @@ fun TicketDetailScreen(
 private fun TicketDetailNotice(
     isExpanded: Boolean,
     onExpandedChanged: () -> Unit,
-    noticeText: String,
+    noticeText: List<String>,
     hyperText: String,
     modifier: Modifier = Modifier
 ) {
@@ -133,13 +133,16 @@ private fun TicketDetailNotice(
                 .padding(horizontal = 12.dp)
                 .padding(top = 12.dp)
         ) {
-            Text(
-                text = noticeText,
-                color = Yes24TicketTheme.colorScheme.gray600,
-                style = Yes24TicketTheme.typography.bodyBold12
-            )
+            noticeText.forEach { notice ->
+                Text(
+                    text = notice,
+                    modifier = Modifier.padding(bottom = 6.dp),
+                    color = Yes24TicketTheme.colorScheme.gray600,
+                    style = Yes24TicketTheme.typography.bodyBold12
+                )
+            }
 
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(18.dp))
 
             Text(
                 text = hyperText,
@@ -207,10 +210,10 @@ private fun TicketDetailScreenPreview() {
             ticketRunningTime = "총 180분",
             likedCount = "162",
             isLiked = true,
-            ticketTime = "2024년 11월 10일(일) 5시 30분",
+            ticketTime = listOf("2024년 11월 10일(일) 5시 30분"),
             ticketTypeList = ticketType,
             isExpanded = true,
-            noticeText = "※ 본 공연은 네이버 쿠폰이 적용되지 않습니다.\n※ 본 공연은 YES24공연에서 진행하는 할인쿠폰이벤트 대상에서 제외됩니다.\n\n※ 매수제한: 공연별 1인 4매",
+            noticeText = listOf("※ 본 공연은 네이버 쿠폰이 적용되지 않습니다.", "※ 본 공연은 YES24공연에서 진행하는 할인쿠폰이벤트 대상에서 제외됩니다.", "※ 매수제한: 공연별 1인 4매"),
             hyperText = "HYPE UP FESTIVAL 바로가기",
             onLikedChanged = {}
         )
