@@ -15,7 +15,7 @@ constructor() : ViewModel() {
         ticketId = "21",
         ticketTitle = "김창옥 토크콘서트",
         ticketArea = "영남대 천마아트센터",
-        ticketImg = "http://localhost:8080/uploads/15559b83-96e5-4c6a-a6d1-9bc41f631535_img_concert1_i.png",
+        ticketImg = "http://tkfile.yes24.com/upload2/PerfBlog/202409/20240906/20240906-50930.jpg",
         ticketDate = "2024.11.10 ~ 2024.11.10",
         ticketDuration = "총 160분",
         ticketAge = "만 7세 이상",
