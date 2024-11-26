@@ -4,11 +4,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -18,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import kotlinx.coroutines.delay
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.AdBannerEntity
 
@@ -29,18 +26,6 @@ fun AdDisplayedHorizontalPager(
     modifier: Modifier = Modifier,
 ) {
     val totalPageNum = adBannerList.size
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(4000)
-            if (!state.isScrollInProgress) {
-                if (totalPageNum > 0) {
-                    val nextPage = (state.currentPage + 1) % totalPageNum
-                    state.animateScrollToPage(nextPage)
-                }
-            }
-        }
-    }
 
     HorizontalPager(
         modifier =
@@ -65,8 +50,7 @@ fun AdDisplayedBannerItem(
     Box(
         modifier =
             Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
+                .fillMaxWidth(),
     ) {
         AsyncImage(
             model =

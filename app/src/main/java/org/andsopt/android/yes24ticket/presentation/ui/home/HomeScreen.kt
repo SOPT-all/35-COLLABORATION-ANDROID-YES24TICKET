@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -215,7 +214,6 @@ fun HomeYes24TopAppBar(
         modifier =
             modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
                 .background(Yes24TicketTheme.colorScheme.black),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -298,7 +296,6 @@ fun HomeGridCategory(
                 modifier =
                     Modifier
                         .fillMaxWidth()
-                        .wrapContentHeight()
                         .background(color = Yes24TicketTheme.colorScheme.white)
                         .topBorder(color = Yes24TicketTheme.colorScheme.gray150, height = 1f)
                         .rightBorder(color = Yes24TicketTheme.colorScheme.gray150, width = 1f),

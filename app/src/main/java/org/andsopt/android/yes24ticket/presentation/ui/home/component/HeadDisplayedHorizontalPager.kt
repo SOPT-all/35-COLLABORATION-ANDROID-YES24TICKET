@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material3.Text
@@ -53,8 +52,7 @@ fun HeadDisplayedHorizontalPager(
     HorizontalPager(
         modifier =
             modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
+                .fillMaxWidth(),
         state = state,
     ) { index ->
         HeadDisplayedBannerItem(
@@ -75,8 +73,7 @@ fun HeadDisplayedBannerItem(
     Box(
         modifier =
             Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
+                .fillMaxWidth(),
     ) {
         AsyncImage(
             model =
