@@ -64,3 +64,16 @@ fun Modifier.leftBorder(
         strokeWidth = width,
     )
 }
+
+fun Modifier.rightBorder(
+    color: Color,
+    width: Float,
+) = this.drawWithContent {
+    drawContent()
+    drawLine(
+        color = color,
+        start = Offset(size.width, 0f),
+        end = Offset(size.width, size.height),
+        strokeWidth = width,
+    )
+}
