@@ -31,25 +31,26 @@ fun TicketDetailExpandableRow(
     isExpanded: Boolean,
     modifier: Modifier = Modifier,
     onChangeExpanded: () -> Unit = {},
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(Yes24TicketTheme.colorScheme.white)
-
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .background(Yes24TicketTheme.colorScheme.white),
     ) {
         ExpandableTitle(
             titleText = titleText,
             isExpanded = isExpanded,
-            modifier = Modifier
-                .fillMaxWidth()
-                .noRippleClickable { onChangeExpanded() }
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .noRippleClickable { onChangeExpanded() },
         )
 
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = isExpanded
+            visible = isExpanded,
         ) {
             content()
         }
@@ -60,41 +61,46 @@ fun TicketDetailExpandableRow(
 private fun ExpandableTitle(
     @StringRes titleText: Int,
     isExpanded: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = if (!isExpanded) {
-            modifier.bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-        } else {
-            modifier.dashedBottomBorder(color = Yes24TicketTheme.colorScheme.gray200, strokeWidth = 1.dp)
-        },
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            if (!isExpanded) {
+                modifier.bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+            } else {
+                modifier.dashedBottomBorder(color = Yes24TicketTheme.colorScheme.gray200, strokeWidth = 1.dp)
+            },
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = stringResource(titleText),
-            modifier = Modifier
-                .padding(start = 10.dp)
-                .padding(vertical = 13.dp),
+            modifier =
+                Modifier
+                    .padding(start = 10.dp)
+                    .padding(vertical = 13.dp),
             color = Yes24TicketTheme.colorScheme.gray700,
-            style = Yes24TicketTheme.typography.titleBold15
+            style = Yes24TicketTheme.typography.titleBold15,
         )
 
         Spacer(modifier = Modifier.weight(1f))
 
         Icon(
-            imageVector = if (!isExpanded) {
-                ImageVector.vectorResource(R.drawable.ic_arrow_down_16)
-            } else {
-                ImageVector.vectorResource(R.drawable.ic_arrow_up_16)
-            },
-            modifier = Modifier
-                .padding(end = 7.dp),
-            contentDescription = if (!isExpanded) {
-                stringResource(R.string.ticket_detail_expand_description)
-            } else {
-                stringResource(R.string.ticket_detail_close_description)
-            },
-            tint = Yes24TicketTheme.colorScheme.gray400
+            imageVector =
+                if (!isExpanded) {
+                    ImageVector.vectorResource(R.drawable.ic_arrow_down_16)
+                } else {
+                    ImageVector.vectorResource(R.drawable.ic_arrow_up_16)
+                },
+            modifier =
+                Modifier
+                    .padding(end = 7.dp),
+            contentDescription =
+                if (!isExpanded) {
+                    stringResource(R.string.ticket_detail_expand_description)
+                } else {
+                    stringResource(R.string.ticket_detail_close_description)
+                },
+            tint = Yes24TicketTheme.colorScheme.gray400,
         )
     }
 }
@@ -103,6 +109,5 @@ private fun ExpandableTitle(
 @Composable
 private fun TicketDetailExpandableRowPreview() {
     YES24TICKETTheme {
-
     }
 }

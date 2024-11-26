@@ -31,21 +31,22 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 @Composable
 fun TicketDetailSeatAndTime(
     ticketTime: List<String>,
-    ticketTypeList: List<TicketPricingEntity>
+    ticketTypeList: List<TicketPricingEntity>,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-            .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-            .background(color = Yes24TicketTheme.colorScheme.gray100)
-            .padding(horizontal = 14.dp, vertical = 15.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+                .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+                .background(color = Yes24TicketTheme.colorScheme.gray100)
+                .padding(horizontal = 14.dp, vertical = 15.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text(
             text = stringResource(R.string.ticket_detail_title_seat_price),
             color = Yes24TicketTheme.colorScheme.blue500,
-            style = Yes24TicketTheme.typography.titleBold15
+            style = Yes24TicketTheme.typography.titleBold15,
         )
 
         SeatTypeAndPriceRow(ticketTypeList = ticketTypeList)
@@ -55,34 +56,34 @@ fun TicketDetailSeatAndTime(
         Text(
             text = stringResource(R.string.ticket_detail_title_time),
             color = Yes24TicketTheme.colorScheme.blue500,
-            style = Yes24TicketTheme.typography.titleBold15
+            style = Yes24TicketTheme.typography.titleBold15,
         )
 
         Text(
             text = ticketTime.joinToString(separator = "\n"),
             color = Yes24TicketTheme.colorScheme.gray700,
-            style = Yes24TicketTheme.typography.bodyMedium13
+            style = Yes24TicketTheme.typography.bodyMedium13,
         )
     }
 }
 
 @Composable
 private fun SeatTypeAndPriceRow(
-    ticketTypeList: List<TicketPricingEntity>
+    ticketTypeList: List<TicketPricingEntity>,
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column {
             ticketTypeList.forEach { ticketType ->
                 Row(
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(TicketSeatType.fromTypeId(ticketType.color)?.seatIcon ?: R.drawable.ic_ticket_detail_sit_violet_10),
                         contentDescription = stringResource(R.string.ticket_detail_seat_color),
                         modifier = Modifier.padding(4.dp),
-                        tint = Color.Unspecified
+                        tint = Color.Unspecified,
                     )
 
                     Spacer(Modifier.width(4.dp))
@@ -90,7 +91,7 @@ private fun SeatTypeAndPriceRow(
                     Text(
                         text = ticketType.type,
                         color = Yes24TicketTheme.colorScheme.gray700,
-                        style = Yes24TicketTheme.typography.bodyBold12
+                        style = Yes24TicketTheme.typography.bodyBold12,
                     )
                 }
             }
@@ -104,7 +105,7 @@ private fun SeatTypeAndPriceRow(
                     text = ticketType.price,
                     modifier = Modifier.padding(2.dp),
                     color = Yes24TicketTheme.colorScheme.black,
-                    style = Yes24TicketTheme.typography.bodyBold12
+                    style = Yes24TicketTheme.typography.bodyBold12,
                 )
             }
         }
@@ -115,22 +116,23 @@ private fun SeatTypeAndPriceRow(
 @Composable
 private fun TicketDetailSeatAndTimePreview() {
     YES24TICKETTheme {
-        val ticketType = listOf(
-            TicketPricingEntity(
-                type = "R석",
-                price = "88,000원",
-                color = "2"
-            ),
-            TicketPricingEntity(
-                type = "S석",
-                price = "77,000원",
-                color = "3"
-            ),
-        )
+        val ticketType =
+            listOf(
+                TicketPricingEntity(
+                    type = "R석",
+                    price = "88,000원",
+                    color = "2",
+                ),
+                TicketPricingEntity(
+                    type = "S석",
+                    price = "77,000원",
+                    color = "3",
+                ),
+            )
 
         TicketDetailSeatAndTime(
             ticketTime = listOf("2024년 11월 10일(일) 5시 30분", "2024년 11월 11일(화) 7시 30분"),
-            ticketTypeList = ticketType
+            ticketTypeList = ticketType,
         )
     }
 }

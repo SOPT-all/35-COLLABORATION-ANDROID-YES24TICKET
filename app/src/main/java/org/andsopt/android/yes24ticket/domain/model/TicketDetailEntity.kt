@@ -1,6 +1,6 @@
 package org.andsopt.android.yes24ticket.domain.model
 
-data class TicketDetailEntity (
+data class TicketDetailEntity(
     val ticketId: String,
     val ticketTitle: String,
     val ticketGenre: String = "콘서트",
@@ -13,5 +13,5 @@ data class TicketDetailEntity (
     val ticketHyperText: String,
     val ticketNotice: List<String>,
     val ticketPerformanceTimes: List<String>,
-    val ticketPricing: List<TicketPricingEntity>
+    val ticketPricing: List<TicketPricingEntity>,
 )

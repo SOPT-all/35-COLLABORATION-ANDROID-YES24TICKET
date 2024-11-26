@@ -29,6 +29,6 @@ fun TicketDetailRoute(
         noticeText = viewModel.mockData.ticketNotice,
         hyperText = viewModel.mockData.ticketHyperText,
         onExpandedChanged = viewModel::changeExpanded,
-        onLikedChanged = viewModel::changeHeart
+        onLikedChanged = viewModel::changeHeart,
     )
 }

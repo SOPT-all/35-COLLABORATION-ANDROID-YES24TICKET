@@ -22,25 +22,27 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 @Composable
 fun TicketDetailReserveButton(
     modifier: Modifier = Modifier,
-    @StringRes buttonText: Int = R.string.ticket_detail_reservation_button
+    @StringRes buttonText: Int = R.string.ticket_detail_reservation_button,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(Yes24TicketTheme.colorScheme.white)
-            .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-            .padding(vertical = 12.dp, horizontal = 14.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .background(Yes24TicketTheme.colorScheme.white)
+                .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
+                .padding(vertical = 12.dp, horizontal = 14.dp),
     ) {
         Text(
             text = stringResource(buttonText),
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Yes24TicketTheme.colorScheme.red100, shape = RoundedCornerShape(2.dp))
-                .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.red200, shape = RoundedCornerShape(2.dp))
-                .padding(vertical = 12.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(color = Yes24TicketTheme.colorScheme.red100, shape = RoundedCornerShape(2.dp))
+                    .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.red200, shape = RoundedCornerShape(2.dp))
+                    .padding(vertical = 12.dp),
             textAlign = TextAlign.Center,
             color = Yes24TicketTheme.colorScheme.white,
-            style = Yes24TicketTheme.typography.buttonExtraBold18
+            style = Yes24TicketTheme.typography.buttonExtraBold18,
         )
     }
 }

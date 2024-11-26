@@ -2,11 +2,9 @@ package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,19 +50,21 @@ fun TicketDetailScreen(
     noticeText: List<String>,
     hyperText: String,
     onExpandedChanged: () -> Unit = {},
-    onLikedChanged: () -> Unit = {}
+    onLikedChanged: () -> Unit = {},
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .fillMaxSize(),
     ) {
         Yes24TopAppBar()
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .verticalScroll(rememberScrollState())
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .verticalScroll(rememberScrollState()),
         ) {
             TicketDetailBox(
                 ticketTitle = ticketTitle,
@@ -76,12 +76,12 @@ fun TicketDetailScreen(
                 ticketRunningTime = ticketRunningTime,
                 likedCount = likedCount,
                 isLiked = isLiked,
-                onLikedChanged = onLikedChanged
+                onLikedChanged = onLikedChanged,
             )
 
             TicketDetailSeatAndTime(
                 ticketTime = ticketTime,
-                ticketTypeList = ticketTypeList
+                ticketTypeList = ticketTypeList,
             )
 
             TicketDetailNotice(
@@ -114,25 +114,26 @@ private fun TicketDetailNotice(
     onExpandedChanged: () -> Unit,
     noticeText: List<String>,
     hyperText: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     TicketDetailExpandableRow(
         modifier = modifier,
         titleText = R.string.ticket_detail_title_notice,
         isExpanded = isExpanded,
-        onChangeExpanded = onExpandedChanged
+        onChangeExpanded = onExpandedChanged,
     ) {
         Column(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .padding(top = 12.dp)
+            modifier =
+                Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(top = 12.dp),
         ) {
             noticeText.forEach { notice ->
                 Text(
                     text = notice,
                     modifier = Modifier.padding(bottom = 6.dp),
                     color = Yes24TicketTheme.colorScheme.gray600,
-                    style = Yes24TicketTheme.typography.bodyBold12
+                    style = Yes24TicketTheme.typography.bodyBold12,
                 )
             }
 
@@ -142,7 +143,7 @@ private fun TicketDetailNotice(
                 text = hyperText,
                 modifier = Modifier.padding(vertical = 8.dp),
                 color = Yes24TicketTheme.colorScheme.chipPurple,
-                style = Yes24TicketTheme.typography.titleBold15
+                style = Yes24TicketTheme.typography.titleBold15,
             )
         }
     }
@@ -150,31 +151,34 @@ private fun TicketDetailNotice(
 
 @Composable
 private fun TicketDetailRow(
-    @StringRes titleText: Int
+    @StringRes titleText: Int,
 ) {
     Row(
-        modifier = Modifier
-            .background(Yes24TicketTheme.colorScheme.white)
-            .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .background(Yes24TicketTheme.colorScheme.white)
+                .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = stringResource(titleText),
-            modifier = Modifier
-                .padding(start = 10.dp)
-                .padding(vertical = 13.dp),
+            modifier =
+                Modifier
+                    .padding(start = 10.dp)
+                    .padding(vertical = 13.dp),
             color = Yes24TicketTheme.colorScheme.gray700,
-            style = Yes24TicketTheme.typography.titleBold15
+            style = Yes24TicketTheme.typography.titleBold15,
         )
 
         Spacer(modifier = Modifier.weight(1f))
 
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_right_16),
-            modifier = Modifier
-                .padding(end = 7.dp),
+            modifier =
+                Modifier
+                    .padding(end = 7.dp),
             contentDescription = stringResource(titleText),
-            tint = Yes24TicketTheme.colorScheme.gray400
+            tint = Yes24TicketTheme.colorScheme.gray400,
         )
     }
 }
@@ -183,18 +187,19 @@ private fun TicketDetailRow(
 @Composable
 private fun TicketDetailScreenPreview() {
     YES24TICKETTheme {
-        val ticketType = listOf(
-            TicketPricingEntity(
-                type = "R석",
-                price = "88,000원",
-                color = "2"
-            ),
-            TicketPricingEntity(
-                type = "S석",
-                price = "77,000원",
-                color = "3"
-            ),
-        )
+        val ticketType =
+            listOf(
+                TicketPricingEntity(
+                    type = "R석",
+                    price = "88,000원",
+                    color = "2",
+                ),
+                TicketPricingEntity(
+                    type = "S석",
+                    price = "77,000원",
+                    color = "3",
+                ),
+            )
 
         TicketDetailScreen(
             ticketTitle = "HYPE UP FESTIVAL",
@@ -211,7 +216,7 @@ private fun TicketDetailScreenPreview() {
             isExpanded = true,
             noticeText = listOf("※ 본 공연은 네이버 쿠폰이 적용되지 않습니다.", "※ 본 공연은 YES24공연에서 진행하는 할인쿠폰이벤트 대상에서 제외됩니다.", "※ 매수제한: 공연별 1인 4매"),
             hyperText = "HYPE UP FESTIVAL 바로가기",
-            onLikedChanged = {}
+            onLikedChanged = {},
         )
     }
 }
