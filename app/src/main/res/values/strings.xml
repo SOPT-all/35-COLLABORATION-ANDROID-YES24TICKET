@@ -30,6 +30,16 @@
     <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
     <string name="top_app_bar_search_icon_description">Search Icon</string>
 
+    <!-- Ticket Reservation -->
+    <string name="previous_month">이전 달</string>
+    <string name="next_month">다음 달</string>
+    <string name="reserve">예매하기</string>
+    <string name="select_date">날짜/시간 선택</string>
+    <string name="select_time">관람 시간 선택</string>
+    <string name="select">선택</string>
+    <string name="reservation_available">예매가능</string>
+    <string name="n_seat">%s석</string>
+
     <!-- category detail view -->
     <string name="category_detail_title_concert">콘서트</string>
     <string name="category_detail_sub_title_recommend_concert">추천공연</string>
