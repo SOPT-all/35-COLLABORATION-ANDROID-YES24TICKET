@@ -1,6 +1,7 @@
 package org.andsopt.android.yes24ticket.presentation.ui.component
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -37,8 +39,13 @@ fun InformationFooter(
         modifier =
             modifier
                 .fillMaxWidth()
-                .padding(top = 10.dp, bottom = 19.dp),
+                .background(Yes24TicketTheme.colorScheme.gray50)
+                .padding(bottom = 19.dp),
     ) {
+        HorizontalDivider(thickness = 1.dp, color = Yes24TicketTheme.colorScheme.gray200)
+
+        Spacer(Modifier.height(20.dp))
+
         FooterCSAndPCButton()
 
         DividerBetweenText(

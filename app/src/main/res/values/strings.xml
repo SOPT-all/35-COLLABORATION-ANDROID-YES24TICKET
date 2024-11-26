@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">YES24TICKET</string>
 
-    <!-- component -->
+    <!-- component - Information Footer -->
     <string name="information_footer_cs">고객센터 1544–6399 1:1 문의</string>
     <string name="information_footer_pc">PC버전</string>
     <string name="information_footer_privacy_policy">개인정보 처리방침</string>
@@ -22,19 +22,34 @@
     <string name="bottom_navigation_search">검색</string>
     <string name="bottom_navigation_my">마이</string>
 
-    <!-- component- FAB -->
+    <!-- component - FAB -->
     <string name="floating_action_button_top">TOP</string>
     <string name="floating_action_button_icon_desription">Go To Top</string>
 
-    <!-- component-TopAppBar -->
+    <!-- component - TopAppBar -->
     <string name="top_app_bar_logo_description">Yes24 Logo Image</string>
     <string name="top_app_bar_search_icon_description">Search Icon</string>
 
+    <!-- category detail view -->
+    <string name="category_detail_title_concert">콘서트</string>
+    <string name="category_detail_sub_title_recommend_concert">추천공연</string>
+    <string name="category_detail_sub_title_ranking">예매랭킹</string>
+    <string name="category_detail_sub_title_list">전체리스트</string>
+    <string name="category_detail_filter">정렬</string>
+    <string name="category_detail_filter_description">open filter selector</string>
+    <string name="category_detail_filter_order">정렬 순서</string>
+    <string name="category_detail_filter_close_description">close filter selector</string>
+    <string name="category_detail_filter_popularity">인기순</string>
+    <string name="category_detail_filter_ranking">랭킹순</string>
+    <string name="category_detail_filter_reviews">리뷰 많은순</string>
+    <string name="category_detail_filter_end">종료 임박순</string>
+    <string name="category_detail_content_description">content poster image</string>
+
     <!-- icon -->
     <string name="icon_arrow_down_16_description">아래로 향하는 화살표입니다</string>
-    <string name="icon_divider_desription">크기가 17dp인 divider입니다</string>
+    <string name="icon_divider_description">크기가 17dp인 divider입니다</string>
 
-    <!-- home -->
+    <!-- home view -->
     <string name="home_main_banner_item_image_description">Main Banner Image</string>
     <string name="home_ticket_ranking_content_description">티켓 랭킹 내용입니다.</string>
     <string name="home_arrow_blue_icon_decription">오른쪽을 향하는 파란색 화살표입니다.</string>
@@ -46,4 +61,5 @@
     <string name="home_whats_hot">WHAT\'S HOT</string>
     <string name="home_icon_search_description">홈화면 Search 아이콘입니다</string>
     <string name="home_top_bar_placeholder">검색어를 입력하세요</string>
+
 </resources>
