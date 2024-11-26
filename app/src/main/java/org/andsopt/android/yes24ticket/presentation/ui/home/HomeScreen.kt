@@ -26,7 +26,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Icon
@@ -35,10 +34,8 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -67,174 +64,20 @@ import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.WhatsHotEntity
 import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.ScrollToTopFloatingButton
+import org.andsopt.android.yes24ticket.presentation.ui.home.component.AdDisplayedHorizontalPager
+import org.andsopt.android.yes24ticket.presentation.ui.home.component.HeadDisplayedHorizontalPager
+import org.andsopt.android.yes24ticket.presentation.ui.home.component.LiveTicketRankingLazyRow
+import org.andsopt.android.yes24ticket.presentation.ui.home.component.SectionHeaderWithBlueArrow
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
-
-@Composable
-fun HomeRoute(modifier: Modifier = Modifier) {
-    val text by remember { mutableStateOf("") }
-
-    val headDisplayPagerState =
-        rememberPagerState(initialPage = Int.MAX_VALUE / 2) {
-            Int.MAX_VALUE
-        }
-    val adDisplayedPagerState =
-        rememberPagerState(initialPage = Int.MAX_VALUE / 2) {
-            Int.MAX_VALUE
-        }
-    val dummyBannerItems =
-        listOf(
-            MainBannerEntity(
-                id = 1,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202411/20241122/wel_mv_youthculture.jpg/dims/quality/70/",
-                title = "뮤지컬 시지프스",
-                area = "예스24스테이지 2관",
-                date = "2024. 12 - 2025. 03",
-            ),
-            MainBannerEntity(
-                id = 2,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202409/20240910/wel_mv_50929.jpg/dims/quality/70/",
-                title = "오페라의 유령",
-                area = "예스24스테이지 1관",
-                date = "2024. 10 - 2024. 12",
-            ),
-            MainBannerEntity(
-                id = 3,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202411/20241115/wel_mv_51725_e6e6e4.png/dims/quality/70/",
-                title = "레미제라블",
-                area = "예스24스테이지 3관",
-                date = "2025. 01 - 2025. 03",
-            ),
-            MainBannerEntity(
-                id = 4,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202410/20241014/wel_mv_51251.png/dims/quality/70/",
-                title = "햄릿",
-                area = "예스24스테이지 4관",
-                date = "2024. 11 - 2025. 02",
-            ),
-            MainBannerEntity(
-                id = 5,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202411/20241115/wel_mv_51615_2_1.png/dims/quality/70/",
-                title = "킹키부츠",
-                area = "예스24스테이지 5관",
-                date = "2024. 09 - 2024. 12",
-            ),
-        )
-
-    val categoryList = listOf("콘서트", "뮤지컬", "연극", "클래식/무용", "전시/행사", "가족/어린이")
-
-    val dummyRankingList =
-        listOf(
-            LiveTicketRankingEntity(
-                id = 1,
-                rank = 1,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202410/20241029/20241029-51466.jpg/dims/quality/70/",
-            ),
-            LiveTicketRankingEntity(
-                id = 2,
-                rank = 2,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202409/20240905/20240905-50929.jpg/dims/quality/70/",
-            ),
-            LiveTicketRankingEntity(
-                id = 3,
-                rank = 3,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202411/20241118/20241118-50610.jpg/dims/quality/70/",
-            ),
-            LiveTicketRankingEntity(
-                id = 4,
-                rank = 4,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202410/20241024/20241024-51251.jpg",
-            ),
-            LiveTicketRankingEntity(
-                id = 5,
-                rank = 5,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202411/20241120/20241120-51786.jpg",
-            ),
-        )
-
-    val dummyAdBannerList =
-        listOf(
-            AdBannerEntity(
-                id = 1,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202410/20241021/wel_wide_51324.png/dims/quality/70/",
-            ),
-            AdBannerEntity(
-                id = 2,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202411/20241115/wel_wide_51618_0a112c.png/dims/quality/70/",
-            ),
-            AdBannerEntity(
-                id = 3,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202410/20241021/wel_wide_51251_2.png/dims/quality/70/",
-            ),
-            AdBannerEntity(
-                id = 4,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202410/20241011/wel_wide_51249.png/dims/quality/70/",
-            ),
-            AdBannerEntity(
-                id = 5,
-                imgUrl = "http://tkfile.yes24.com/Upload2/Display/202411/20241122/wel_wide_51753.png/dims/quality/70/",
-            ),
-        )
-
-    val dummyWhatsHotItems =
-        listOf(
-            WhatsHotEntity(
-                id = 1,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202411/20241101/20241101-51565.jpg/dims/quality/70/",
-                title = "뮤지컬 시지프스",
-                area = "예스24스테이지 2관",
-                date = "2024. 12 - 2025. 03",
-                comment = "안녕",
-            ),
-            WhatsHotEntity(
-                id = 2,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202411/20241120/20241120-51791.jpg/dims/quality/70/",
-                title = "오페라의 유령",
-                area = "예스24스테이지 1관",
-                date = "2024. 10 - 2024. 12",
-                comment = "안녕",
-            ),
-            WhatsHotEntity(
-                id = 3,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202411/20241113/20241113-51709.jpg/dims/quality/70/",
-                title = "레미제라블",
-                area = "예스24스테이지 3관",
-                date = "2025. 01 - 2025. 03",
-            ),
-            WhatsHotEntity(
-                id = 4,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202410/20241014/20241014-51331_1.jpg/dims/quality/70/",
-                title = "햄릿",
-                area = "예스24스테이지 4관",
-                date = "2024. 11 - 2025. 02",
-            ),
-            WhatsHotEntity(
-                id = 5,
-                imgUrl = "http://tkfile.yes24.com/upload2/perfblog/202411/20241107/20241107-51641.jpg/dims/quality/70/",
-                title = "킹키부츠",
-                area = "예스24스테이지 5관",
-                date = "2024. 09 - 2024. 12",
-            ),
-        )
-
-    HomeScreen(
-        value = text,
-        onValueChange = {},
-        headDisplayedPagerState = headDisplayPagerState,
-        adDisplayedPagerState = adDisplayedPagerState,
-        mainBannerItemList = dummyBannerItems,
-        categoryList = categoryList,
-        ticketRankingItemList = dummyRankingList,
-        adBannerItemList = dummyAdBannerList,
-        whatsHotItemList = dummyWhatsHotItems,
-        modifier = modifier,
-    )
-}
+import org.andsopt.android.yes24ticket.util.compose.rightBorder
+import org.andsopt.android.yes24ticket.util.compose.topBorder
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     value: String,
     onValueChange: (String) -> Unit,
+    navigateToCategoryDetail: () -> Unit,
     headDisplayedPagerState: PagerState,
     adDisplayedPagerState: PagerState,
     mainBannerItemList: List<MainBannerEntity>,
@@ -242,7 +85,6 @@ fun HomeScreen(
     ticketRankingItemList: List<LiveTicketRankingEntity>,
     adBannerItemList: List<AdBannerEntity>,
     whatsHotItemList: List<WhatsHotEntity>,
-    modifier: Modifier = Modifier,
 ) {
     val lazyScrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -254,13 +96,12 @@ fun HomeScreen(
 
     Box(
         modifier =
-            modifier
+            Modifier
                 .fillMaxSize()
                 .background(color = Yes24TicketTheme.colorScheme.gray100),
     ) {
         LazyColumn(
             state = lazyScrollState,
-            modifier = modifier.background(color = Yes24TicketTheme.colorScheme.gray100),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             stickyHeader {
@@ -278,7 +119,10 @@ fun HomeScreen(
             }
 
             item {
-                HomeGridCategory(categoryList, {})
+                HomeGridCategory(
+                    categoryList = categoryList,
+                    navigateToCategoryDetail = navigateToCategoryDetail,
+                )
             }
 
             item {
@@ -328,6 +172,10 @@ fun HomeScreen(
             }
 
             item {
+                Spacer(modifier = Modifier.height(20.dp))
+            }
+
+            item {
                 InformationFooter()
             }
         }
@@ -360,8 +208,8 @@ fun HomeScreen(
 fun HomeYes24TopAppBar(
     value: String = "",
     onValueChange: (String) -> Unit,
-    @StringRes placeholder: Int = R.string.home_top_bar_placeholder,
     modifier: Modifier = Modifier,
+    @StringRes placeholder: Int = R.string.home_top_bar_placeholder,
 ) {
     Row(
         modifier =
@@ -387,10 +235,10 @@ fun HomeYes24TopAppBar(
 
 @Composable
 fun TopAppBarTextField(
-    value: String = "",
-    onValueChange: (String) -> Unit = { _ -> },
     placeholder: String,
     modifier: Modifier = Modifier,
+    value: String = "",
+    onValueChange: (String) -> Unit = { _ -> },
 ) {
     Row(
         modifier =
@@ -438,7 +286,7 @@ fun TopAppBarTextField(
 @Composable
 fun HomeGridCategory(
     categoryList: List<String>,
-    naviagateToCategory: () -> Unit,
+    navigateToCategoryDetail: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     VerticalGrid(
@@ -452,7 +300,8 @@ fun HomeGridCategory(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .background(color = Yes24TicketTheme.colorScheme.white)
-                        .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
+                        .topBorder(color = Yes24TicketTheme.colorScheme.gray150, height = 1f)
+                        .rightBorder(color = Yes24TicketTheme.colorScheme.gray150, width = 1f),
             ) {
                 Text(
                     text = category,
@@ -463,7 +312,7 @@ fun HomeGridCategory(
                             .padding(vertical = 12.dp)
                             .then(
                                 if (idx == 0) {
-                                    Modifier.clickable { naviagateToCategory() }
+                                    Modifier.clickable { navigateToCategoryDetail() }
                                 } else {
                                     Modifier
                                 },
@@ -484,7 +333,8 @@ fun LiveTicketRanking(
         modifier =
             modifier
                 .background(color = Yes24TicketTheme.colorScheme.white)
-                .padding(vertical = 12.dp),
+                .padding(vertical = 12.dp)
+                .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
     ) {
         SectionHeaderWithBlueArrow(
             text = text,
@@ -505,7 +355,7 @@ fun TicketOpenAnnouncement(modifier: Modifier = Modifier) {
             modifier
                 .fillMaxWidth()
                 .background(color = Yes24TicketTheme.colorScheme.white)
-                .padding(end = 8.dp),
+                .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(
@@ -543,20 +393,9 @@ fun TicketOpenAnnouncement(modifier: Modifier = Modifier) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_down_16),
             contentDescription = stringResource(R.string.icon_arrow_down_16_description),
+            modifier = Modifier.padding(end = 8.dp),
         )
     }
-}
-
-@Preview
-@Composable
-private fun CategoryPreview() {
-    HomeGridCategory(listOf("콘서트", "뮤지컬", "콘서트", "뮤지컬", "콘서트", "뮤지컬"), {})
-}
-
-@Preview
-@Composable
-private fun TicketAnnouncementPreview() {
-    TicketOpenAnnouncement()
 }
 
 @Composable
@@ -597,15 +436,15 @@ fun HotContentItem(
                 Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f / 0.45f)
-                    .clip(RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp)),
-            contentScale = ContentScale.FillBounds,
+                    .clip(RoundedCornerShape(topEnd = 3.dp, topStart = 3.dp)),
+            contentScale = ContentScale.Crop,
         )
 
         Column(
             modifier
                 .fillMaxWidth()
                 .background(color = Yes24TicketTheme.colorScheme.white)
-                .padding(horizontal = 10.dp, vertical = 7.dp),
+                .padding(horizontal = 9.dp, vertical = 7.dp),
         ) {
             if (!whatsHotItem.comment.isNullOrEmpty()) {
                 Text(
@@ -619,6 +458,7 @@ fun HotContentItem(
             Text(
                 text = whatsHotItem.title,
                 style = Yes24TicketTheme.typography.titleExtraBold17,
+                color = Yes24TicketTheme.colorScheme.gray800,
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -629,11 +469,12 @@ fun HotContentItem(
                 Text(
                     text = whatsHotItem.area,
                     style = Yes24TicketTheme.typography.bodyBold14,
+                    color = Yes24TicketTheme.colorScheme.gray800,
                 )
 
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_divide_line_17),
-                    contentDescription = stringResource(R.string.icon_divider_desription),
+                    contentDescription = stringResource(R.string.icon_divider_description),
                     tint = Color.Unspecified,
                 )
 
@@ -649,18 +490,6 @@ fun HotContentItem(
 
 @Preview
 @Composable
-private fun TopAppBarTextFieldPreview() {
-    var text by remember { mutableStateOf("") }
-
-    HomeYes24TopAppBar(
-        value = text,
-        onValueChange = { newText -> text = newText },
-        placeholder = R.string.home_top_bar_placeholder,
-    )
-}
-
-@Preview
-@Composable
 private fun HomePreview() {
-    HomeRoute()
+    HomeRoute({})
 }

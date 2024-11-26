@@ -1,4 +1,4 @@
-package org.andsopt.android.yes24ticket.presentation.ui.home
+package org.andsopt.android.yes24ticket.presentation.ui.home.component
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row

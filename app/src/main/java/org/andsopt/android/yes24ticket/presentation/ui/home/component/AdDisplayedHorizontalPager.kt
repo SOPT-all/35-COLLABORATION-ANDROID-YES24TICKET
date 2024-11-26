@@ -1,4 +1,4 @@
-package org.andsopt.android.yes24ticket.presentation.ui.home
+package org.andsopt.android.yes24ticket.presentation.ui.home.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -79,7 +79,7 @@ fun AdDisplayedBannerItem(
                 Modifier
                     .fillMaxWidth()
                     .aspectRatio(2.4f / 1f),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
         )
 
         BannerPageIndicator(

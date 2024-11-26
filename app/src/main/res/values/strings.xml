@@ -46,20 +46,20 @@
     <string name="category_detail_content_description">content poster image</string>
 
     <!-- icon -->
-    <string name="icon_arrow_down_16_description">아래로 향하는 화살표입니다</string>
-    <string name="icon_divider_description">크기가 17dp인 divider입니다</string>
+    <string name="icon_arrow_down_16_description">아래로 향하는 화살표</string>
+    <string name="icon_divider_description">divider</string>
 
     <!-- home view -->
     <string name="home_main_banner_item_image_description">Main Banner Image</string>
-    <string name="home_ticket_ranking_content_description">티켓 랭킹 내용입니다.</string>
-    <string name="home_arrow_blue_icon_decription">오른쪽을 향하는 파란색 화살표입니다.</string>
+    <string name="home_ticket_ranking_content_description">티켓 랭킹 내용.</string>
+    <string name="home_arrow_blue_icon_decription">오른쪽을 향하는 파란색 화살표</string>
     <string name="home_section_head_ranking_list_text">실시간 티켓 랭킹</string>
     <string name="home_section_header_ticket_announcement_text">티켓 오픈/공지</string>
     <string name="home_ticket_annoucement_example_text"><![CDATA[뮤지컬<시라노>2차 티켓오픈 안내]]></string>
-    <string name="home_ad_banner_item_image_description">광고 배너 아이템입니다.</string>
-    <string name="home_hot_content_image_description">What\'s Hot 이미지입니다</string>
+    <string name="home_ad_banner_item_image_description">광고 배너 아이템</string>
+    <string name="home_hot_content_image_description">What\'s Hot 이미지</string>
     <string name="home_whats_hot">WHAT\'S HOT</string>
-    <string name="home_icon_search_description">홈화면 Search 아이콘입니다</string>
+    <string name="home_icon_search_description">홈화면 Search 아이콘</string>
     <string name="home_top_bar_placeholder">검색어를 입력하세요</string>
 
 </resources>

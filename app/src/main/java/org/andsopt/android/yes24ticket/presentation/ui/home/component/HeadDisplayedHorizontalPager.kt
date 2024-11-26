@@ -1,4 +1,4 @@
-package org.andsopt.android.yes24ticket.presentation.ui.home
+package org.andsopt.android.yes24ticket.presentation.ui.home.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
@@ -89,7 +89,7 @@ fun HeadDisplayedBannerItem(
                 Modifier
                     .fillMaxWidth()
                     .aspectRatio(1.3f / 1f),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
         )
 
         BannerPageIndicator(
