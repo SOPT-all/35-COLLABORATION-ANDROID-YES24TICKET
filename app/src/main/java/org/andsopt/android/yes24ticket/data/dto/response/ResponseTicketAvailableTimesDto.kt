@@ -8,11 +8,13 @@ import java.time.LocalDate
 @Serializable
 data class ResponseTicketAvailableTimesDto(
     @SerialName("performance_times")
-    val performanceTimes: List<String>
+    val performanceTimes: List<String>,
 ) {
-    fun toTicketAvailableTimes() = TicketAvailableTimesEntity(
-        performanceTimes = performanceTimes.map {
-            LocalDate.parse(it)
-        }
-    )
+    fun toTicketAvailableTimes() =
+        TicketAvailableTimesEntity(
+            performanceTimes =
+                performanceTimes.map {
+                    LocalDate.parse(it)
+                },
+        )
 }

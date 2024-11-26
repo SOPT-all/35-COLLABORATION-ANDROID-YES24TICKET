@@ -6,53 +6,61 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.andsopt.android.yes24ticket.domain.model.TimeSlotsDataEntity
 import org.andsopt.android.yes24ticket.presentation.ui.component.Yes24TopAppBar
-import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.viewmodel.TicketReservationViewModel
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.component.CalendarView
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.component.ReservationProgressRow
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.component.ReservationTitleRow
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.component.SelectConcertTimeView
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
+import java.time.DayOfWeek
+import java.time.LocalDate
 
 @Composable
 fun TicketReservationScreen(
+    dayOfWeeks: List<DayOfWeek>,
+    days: List<List<Int>>,
+    selectableDays: List<Int>,
+    selectedDay: Int,
+    currentCalendar: LocalDate,
+    currentTimeSlots: TimeSlotsDataEntity,
+    onDaySelected: (Int) -> Unit,
+    onNextMonth: () -> Unit,
+    onPrevMonth: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: TicketReservationViewModel = hiltViewModel()
 ) {
-
-    val dayOfWeeks = viewModel.dayOfWeeks
-    val days by viewModel.days.collectAsStateWithLifecycle()
-    val selectableDays by viewModel.selectableDays.collectAsStateWithLifecycle()
-    val selectedDay by viewModel.selectedDay.collectAsStateWithLifecycle()
-    val currentCalendar by viewModel.currentCalendar.collectAsStateWithLifecycle()
-    val currentTimeSlots by viewModel.currentTimeSlots.collectAsStateWithLifecycle()
-
     Column(
-        modifier = modifier.verticalScroll(rememberScrollState())
+        modifier = modifier,
     ) {
         Yes24TopAppBar()
         ReservationTitleRow()
         ReservationProgressRow(modifier = Modifier.background(Yes24TicketTheme.colorScheme.gray50))
 
-        CalendarView(
-            dayOfWeeks = dayOfWeeks,
-            selectableDays = selectableDays,
-            selectedDay = selectedDay,
-            days = days,
-            onDaySelected = viewModel::onDaySelected,
-            modifier = Modifier
-                .padding(top = 10.dp)
-                .padding(horizontal = 56.dp),
-            currentYear = currentCalendar.year,
-            currentMonth = currentCalendar.month.value,
-            onNextMonthClicked = viewModel::onNextMonth,
-            onPrevMonthClicked = viewModel::onPrevMonth
-        )
+        Column(
+            modifier = Modifier.verticalScroll(rememberScrollState()),
+        ) {
+            CalendarView(
+                dayOfWeeks = dayOfWeeks,
+                selectableDays = selectableDays,
+                selectedDay = selectedDay,
+                days = days,
+                onDaySelected = onDaySelected,
+                modifier =
+                    Modifier
+                        .padding(top = 10.dp)
+                        .padding(horizontal = 56.dp),
+                currentYear = currentCalendar.year,
+                currentMonth = currentCalendar.month.value,
+                onNextMonthClicked = onNextMonth,
+                onPrevMonthClicked = onPrevMonth,
+            )
 
-        SelectConcertTimeView(
-            timeSlots = currentTimeSlots,
-            modifier = Modifier.padding(top = 12.dp)
-        )
+            SelectConcertTimeView(
+                timeSlots = currentTimeSlots,
+                modifier = Modifier.padding(top = 12.dp),
+            )
+        }
     }
 }
