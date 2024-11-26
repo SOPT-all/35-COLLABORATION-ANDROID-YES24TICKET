@@ -2,14 +2,35 @@ package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import org.andsopt.android.yes24ticket.domain.model.TicketDetailEntity
 import org.andsopt.android.yes24ticket.domain.model.TicketPricingEntity
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.state.TicketDetailExpandableState
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.state.TicketDetailHeartState
 import javax.inject.Inject
 
 @HiltViewModel
 class TicketDetailViewModel
 @Inject
 constructor() : ViewModel() {
+    private val _heartState = MutableStateFlow(TicketDetailHeartState())
+    val heartState: StateFlow<TicketDetailHeartState>
+        get() = _heartState.asStateFlow()
+
+    private val _expandableState = MutableStateFlow(TicketDetailExpandableState())
+    val expandableState: StateFlow<TicketDetailExpandableState>
+        get() = _expandableState.asStateFlow()
+
+    fun changeHeart() {
+        // TODO 서버통신
+        _heartState.value = _heartState.value.copy(isClicked = !_heartState.value.isClicked)
+    }
+
+    fun changeExpanded() {
+        _expandableState.value = _expandableState.value.copy(isExpanded = !_expandableState.value.isExpanded)
+    }
 
     val mockData = TicketDetailEntity(
         ticketId = "21",
