@@ -2,6 +2,7 @@ package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.component
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,6 +36,7 @@ fun TicketDetailExpandableRow(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .background(Yes24TicketTheme.colorScheme.white)
 
     ) {
         ExpandableTitle(

@@ -58,13 +58,11 @@ fun TicketDetailSeatAndTime(
             style = Yes24TicketTheme.typography.titleBold15
         )
 
-        ticketTime.forEach { ticketTime ->
-            Text(
-                text = ticketTime,
-                color = Yes24TicketTheme.colorScheme.gray700,
-                style = Yes24TicketTheme.typography.bodyMedium13
-            )
-        }
+        Text(
+            text = ticketTime.joinToString(separator = "\n"),
+            color = Yes24TicketTheme.colorScheme.gray700,
+            style = Yes24TicketTheme.typography.bodyMedium13
+        )
     }
 }
 
