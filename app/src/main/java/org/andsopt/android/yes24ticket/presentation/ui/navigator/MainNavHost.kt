@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import org.andsopt.android.yes24ticket.presentation.ui.dummy.homeNavGraph
+import org.andsopt.android.yes24ticket.presentation.ui.home.homeNavGraph
 
 @Composable
 fun MainNavHost(
