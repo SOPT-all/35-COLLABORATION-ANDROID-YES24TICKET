@@ -46,11 +46,12 @@ fun TicketDetailBox(
     ticketRunningTime: String,
     likedCount: String,
     isLiked: Boolean,
+    modifier: Modifier = Modifier,
     onLikedChanged: () -> Unit = {},
 ) {
     Box(
         modifier =
-            Modifier
+            modifier
                 .fillMaxWidth()
                 .background(Color.Transparent),
     ) {
@@ -155,10 +156,11 @@ private fun TicketDetailPosterAndDescription(
     ticketRatings: String,
     ticketRunningTime: String,
     imageWidth: Dp,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier =
-            Modifier
+            modifier
                 .padding(vertical = 18.dp, horizontal = 10.dp),
     ) {
         AsyncImage(
@@ -194,6 +196,7 @@ private fun TicketDetailDescription(
     place: String,
     filmRatings: String,
     runningTime: String,
+    modifier: Modifier = Modifier,
 ) {
     val labels =
         listOf(
@@ -206,7 +209,9 @@ private fun TicketDetailDescription(
 
     val details = listOf(genre, date, place, filmRatings, runningTime)
 
-    Row {
+    Row(
+        modifier = modifier
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
@@ -257,10 +262,11 @@ private fun LikedButton(
     isLiked: Boolean,
     likedCount: String,
     onLikedChanged: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier =
-            Modifier
+            modifier
                 .noRippleClickable { onLikedChanged() },
         verticalAlignment = Alignment.CenterVertically,
     ) {

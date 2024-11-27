@@ -32,10 +32,11 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 fun TicketDetailSeatAndTime(
     ticketTime: List<String>,
     ticketTypeList: List<TicketPricingEntity>,
+    modifier: Modifier = Modifier
 ) {
     Column(
         modifier =
-            Modifier
+            modifier
                 .fillMaxWidth()
                 .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
                 .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
@@ -70,8 +71,10 @@ fun TicketDetailSeatAndTime(
 @Composable
 private fun SeatTypeAndPriceRow(
     ticketTypeList: List<TicketPricingEntity>,
+    modifier: Modifier = Modifier
 ) {
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column {
