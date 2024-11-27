@@ -1,7 +1,7 @@
 package org.andsopt.android.yes24ticket.domain.model
 
 data class LiveTicketRankingEntity(
-    val id: Long,
-    val rank: Int,
+    val id: String,
+    val rank: Long,
     val imgUrl: String,
 )

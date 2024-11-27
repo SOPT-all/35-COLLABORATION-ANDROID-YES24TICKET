@@ -51,8 +51,8 @@ fun HeadDisplayedHorizontalPager(
 
     HorizontalPager(
         modifier =
-            modifier
-                .fillMaxWidth(),
+        modifier
+            .fillMaxWidth(),
         state = state,
     ) { index ->
         HeadDisplayedBannerItem(
@@ -72,20 +72,20 @@ fun HeadDisplayedBannerItem(
 ) {
     Box(
         modifier =
-            Modifier
-                .fillMaxWidth(),
+        Modifier
+            .fillMaxWidth(),
     ) {
         AsyncImage(
             model =
-                ImageRequest.Builder(context = LocalContext.current)
-                    .data(bannerItem.imgUrl)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(context = LocalContext.current)
+                .data(bannerItem.imgUrl)
+                .crossfade(true)
+                .build(),
             contentDescription = stringResource(R.string.home_main_banner_item_image_description),
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.3f / 1f),
+            Modifier
+                .fillMaxWidth()
+                .aspectRatio(1.3f / 1f),
             contentScale = ContentScale.Crop,
         )
 
@@ -93,20 +93,25 @@ fun HeadDisplayedBannerItem(
             currentPage = currentPage,
             totalPage = totalPage,
             modifier =
-                Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(20.dp),
+            Modifier
+                .align(Alignment.BottomEnd)
+                .padding(20.dp),
         )
 
-        MainBannerTextInfo(
-            title = bannerItem.title,
-            area = bannerItem.area,
-            date = bannerItem.date,
-            modifier =
+        if (!bannerItem.title.isNullOrEmpty()
+            && !bannerItem.area.isNullOrEmpty()
+            && !bannerItem.date.isNullOrEmpty()
+        ) {
+            MainBannerTextInfo(
+                title = bannerItem.title,
+                area = bannerItem.area,
+                date = bannerItem.date,
+                modifier =
                 Modifier
                     .align(Alignment.BottomStart)
                     .padding(20.dp),
-        )
+            )
+        }
     }
 }
 
