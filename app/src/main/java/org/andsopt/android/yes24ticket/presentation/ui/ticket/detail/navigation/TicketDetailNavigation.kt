@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import kotlinx.serialization.Serializable
 import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.TicketDetailRoute
 
 fun NavController.navigationTicketDetail(navOptions: NavOptions) {
@@ -19,6 +20,7 @@ fun NavGraphBuilder.ticketDetailNavGraph() {
     }
 }
 
+@Serializable
 object TicketDetailRoute {
     const val TICKET_DETAIL_ROUTE = "ticketDetail"
 }

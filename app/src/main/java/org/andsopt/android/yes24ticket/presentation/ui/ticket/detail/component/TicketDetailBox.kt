@@ -125,7 +125,6 @@ private fun ExclusiveTicketChipAndTitle(
                 .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
                 .padding(vertical = 16.dp, horizontal = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start,
     ) {
         Text(
             text = stringResource(R.string.ticket_detail_exclusive),
@@ -156,7 +155,7 @@ private fun TicketDetailPosterAndDescription(
     ticketRatings: String,
     ticketRunningTime: String,
     imageWidth: Dp,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier =
@@ -210,7 +209,7 @@ private fun TicketDetailDescription(
     val details = listOf(genre, date, place, filmRatings, runningTime)
 
     Row(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(6.dp),
@@ -262,7 +261,7 @@ private fun LikedButton(
     isLiked: Boolean,
     likedCount: String,
     onLikedChanged: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier =

@@ -32,7 +32,7 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 fun TicketDetailSeatAndTime(
     ticketTime: List<String>,
     ticketTypeList: List<TicketPricingEntity>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier =
@@ -71,7 +71,7 @@ fun TicketDetailSeatAndTime(
 @Composable
 private fun SeatTypeAndPriceRow(
     ticketTypeList: List<TicketPricingEntity>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier,
