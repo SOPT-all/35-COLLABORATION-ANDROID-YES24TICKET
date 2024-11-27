@@ -1,6 +1,5 @@
 package org.andsopt.android.yes24ticket.presentation.ui.home.component
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -63,7 +62,6 @@ fun HeadDisplayedHorizontalPager(
     }
 }
 
-@SuppressLint("LogNotTimber")
 @Composable
 fun HeadDisplayedBannerItem(
     bannerItem: MainBannerItem,

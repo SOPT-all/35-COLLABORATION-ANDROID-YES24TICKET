@@ -196,7 +196,7 @@ fun HomeScreen(
                 ScrollToTopFloatingButton(
                     onClick = {
                         coroutineScope.launch {
-                            lazyScrollState.animateScrollToItem(0)
+                            lazyScrollState.scrollToItem(0)
                         }
                     },
                 )
@@ -330,10 +330,10 @@ fun LiveTicketRanking(
 ) {
     Column(
         modifier =
-        modifier
-            .background(color = Yes24TicketTheme.colorScheme.white)
-            .padding(vertical = 12.dp)
-            .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
+            modifier
+                .background(color = Yes24TicketTheme.colorScheme.white)
+                .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150)
+                .padding(vertical = 12.dp),
     ) {
         SectionHeaderWithBlueArrow(
             text = text,
@@ -406,9 +406,9 @@ fun WhatsHotText(
         text = stringResource(text),
         style = Yes24TicketTheme.typography.headExtraBold20,
         modifier =
-        modifier
-            .fillMaxWidth()
-            .padding(top = 36.dp, bottom = 24.dp),
+            modifier
+                .fillMaxWidth()
+                .padding(top = 36.dp, bottom = 24.dp),
         textAlign = TextAlign.Center,
     )
 }
