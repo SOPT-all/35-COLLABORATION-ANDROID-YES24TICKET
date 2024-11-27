@@ -69,6 +69,19 @@ fun Modifier.leftBorder(
     )
 }
 
+fun Modifier.rightBorder(
+    color: Color,
+    width: Float,
+) = this.drawWithContent {
+    drawContent()
+    drawLine(
+        color = color,
+        start = Offset(size.width, 0f),
+        end = Offset(size.width, size.height),
+        strokeWidth = width,
+    )
+}
+
 fun Modifier.dashedBottomBorder(
     color: Color,
     strokeWidth: Dp = 2.dp,

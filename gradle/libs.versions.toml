@@ -2,6 +2,7 @@
 
 # Kotlin
 agp = "8.7.2"
+gridVersion = "2.1.0"
 kotlin = "2.0.0"
 
 # Test
@@ -46,6 +47,7 @@ androidx-navigation = { group = "androidx.navigation", name = "navigation-compos
 androidx-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "navigationHilt"}
 
 # Test
+cheonjaeung-grid = { module = "com.cheonjaeung.compose.grid:grid", version.ref = "gridVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
