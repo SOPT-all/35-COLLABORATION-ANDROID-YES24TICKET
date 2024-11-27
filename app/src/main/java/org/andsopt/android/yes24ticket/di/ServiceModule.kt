@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.andsopt.android.yes24ticket.data.service.CategoryService
 import org.andsopt.android.yes24ticket.data.service.DummyService
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -15,4 +16,9 @@ object ServiceModule {
     @Singleton
     fun providesDummyService(retrofit: Retrofit): DummyService =
         retrofit.create(DummyService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesCategoryService(retrofit: Retrofit): CategoryService =
+        retrofit.create(CategoryService::class.java)
 }
