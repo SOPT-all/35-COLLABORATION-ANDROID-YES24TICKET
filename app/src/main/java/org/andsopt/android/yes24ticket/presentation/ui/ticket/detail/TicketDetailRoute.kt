@@ -24,7 +24,7 @@ fun TicketDetailRoute(
                 isLiked = heartState.isClicked,
                 likedCount = heartState.likedCount,
                 onExpandedChanged = viewModel::changeExpanded,
-                onLikedChanged = viewModel::changeHeart,
+                onLikedChanged = viewModel::fetchTicketDetailHeart,
             )
         }
 

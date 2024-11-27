@@ -20,52 +20,48 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TicketDetailViewModel
-    @Inject
-    constructor(
-        private val ticketRepository: TicketRepository,
-    ) : ViewModel() {
-        private val _heartState = MutableStateFlow(TicketDetailHeartState())
-        val heartState: StateFlow<TicketDetailHeartState>
-            get() = _heartState.asStateFlow()
+@Inject
+constructor(
+    private val ticketRepository: TicketRepository,
+) : ViewModel() {
+    private val _heartState = MutableStateFlow(TicketDetailHeartState())
+    val heartState: StateFlow<TicketDetailHeartState>
+        get() = _heartState.asStateFlow()
 
-        private val _expandableState = MutableStateFlow(TicketDetailExpandableState())
-        val expandableState: StateFlow<TicketDetailExpandableState>
-            get() = _expandableState.asStateFlow()
+    private val _expandableState = MutableStateFlow(TicketDetailExpandableState())
+    val expandableState: StateFlow<TicketDetailExpandableState>
+        get() = _expandableState.asStateFlow()
 
-        val categoryDetailUiState: StateFlow<TicketDetailUiState> =
-            flow<TicketDetailUiState> {
-                runCatching {
-                    ticketRepository.getTicketDetail(ticketId = 23)
-                }.onSuccess { ticketDetail ->
-                    emit(TicketDetailUiState.Success(ticketDetail))
-                }.onFailure { throwable ->
-                    emit(TicketDetailUiState.Error(throwable.message))
-                }
-            }.catch { throwable ->
+    val categoryDetailUiState: StateFlow<TicketDetailUiState> =
+        flow<TicketDetailUiState> {
+            runCatching {
+                ticketRepository.getTicketDetail(ticketId = 23)
+            }.onSuccess { ticketDetail ->
+                _heartState.value = _heartState.value.copy(likedCount = ticketDetail.ticketLikedCount, isClicked = ticketDetail.ticketIsLiked)
+                emit(TicketDetailUiState.Success(ticketDetail))
+            }.onFailure { throwable ->
                 emit(TicketDetailUiState.Error(throwable.message))
-            }.stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = TicketDetailUiState.Loading,
-            )
+            }
+        }.catch { throwable ->
+            emit(TicketDetailUiState.Error(throwable.message))
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = TicketDetailUiState.Loading,
+        )
 
-        fun changeHeart() {
-            fetchTicketDetailHeart()
-            _heartState.value = _heartState.value.copy(isClicked = !_heartState.value.isClicked)
-        }
-
-        fun changeExpanded() {
-            _expandableState.value = _expandableState.value.copy(isExpanded = !_expandableState.value.isExpanded)
-        }
-
-        private fun fetchTicketDetailHeart() {
-            viewModelScope.launch {
-                runCatching {
-                    ticketRepository.patchTicketDetailLike(ticketId = 23)
-                }.onSuccess { detailLike ->
-                    _heartState.value = _heartState.value.copy(isClicked = detailLike.isLiked, likedCount = detailLike.likedCount)
-                    Timber.d("[티켓 상세] -> ${_heartState.value.likedCount}")
-                }
+    fun fetchTicketDetailHeart() {
+        viewModelScope.launch {
+            runCatching {
+                ticketRepository.patchTicketDetailLike(ticketId = 23)
+            }.onSuccess { detailLike ->
+                _heartState.value = _heartState.value.copy(isClicked = detailLike.isLiked, likedCount = detailLike.likedCount)
+                Timber.d("[티켓 상세] -> ${_heartState.value.likedCount}")
             }
         }
     }
+
+    fun changeExpanded() {
+        _expandableState.value = _expandableState.value.copy(isExpanded = !_expandableState.value.isExpanded)
+    }
+}

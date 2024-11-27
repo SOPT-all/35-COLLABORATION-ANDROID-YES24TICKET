@@ -210,6 +210,7 @@ private fun TicketDetailScreenPreview() {
                     ticketLikedCount = "162",
                     ticketPricing = ticketType,
                     ticketId = "1",
+                    ticketIsLiked = true,
                 ),
             isLiked = true,
             ticketTypeList = ticketType,

@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
-import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.TicketDetailRoute
+import org.andsopt.android.yes24ticket.presentation.ui.home.HomeRoute
 
 fun NavController.navigationHome(navOptions: NavOptions) {
     navigate(
@@ -18,9 +18,8 @@ fun NavGraphBuilder.homeNavGraph(
     navigateToCategoryDetail: () -> Unit,
 ) {
     composable<BottomNavigationRoute.Home> {
-       /* HomeRoute(
+        HomeRoute(
             navigateToCategoryDetail = navigateToCategoryDetail,
-        )*/
-        TicketDetailRoute()
+        )
     }
 }

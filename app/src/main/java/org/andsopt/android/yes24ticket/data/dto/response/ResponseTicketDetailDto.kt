@@ -29,6 +29,10 @@ data class TicketDetailDto(
     val concertDuration: String,
     @SerialName("concert_age")
     val concertAge: String,
+    @SerialName("number_of_likes")
+    val likedCount: String,
+    @SerialName("like")
+    val isLiked: String,
     @SerialName("hypertext")
     val hyperText: String,
     @SerialName("hyperlink")
@@ -67,7 +71,8 @@ data class TicketDetailDto(
             ticketDate = concertDate,
             ticketDuration = concertDuration,
             ticketAge = concertAge,
-            ticketLikedCount = "162",
+            ticketLikedCount = likedCount,
+            ticketIsLiked = isLiked.toBoolean(),
             ticketHyperText = hyperText,
             ticketNotice = notice,
             ticketPerformanceTimes = time,

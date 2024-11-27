@@ -8,7 +8,7 @@ import org.andsopt.android.yes24ticket.domain.model.TicketDetailLikeEntity
 data class ResponseTicketDetailLikeDto(
     @SerialName("result")
     val result: String,
-    @SerialName("concer_id")
+    @SerialName("concert_id")
     val concertId: String,
     @SerialName("number_of_likes")
     val likedCount: String,
