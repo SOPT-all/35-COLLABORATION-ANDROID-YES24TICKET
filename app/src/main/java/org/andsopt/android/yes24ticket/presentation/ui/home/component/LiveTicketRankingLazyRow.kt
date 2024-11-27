@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -25,11 +24,12 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.LiveTicketRankingEntity
+import org.andsopt.android.yes24ticket.domain.model.LiveTicketRankingItem
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
 @Composable
 fun LiveTicketRankingLazyRow(
-    ticketRankingList: List<LiveTicketRankingEntity>,
+    ticketRankingList: LiveTicketRankingEntity,
     modifier: Modifier = Modifier,
 ) {
     LazyRow(
@@ -38,10 +38,9 @@ fun LiveTicketRankingLazyRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         items(
-            items = ticketRankingList,
-            key = { ticketRanking -> ticketRanking.rank },
-            contentType = { ticketRanking -> ticketRanking.imgUrl },
-        ) { ticketRanking ->
+            items = ticketRankingList.bannerLists,
+            key = { ticketRanking -> ticketRanking.rank })
+        { ticketRanking ->
             TicketRankingItem(
                 ticketRanking = ticketRanking,
                 imageWidth = 122.dp,
@@ -52,28 +51,28 @@ fun LiveTicketRankingLazyRow(
 
 @Composable
 fun TicketRankingItem(
-    ticketRanking: LiveTicketRankingEntity,
+    ticketRanking: LiveTicketRankingItem,
     imageWidth: Dp,
     modifier: Modifier = Modifier,
 ) {
     Box(
         contentAlignment = Alignment.BottomStart,
         modifier =
-            modifier
-                .wrapContentSize(),
+        modifier
+            .wrapContentSize(),
     ) {
         AsyncImage(
             model =
-                ImageRequest.Builder(context = LocalContext.current)
-                    .data(ticketRanking.imgUrl)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(context = LocalContext.current)
+                .data(ticketRanking.imgUrl)
+                .crossfade(true)
+                .build(),
             contentDescription = stringResource(R.string.home_ticket_ranking_content_description),
             modifier =
-                Modifier
-                    .width(imageWidth)
-                    .aspectRatio(1f / 1.45f)
-                    .clip(RoundedCornerShape(8.dp)),
+            Modifier
+                .width(imageWidth)
+                .aspectRatio(1f / 1.45f)
+                .clip(RoundedCornerShape(8.dp)),
         )
 
         Text(
@@ -83,18 +82,4 @@ fun TicketRankingItem(
             modifier = Modifier.padding(8.dp),
         )
     }
-}
-
-@Preview
-@Composable
-private fun RankingCardPreview() {
-    TicketRankingItem(
-        ticketRanking =
-            LiveTicketRankingEntity(
-                id = 1,
-                rank = 2,
-                imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1726468505828994516.webp",
-            ),
-        imageWidth = 122.dp,
-    )
 }

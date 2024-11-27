@@ -3,6 +3,7 @@ package org.andsopt.android.yes24ticket.data.dto.response
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.andsopt.android.yes24ticket.domain.model.WhatsHotEntity
+import org.andsopt.android.yes24ticket.domain.model.WhatsHotItem
 
 data class ResponseWhatsHotListDto(
     @SerialName("result")
@@ -10,9 +11,9 @@ data class ResponseWhatsHotListDto(
     @SerialName("datas")
     val data: List<WhatsHot>
 ) {
-    fun toWhatsHotEntity(): List<WhatsHotEntity> {
-        return data.map { whatsHotItem ->
-            WhatsHotEntity(
+    fun toWhatsHotEntity() = WhatsHotEntity(
+        bannerLists = data.map { whatsHotItem ->
+            WhatsHotItem(
                 id = whatsHotItem.ticketId,
                 title = whatsHotItem.ticketTitle,
                 area = whatsHotItem.ticketArea,
@@ -21,19 +22,20 @@ data class ResponseWhatsHotListDto(
                 comment = whatsHotItem.comment
             )
         }
-    }
+    )
 }
+
 @Serializable
 data class WhatsHot(
     @SerialName("ticket_id")
     val ticketId: Long,
     @SerialName("ticket_title")
-    val ticketTitle: String,
+    val ticketTitle: String? = "",
     @SerialName("ticket_area")
-    val ticketArea: String,
+    val ticketArea: String? = "",
     @SerialName("ticket_date")
-    val ticketDate: String,
-    @SerialName("ticket_img")
+    val ticketDate: String? = "",
+    @SerialName("img_url")
     val ticketImg: String,
     @SerialName("comment")
     val comment: String? = ""

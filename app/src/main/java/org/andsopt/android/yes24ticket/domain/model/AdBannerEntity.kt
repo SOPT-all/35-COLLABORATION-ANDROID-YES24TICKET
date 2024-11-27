@@ -1,6 +1,10 @@
 package org.andsopt.android.yes24ticket.domain.model
 
-data class AdBannerEntity(
-    val id: String,
+data class AdBannerItem(
+    val id: Long,
     val imgUrl: String,
+)
+
+data class AdBannerEntity(
+    val bannerLists: List<AdBannerItem>
 )

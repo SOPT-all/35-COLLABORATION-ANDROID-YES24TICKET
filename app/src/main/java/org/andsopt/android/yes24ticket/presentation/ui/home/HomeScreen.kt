@@ -61,6 +61,7 @@ import org.andsopt.android.yes24ticket.domain.model.AdBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.LiveTicketRankingEntity
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.WhatsHotEntity
+import org.andsopt.android.yes24ticket.domain.model.WhatsHotItem
 import org.andsopt.android.yes24ticket.presentation.type.HomeCategoryType
 import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.ScrollToTopFloatingButton
@@ -80,11 +81,11 @@ fun HomeScreen(
     navigateToCategoryDetail: () -> Unit,
     headDisplayedPagerState: PagerState,
     adDisplayedPagerState: PagerState,
-    mainBannerItemList: List<MainBannerEntity>,
+    mainBannerItemList: MainBannerEntity,
     categoryList: List<HomeCategoryType>,
-    ticketRankingItemList: List<LiveTicketRankingEntity>,
-    adBannerItemList: List<AdBannerEntity>,
-    whatsHotItemList: List<WhatsHotEntity>,
+    ticketRankingItemList: LiveTicketRankingEntity,
+    adBannerItemList: AdBannerEntity,
+    whatsHotItemList: WhatsHotEntity,
 ) {
     val lazyScrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -96,9 +97,9 @@ fun HomeScreen(
 
     Box(
         modifier =
-            Modifier
-                .fillMaxSize()
-                .background(color = Yes24TicketTheme.colorScheme.gray100),
+        Modifier
+            .fillMaxSize()
+            .background(color = Yes24TicketTheme.colorScheme.gray100),
     ) {
         LazyColumn(
             state = lazyScrollState,
@@ -162,7 +163,7 @@ fun HomeScreen(
             }
 
             items(
-                items = whatsHotItemList,
+                items = whatsHotItemList.bannerLists,
                 key = { item -> item.id },
                 contentType = { item -> item.title },
             ) { hotItem ->
@@ -181,10 +182,10 @@ fun HomeScreen(
         }
         Row(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(end = 10.dp, bottom = 10.dp)
-                    .align(Alignment.BottomEnd),
+            Modifier
+                .fillMaxWidth()
+                .padding(end = 10.dp, bottom = 10.dp)
+                .align(Alignment.BottomEnd),
             horizontalArrangement = Arrangement.End,
         ) {
             AnimatedVisibility(
@@ -213,9 +214,9 @@ fun HomeYes24TopAppBar(
 ) {
     Row(
         modifier =
-            modifier
-                .fillMaxWidth()
-                .background(Yes24TicketTheme.colorScheme.black),
+        modifier
+            .fillMaxWidth()
+            .background(Yes24TicketTheme.colorScheme.black),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
@@ -241,22 +242,22 @@ fun TopAppBarTextField(
 ) {
     Row(
         modifier =
-            modifier
-                .padding(vertical = 13.dp)
-                .padding(end = 8.dp)
-                .wrapContentSize()
-                .background(
-                    color = Yes24TicketTheme.colorScheme.gray800,
-                    shape = RoundedCornerShape(16.dp),
-                )
-                .padding(horizontal = 14.dp),
+        modifier
+            .padding(vertical = 13.dp)
+            .padding(end = 8.dp)
+            .wrapContentSize()
+            .background(
+                color = Yes24TicketTheme.colorScheme.gray800,
+                shape = RoundedCornerShape(16.dp),
+            )
+            .padding(horizontal = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         BasicTextField(
             modifier =
-                Modifier
-                    .padding(vertical = 10.dp)
-                    .weight(1f),
+            Modifier
+                .padding(vertical = 10.dp)
+                .weight(1f),
             value = value,
             onValueChange = onValueChange,
             cursorBrush = SolidColor(Yes24TicketTheme.colorScheme.gray300),
@@ -295,26 +296,26 @@ fun HomeGridCategory(
         categoryList.forEachIndexed { idx, categoryType ->
             Box(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .background(color = Yes24TicketTheme.colorScheme.white)
-                        .topBorder(color = Yes24TicketTheme.colorScheme.gray150, height = 1f)
-                        .rightBorder(color = Yes24TicketTheme.colorScheme.gray150, width = 1f),
+                Modifier
+                    .fillMaxWidth()
+                    .background(color = Yes24TicketTheme.colorScheme.white)
+                    .topBorder(color = Yes24TicketTheme.colorScheme.gray150, height = 1f)
+                    .rightBorder(color = Yes24TicketTheme.colorScheme.gray150, width = 1f),
             ) {
                 Text(
                     text = stringResource(categoryType.category),
                     style = Yes24TicketTheme.typography.buttonBold14,
                     modifier =
-                        Modifier
-                            .align(Alignment.Center)
-                            .padding(vertical = 12.dp)
-                            .then(
-                                if (idx == 0) {
-                                    Modifier.clickable { navigateToCategoryDetail() }
-                                } else {
-                                    Modifier
-                                },
-                            ),
+                    Modifier
+                        .align(Alignment.Center)
+                        .padding(vertical = 12.dp)
+                        .then(
+                            if (idx == 0) {
+                                Modifier.clickable { navigateToCategoryDetail() }
+                            } else {
+                                Modifier
+                            },
+                        ),
                 )
             }
         }
@@ -324,15 +325,15 @@ fun HomeGridCategory(
 @Composable
 fun LiveTicketRanking(
     @StringRes text: Int,
-    ticketRankingItemList: List<LiveTicketRankingEntity>,
+    ticketRankingItemList: LiveTicketRankingEntity,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier =
-            modifier
-                .background(color = Yes24TicketTheme.colorScheme.white)
-                .padding(vertical = 12.dp)
-                .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
+        modifier
+            .background(color = Yes24TicketTheme.colorScheme.white)
+            .padding(vertical = 12.dp)
+            .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
     ) {
         SectionHeaderWithBlueArrow(
             text = text,
@@ -350,16 +351,16 @@ fun LiveTicketRanking(
 fun TicketOpenAnnouncement(modifier: Modifier = Modifier) {
     Row(
         modifier =
-            modifier
-                .fillMaxWidth()
-                .background(color = Yes24TicketTheme.colorScheme.white)
-                .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
+        modifier
+            .fillMaxWidth()
+            .background(color = Yes24TicketTheme.colorScheme.white)
+            .border(width = 1.dp, color = Yes24TicketTheme.colorScheme.gray150),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(
             modifier =
-                Modifier
-                    .padding(vertical = 12.dp),
+            Modifier
+                .padding(vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             SectionHeaderWithBlueArrow(
@@ -371,8 +372,8 @@ fun TicketOpenAnnouncement(modifier: Modifier = Modifier) {
 
             VerticalDivider(
                 modifier =
-                    Modifier
-                        .height(11.dp),
+                Modifier
+                    .height(11.dp),
                 thickness = 1.dp,
                 color = Yes24TicketTheme.colorScheme.gray200,
             )
@@ -405,36 +406,36 @@ fun WhatsHotText(
         text = stringResource(text),
         style = Yes24TicketTheme.typography.headExtraBold20,
         modifier =
-            modifier
-                .fillMaxWidth()
-                .padding(top = 36.dp, bottom = 24.dp),
+        modifier
+            .fillMaxWidth()
+            .padding(top = 36.dp, bottom = 24.dp),
         textAlign = TextAlign.Center,
     )
 }
 
 @Composable
 fun HotContentItem(
-    whatsHotItem: WhatsHotEntity,
+    whatsHotItem: WhatsHotItem,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier =
-            modifier
-                .padding(horizontal = 5.dp)
-                .padding(bottom = 12.dp),
+        modifier
+            .padding(horizontal = 5.dp)
+            .padding(bottom = 12.dp),
     ) {
         AsyncImage(
             model =
-                ImageRequest.Builder(context = LocalContext.current)
-                    .data(whatsHotItem.imgUrl)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(context = LocalContext.current)
+                .data(whatsHotItem.imgUrl)
+                .crossfade(true)
+                .build(),
             contentDescription = stringResource(R.string.home_hot_content_image_description),
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f / 0.45f)
-                    .clip(RoundedCornerShape(topEnd = 3.dp, topStart = 3.dp)),
+            Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f / 0.45f)
+                .clip(RoundedCornerShape(topEnd = 3.dp, topStart = 3.dp)),
             contentScale = ContentScale.Crop,
         )
 
@@ -452,35 +453,39 @@ fun HotContentItem(
                 )
                 Spacer(modifier = Modifier.height(6.dp))
             }
-
-            Text(
-                text = whatsHotItem.title,
-                style = Yes24TicketTheme.typography.titleExtraBold17,
-                color = Yes24TicketTheme.colorScheme.gray800,
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
+            if (!whatsHotItem.title.isNullOrEmpty()
+                && !whatsHotItem.area.isNullOrEmpty()
+                && !whatsHotItem.date.isNullOrEmpty()
             ) {
                 Text(
-                    text = whatsHotItem.area,
-                    style = Yes24TicketTheme.typography.bodyBold14,
+                    text = whatsHotItem.title,
+                    style = Yes24TicketTheme.typography.titleExtraBold17,
                     color = Yes24TicketTheme.colorScheme.gray800,
                 )
 
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_divide_line_17),
-                    contentDescription = stringResource(R.string.icon_divider_description),
-                    tint = Color.Unspecified,
-                )
+                Spacer(modifier = Modifier.height(10.dp))
 
-                Text(
-                    text = whatsHotItem.date,
-                    style = Yes24TicketTheme.typography.bodyBold13,
-                    color = Yes24TicketTheme.colorScheme.gray400,
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = whatsHotItem.area,
+                        style = Yes24TicketTheme.typography.bodyBold14,
+                        color = Yes24TicketTheme.colorScheme.gray800,
+                    )
+
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.ic_divide_line_17),
+                        contentDescription = stringResource(R.string.icon_divider_description),
+                        tint = Color.Unspecified,
+                    )
+
+                    Text(
+                        text = whatsHotItem.date,
+                        style = Yes24TicketTheme.typography.bodyBold13,
+                        color = Yes24TicketTheme.colorScheme.gray400,
+                    )
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ package org.andsopt.android.yes24ticket.data.dto.response
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
+import org.andsopt.android.yes24ticket.domain.model.MainBannerItem
 
 @Serializable
 data class ResponseMainBannerListDto(
@@ -11,9 +12,9 @@ data class ResponseMainBannerListDto(
     @SerialName("datas")
     val data: List<MainTicket>
 ) {
-    fun toMainBannerEntity(): List<MainBannerEntity> {
-        return data.map { mainBannerItem ->
-            MainBannerEntity(
+    fun toMainBannerEntity() = MainBannerEntity(
+        bannerLists = data.map { mainBannerItem ->
+            MainBannerItem(
                 id = mainBannerItem.ticketId,
                 title = mainBannerItem.ticketTitle,
                 area = mainBannerItem.ticketArea,
@@ -21,21 +22,20 @@ data class ResponseMainBannerListDto(
                 imgUrl = mainBannerItem.ticketImg
             )
         }
-    }
-
+    )
 }
 
 @Serializable
 data class MainTicket(
-    @SerialName("ticket_id")
+    @SerialName("ticketId")
     val ticketId: Long,
-    @SerialName("ticket_area")
-    val ticketArea: String,
-    @SerialName("ticket_title")
-    val ticketTitle: String,
-    @SerialName("ticket_date")
-    val ticketDate: String,
-    @SerialName("ticket_img")
+    @SerialName("area")
+    val ticketArea: String? = "",
+    @SerialName("title")
+    val ticketTitle: String? = "",
+    @SerialName("period")
+    val ticketDate: String? ="",
+    @SerialName("img")
     val ticketImg: String
 )
 
