@@ -9,5 +9,5 @@ data class MainBannerItem(
 )
 
 data class MainBannerEntity(
-    val bannerLists : List<MainBannerItem>
+    val bannerLists: List<MainBannerItem>,
 )

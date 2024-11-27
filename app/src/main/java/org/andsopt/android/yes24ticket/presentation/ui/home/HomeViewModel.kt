@@ -1,6 +1,5 @@
 package org.andsopt.android.yes24ticket.presentation.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,64 +15,56 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel
-@Inject
-constructor(
-    private val homeRepository: HomeRepository
-) : ViewModel() {
-    val homeUiState: StateFlow<HomeUiState> =
-        flow<HomeUiState> {
-            val mainBannerList =
-                viewModelScope.async {
-                    homeRepository.fetchMainBannerList()
-                }.await().getOrElse { throwable ->
-                    Log.d("fetchMainBannerList", throwable.message.toString())
-                    emit(HomeUiState.Error(throwable.message))
-                    return@flow
-                }
+    @Inject
+    constructor(
+        private val homeRepository: HomeRepository,
+    ) : ViewModel() {
+        val homeUiState: StateFlow<HomeUiState> =
+            flow {
+                val mainBannerList =
+                    viewModelScope.async {
+                        homeRepository.fetchMainBannerList()
+                    }.await().getOrElse { throwable ->
+                        emit(HomeUiState.Error(throwable.message))
+                        return@flow
+                    }
 
-            val ticketRankingList =
-                viewModelScope.async {
-                    homeRepository.fetchTicketRankingList()
-                }.await().getOrElse { throwable ->
-                    Log.d("fetchMainBannerList", throwable.message.toString())
+                val ticketRankingList =
+                    viewModelScope.async {
+                        homeRepository.fetchTicketRankingList()
+                    }.await().getOrElse { throwable ->
+                        emit(HomeUiState.Error(throwable.message))
+                        return@flow
+                    }
+                val adBannerList =
+                    viewModelScope.async {
+                        homeRepository.fetchAdBannerList()
+                    }.await().getOrElse { throwable ->
+                        emit(HomeUiState.Error(throwable.message))
+                        return@flow
+                    }
 
-                    emit(HomeUiState.Error(throwable.message))
-                    return@flow
-                }
-            val adBannerList =
-                viewModelScope.async {
-                    homeRepository.fetchAdBannerList()
-                }.await().getOrElse { throwable ->
-                    Log.d("fetchMainBannerList", throwable.message.toString())
+                val whatsHotList =
+                    viewModelScope.async {
+                        homeRepository.fetchWhatsHotList()
+                    }.await().getOrElse { throwable ->
+                        emit(HomeUiState.Error(throwable.message))
+                        return@flow
+                    }
 
-                    emit(HomeUiState.Error(throwable.message))
-                    return@flow
-                }
-
-            val whatsHotList =
-                viewModelScope.async {
-                    homeRepository.fetchWhatsHotList()
-                }.await().getOrElse { throwable ->
-                    Log.d("fetchMainBannerList", throwable.message.toString())
-
-                    emit(HomeUiState.Error(throwable.message))
-                    return@flow
-                }
-
-
-            emit(
-                HomeUiState.Success(
-                    mainBannerItemList = mainBannerList,
-                    ticketRankingItemList = ticketRankingList,
-                    adBannerItemList = adBannerList,
-                    whatsHotItemList = whatsHotList
+                emit(
+                    HomeUiState.Success(
+                        mainBannerItemList = mainBannerList,
+                        ticketRankingItemList = ticketRankingList,
+                        adBannerItemList = adBannerList,
+                        whatsHotItemList = whatsHotList,
+                    ),
                 )
+            }.catch { throwable ->
+                emit(HomeUiState.Error(throwable.message))
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = HomeUiState.Loading,
             )
-        }.catch { throwable ->
-            emit(HomeUiState.Error(throwable.message))
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = HomeUiState.Loading
-        )
-}
+    }

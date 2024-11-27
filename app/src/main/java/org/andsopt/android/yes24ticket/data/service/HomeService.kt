@@ -16,7 +16,7 @@ interface HomeService {
     suspend fun fetchMainBannerList(): ResponseMainBannerListDto
 
     @GET("/$TICKETS/$RANKED")
-    suspend fun fetchTicketRankingList():ResponseTicketRankingListDto
+    suspend fun fetchTicketRankingList(): ResponseTicketRankingListDto
 
     @GET("/$TICKETS/$HOT")
     suspend fun fetchWhatsHotList(): ResponseWhatsHotListDto

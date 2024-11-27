@@ -39,8 +39,8 @@ fun LiveTicketRankingLazyRow(
     ) {
         items(
             items = ticketRankingList.bannerLists,
-            key = { ticketRanking -> ticketRanking.rank })
-        { ticketRanking ->
+            key = { ticketRanking -> ticketRanking.rank },
+        ) { ticketRanking ->
             TicketRankingItem(
                 ticketRanking = ticketRanking,
                 imageWidth = 122.dp,
@@ -58,21 +58,21 @@ fun TicketRankingItem(
     Box(
         contentAlignment = Alignment.BottomStart,
         modifier =
-        modifier
-            .wrapContentSize(),
+            modifier
+                .wrapContentSize(),
     ) {
         AsyncImage(
             model =
-            ImageRequest.Builder(context = LocalContext.current)
-                .data(ticketRanking.imgUrl)
-                .crossfade(true)
-                .build(),
+                ImageRequest.Builder(context = LocalContext.current)
+                    .data(ticketRanking.imgUrl)
+                    .crossfade(true)
+                    .build(),
             contentDescription = stringResource(R.string.home_ticket_ranking_content_description),
             modifier =
-            Modifier
-                .width(imageWidth)
-                .aspectRatio(1f / 1.45f)
-                .clip(RoundedCornerShape(8.dp)),
+                Modifier
+                    .width(imageWidth)
+                    .aspectRatio(1f / 1.45f)
+                    .clip(RoundedCornerShape(8.dp)),
         )
 
         Text(

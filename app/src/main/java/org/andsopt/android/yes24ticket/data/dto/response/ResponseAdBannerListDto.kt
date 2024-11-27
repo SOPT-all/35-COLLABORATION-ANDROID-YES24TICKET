@@ -10,16 +10,18 @@ data class ResponseAdBannerListDto(
     @SerialName("result")
     val result: String,
     @SerialName("ads")
-    val ads: List<Ads>
+    val ads: List<Ads>,
 ) {
-    fun toAdBannerEntity() = AdBannerEntity(
-       bannerLists =  ads.map { adItem ->
-            AdBannerItem(
-                id = adItem.adsId,
-                imgUrl = adItem.adsImg
-            )
-        }
-    )
+    fun toAdBannerEntity() =
+        AdBannerEntity(
+            bannerLists =
+                ads.map { adItem ->
+                    AdBannerItem(
+                        id = adItem.adsId,
+                        imgUrl = adItem.adsImg,
+                    )
+                },
+        )
 }
 
 @Serializable
@@ -27,5 +29,5 @@ data class Ads(
     @SerialName("ads_id")
     val adsId: Long,
     @SerialName("ads_img")
-    val adsImg: String
+    val adsImg: String,
 )

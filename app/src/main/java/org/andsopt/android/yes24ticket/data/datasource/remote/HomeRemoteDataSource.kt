@@ -8,18 +8,19 @@ import org.andsopt.android.yes24ticket.data.service.HomeService
 import javax.inject.Inject
 
 class HomeRemoteDataSource
-@Inject constructor(
-    private val homeService: HomeService
-) {
-    suspend fun fetchMainBannerList(): ResponseMainBannerListDto =
-        homeService.fetchMainBannerList()
+    @Inject
+    constructor(
+        private val homeService: HomeService,
+    ) {
+        suspend fun fetchMainBannerList(): ResponseMainBannerListDto =
+            homeService.fetchMainBannerList()
 
-    suspend fun fetchTicketRankingList(): ResponseTicketRankingListDto =
-        homeService.fetchTicketRankingList()
+        suspend fun fetchTicketRankingList(): ResponseTicketRankingListDto =
+            homeService.fetchTicketRankingList()
 
-    suspend fun fetchWhatsHotList(): ResponseWhatsHotListDto =
-        homeService.fetchWhatsHotList()
+        suspend fun fetchWhatsHotList(): ResponseWhatsHotListDto =
+            homeService.fetchWhatsHotList()
 
-    suspend fun fetchAdBannerList(): ResponseAdBannerListDto =
-        homeService.fetchAdBannerList()
-}
+        suspend fun fetchAdBannerList(): ResponseAdBannerListDto =
+            homeService.fetchAdBannerList()
+    }

@@ -17,10 +17,8 @@ fun HomeRoute(
     navigateToCategoryDetail: () -> Unit,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
-
     val homeUiState by viewModel.homeUiState.collectAsStateWithLifecycle()
     val text by remember { mutableStateOf("") }
-
 
     when (homeUiState) {
         is HomeUiState.Success -> {
@@ -37,7 +35,6 @@ fun HomeRoute(
             val adBannerList = (homeUiState as HomeUiState.Success).adBannerItemList
             val ticketRankingList = (homeUiState as HomeUiState.Success).ticketRankingItemList
             val whatsHotList = (homeUiState as HomeUiState.Success).whatsHotItemList
-
 
             LaunchedEffect(Unit) {
                 while (true) {
@@ -80,6 +77,4 @@ fun HomeRoute(
         is HomeUiState.Loading -> Unit
         is HomeUiState.Error -> Unit
     }
-
-
 }

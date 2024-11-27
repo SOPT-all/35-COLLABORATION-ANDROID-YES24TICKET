@@ -7,5 +7,5 @@ data class LiveTicketRankingItem(
 )
 
 data class LiveTicketRankingEntity(
-    val bannerLists: List<LiveTicketRankingItem>
+    val bannerLists: List<LiveTicketRankingItem>,
 )

@@ -10,17 +10,19 @@ data class ResponseTicketRankingListDto(
     @SerialName("result")
     val result: String,
     @SerialName("ranking")
-    val ranking: List<TicketRanking>
+    val ranking: List<TicketRanking>,
 ) {
-    fun toLiveTicketRankingEntity() = LiveTicketRankingEntity(
-        bannerLists = ranking.map { ticket ->
-            LiveTicketRankingItem(
-                id = ticket.ticketId,
-                rank = ticket.rank,
-                imgUrl = ticket.imgUrl
-            )
-        }
-    )
+    fun toLiveTicketRankingEntity() =
+        LiveTicketRankingEntity(
+            bannerLists =
+                ranking.map { ticket ->
+                    LiveTicketRankingItem(
+                        id = ticket.ticketId,
+                        rank = ticket.rank,
+                        imgUrl = ticket.imgUrl,
+                    )
+                },
+        )
 }
 
 @Serializable
@@ -30,5 +32,5 @@ data class TicketRanking(
     @SerialName("ticket_id")
     val ticketId: Long,
     @SerialName("img_url")
-    val imgUrl: String
+    val imgUrl: String,
 )

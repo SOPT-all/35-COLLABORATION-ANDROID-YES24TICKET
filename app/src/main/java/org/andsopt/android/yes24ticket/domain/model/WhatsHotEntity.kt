@@ -1,6 +1,5 @@
 package org.andsopt.android.yes24ticket.domain.model
 
-
 data class WhatsHotItem(
     val id: Long,
     val title: String? = "",
@@ -11,5 +10,5 @@ data class WhatsHotItem(
 )
 
 data class WhatsHotEntity(
-    val bannerLists: List<WhatsHotItem>
+    val bannerLists: List<WhatsHotItem>,
 )

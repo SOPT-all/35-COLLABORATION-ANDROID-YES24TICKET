@@ -10,19 +10,21 @@ data class ResponseMainBannerListDto(
     @SerialName("result")
     val result: String,
     @SerialName("datas")
-    val data: List<MainTicket>
+    val data: List<MainTicket>,
 ) {
-    fun toMainBannerEntity() = MainBannerEntity(
-        bannerLists = data.map { mainBannerItem ->
-            MainBannerItem(
-                id = mainBannerItem.ticketId,
-                title = mainBannerItem.ticketTitle,
-                area = mainBannerItem.ticketArea,
-                date = mainBannerItem.ticketDate,
-                imgUrl = mainBannerItem.ticketImg
-            )
-        }
-    )
+    fun toMainBannerEntity() =
+        MainBannerEntity(
+            bannerLists =
+                data.map { mainBannerItem ->
+                    MainBannerItem(
+                        id = mainBannerItem.ticketId,
+                        title = mainBannerItem.ticketTitle,
+                        area = mainBannerItem.ticketArea,
+                        date = mainBannerItem.ticketDate,
+                        imgUrl = mainBannerItem.ticketImg,
+                    )
+                },
+        )
 }
 
 @Serializable
@@ -34,9 +36,7 @@ data class MainTicket(
     @SerialName("title")
     val ticketTitle: String? = "",
     @SerialName("period")
-    val ticketDate: String? ="",
+    val ticketDate: String? = "",
     @SerialName("img")
-    val ticketImg: String
+    val ticketImg: String,
 )
-
-

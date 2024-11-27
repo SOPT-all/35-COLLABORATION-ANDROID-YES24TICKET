@@ -6,5 +6,5 @@ data class AdBannerItem(
 )
 
 data class AdBannerEntity(
-    val bannerLists: List<AdBannerItem>
+    val bannerLists: List<AdBannerItem>,
 )
