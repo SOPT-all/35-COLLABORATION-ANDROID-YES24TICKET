@@ -14,20 +14,10 @@ fun TicketDetailRoute(
     val expandableState by viewModel.expandableState.collectAsStateWithLifecycle()
 
     TicketDetailScreen(
-        ticketTitle = viewModel.mockData.ticketTitle,
-        ticketPosterImg = viewModel.mockData.ticketImg,
-        ticketGenre = viewModel.mockData.ticketGenre,
-        ticketDate = viewModel.mockData.ticketDate,
-        ticketPlace = viewModel.mockData.ticketArea,
-        ticketRatings = viewModel.mockData.ticketAge,
-        ticketRunningTime = viewModel.mockData.ticketDuration,
-        likedCount = viewModel.mockData.ticketLikedCount,
-        isLiked = heartState.isClicked,
-        ticketTime = viewModel.mockData.ticketPerformanceTimes,
+        ticketDetail = viewModel.mockData,
         ticketTypeList = viewModel.mockData.ticketPricing,
         isExpanded = expandableState.isExpanded,
-        noticeText = viewModel.mockData.ticketNotice,
-        hyperText = viewModel.mockData.ticketHyperText,
+        isLiked = heartState.isClicked,
         onExpandedChanged = viewModel::changeExpanded,
         onLikedChanged = viewModel::changeHeart,
     )

@@ -22,6 +22,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
+import org.andsopt.android.yes24ticket.domain.model.TicketDetailEntity
 import org.andsopt.android.yes24ticket.domain.model.TicketPricingEntity
 import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.Yes24TopAppBar
@@ -35,26 +36,17 @@ import org.andsopt.android.yes24ticket.util.compose.bottomBorder
 
 @Composable
 fun TicketDetailScreen(
-    ticketTitle: String,
-    ticketPosterImg: String,
-    ticketGenre: String,
-    ticketDate: String,
-    ticketPlace: String,
-    ticketRatings: String,
-    ticketRunningTime: String,
-    likedCount: String,
-    isLiked: Boolean,
-    ticketTime: List<String>,
+    ticketDetail: TicketDetailEntity,
     ticketTypeList: List<TicketPricingEntity>,
     isExpanded: Boolean,
-    noticeText: List<String>,
-    hyperText: String,
+    isLiked: Boolean,
+    modifier: Modifier = Modifier,
     onExpandedChanged: () -> Unit = {},
     onLikedChanged: () -> Unit = {},
 ) {
     Column(
         modifier =
-            Modifier
+            modifier
                 .fillMaxSize(),
     ) {
         Yes24TopAppBar()
@@ -67,28 +59,28 @@ fun TicketDetailScreen(
                     .verticalScroll(rememberScrollState()),
         ) {
             TicketDetailBox(
-                ticketTitle = ticketTitle,
-                ticketPosterImg = ticketPosterImg,
-                ticketGenre = ticketGenre,
-                ticketDate = ticketDate,
-                ticketPlace = ticketPlace,
-                ticketRatings = ticketRatings,
-                ticketRunningTime = ticketRunningTime,
-                likedCount = likedCount,
+                ticketTitle = ticketDetail.ticketTitle,
+                ticketPosterImg = ticketDetail.ticketImg,
+                ticketGenre = ticketDetail.ticketGenre,
+                ticketDate = ticketDetail.ticketDate,
+                ticketPlace = ticketDetail.ticketArea,
+                ticketRatings = ticketDetail.ticketAge,
+                ticketRunningTime = ticketDetail.ticketDuration,
+                likedCount = ticketDetail.ticketLikedCount,
                 isLiked = isLiked,
                 onLikedChanged = onLikedChanged,
             )
 
             TicketDetailSeatAndTime(
-                ticketTime = ticketTime,
+                ticketTime = ticketDetail.ticketPerformanceTimes,
                 ticketTypeList = ticketTypeList,
             )
 
             TicketDetailNotice(
                 isExpanded = isExpanded,
                 onExpandedChanged = onExpandedChanged,
-                noticeText = noticeText,
-                hyperText = hyperText,
+                noticeText = ticketDetail.ticketNotice,
+                hyperText = ticketDetail.ticketHyperText,
             )
 
             TicketDetailRow(titleText = R.string.ticket_detail_title_detail)
@@ -152,10 +144,11 @@ private fun TicketDetailNotice(
 @Composable
 private fun TicketDetailRow(
     @StringRes titleText: Int,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier =
-            Modifier
+            modifier
                 .background(Yes24TicketTheme.colorScheme.white)
                 .bottomBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f),
         verticalAlignment = Alignment.CenterVertically,
@@ -175,8 +168,7 @@ private fun TicketDetailRow(
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_right_16),
             modifier =
-                Modifier
-                    .padding(end = 7.dp),
+                Modifier.padding(end = 7.dp),
             contentDescription = stringResource(titleText),
             tint = Yes24TicketTheme.colorScheme.gray400,
         )
@@ -202,20 +194,24 @@ private fun TicketDetailScreenPreview() {
             )
 
         TicketDetailScreen(
-            ticketTitle = "HYPE UP FESTIVAL",
-            ticketPosterImg = "http://tkfile.yes24.com/upload2/PerfBlog/202409/20240906/20240906-50930.jpg",
-            ticketGenre = "콘서트",
-            ticketDate = "2024.11.10 ~ 2024.11.10",
-            ticketPlace = "YES24 LIVE HALL",
-            ticketRatings = "7세 이상",
-            ticketRunningTime = "총 180분",
-            likedCount = "162",
+            ticketDetail = TicketDetailEntity(
+                ticketTitle = "HYPE UP FESTIVAL",
+                ticketImg = "http://tkfile.yes24.com/upload2/PerfBlog/202409/20240906/20240906-50930.jpg",
+                ticketGenre = "콘서트",
+                ticketDate = "2024.11.10 ~ 2024.11.10",
+                ticketArea = "YES24 LIVE HALL",
+                ticketAge = "7세 이상",
+                ticketDuration = "총 180분",
+                ticketPerformanceTimes = listOf("2024년 11월 10일(일) 5시 30분"),
+                ticketNotice = listOf("※ 본 공연은 네이버 쿠폰이 적용되지 않습니다.", "※ 본 공연은 YES24공연에서 진행하는 할인쿠폰이벤트 대상에서 제외됩니다.", "※ 매수제한: 공연별 1인 4매"),
+                ticketHyperText = "HYPE UP FESTIVAL 바로가기",
+                ticketLikedCount = "162",
+                ticketPricing = ticketType,
+                ticketId = "1"
+            ),
             isLiked = true,
-            ticketTime = listOf("2024년 11월 10일(일) 5시 30분"),
             ticketTypeList = ticketType,
             isExpanded = true,
-            noticeText = listOf("※ 본 공연은 네이버 쿠폰이 적용되지 않습니다.", "※ 본 공연은 YES24공연에서 진행하는 할인쿠폰이벤트 대상에서 제외됩니다.", "※ 매수제한: 공연별 1인 4매"),
-            hyperText = "HYPE UP FESTIVAL 바로가기",
             onLikedChanged = {},
         )
     }
