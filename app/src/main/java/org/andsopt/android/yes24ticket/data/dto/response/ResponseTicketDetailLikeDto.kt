@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 import org.andsopt.android.yes24ticket.domain.model.TicketDetailLikeEntity
 
 @Serializable
-data class ResponseTicketDetailLikeDto (
+data class ResponseTicketDetailLikeDto(
     @SerialName("result")
     val result: String,
     @SerialName("concer_id")
@@ -13,11 +13,12 @@ data class ResponseTicketDetailLikeDto (
     @SerialName("number_of_likes")
     val likedCount: String,
     @SerialName("like")
-    val isLiked: String
+    val isLiked: String,
 ) {
-    fun toTicketDetailLikeEntity() = TicketDetailLikeEntity(
-        concertId = concertId,
-        likedCount = likedCount,
-        isLiked = isLiked.toBoolean()
-    )
+    fun toTicketDetailLikeEntity() =
+        TicketDetailLikeEntity(
+            concertId = concertId,
+            likedCount = likedCount,
+            isLiked = isLiked.toBoolean(),
+        )
 }

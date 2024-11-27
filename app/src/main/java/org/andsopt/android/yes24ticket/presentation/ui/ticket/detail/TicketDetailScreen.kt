@@ -215,7 +215,7 @@ private fun TicketDetailScreenPreview() {
             ticketTypeList = ticketType,
             isExpanded = true,
             onLikedChanged = {},
-            likedCount = "162"
+            likedCount = "162",
         )
     }
 }

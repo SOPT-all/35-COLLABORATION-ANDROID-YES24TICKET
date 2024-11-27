@@ -5,10 +5,10 @@ import org.andsopt.android.yes24ticket.domain.model.TicketDetailLikeEntity
 
 interface TicketRepository {
     suspend fun getTicketDetail(
-        ticketId: Int
+        ticketId: Int,
     ): TicketDetailEntity
 
     suspend fun patchTicketDetailLike(
-        ticketId: Int
+        ticketId: Int,
     ): TicketDetailLikeEntity
 }

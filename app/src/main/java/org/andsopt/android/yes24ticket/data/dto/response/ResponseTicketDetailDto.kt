@@ -10,7 +10,7 @@ data class ResponseTicketDetailDto(
     @SerialName("result")
     val result: String,
     @SerialName("concert")
-    val concert: TicketDetailDto
+    val concert: TicketDetailDto,
 )
 
 @Serializable
@@ -38,7 +38,7 @@ data class TicketDetailDto(
     @SerialName("performance_times")
     val time: List<String>,
     @SerialName("ticket_pricing")
-    val ticketPricing: List<TicketPricingDto>
+    val ticketPricing: List<TicketPricingDto>,
 ) {
     @Serializable
     data class TicketPricingDto(
@@ -47,29 +47,30 @@ data class TicketDetailDto(
         @SerialName("price")
         val price: String,
         @SerialName("color")
-        val color: String
+        val color: String,
     ) {
-        fun toTicketPricingEntity() = TicketPricingEntity(
-            type = type,
-            price = price,
-            color = color
-        )
+        fun toTicketPricingEntity() =
+            TicketPricingEntity(
+                type = type,
+                price = price,
+                color = color,
+            )
     }
 
-    fun toTicketDetailEntity() = TicketDetailEntity(
-        ticketId = concertId,
-        ticketTitle = concertTitle,
-        ticketGenre = "콘서트",
-        ticketArea = concertArea,
-        ticketImg = concertImg,
-        ticketDate = concertDate,
-        ticketDuration = concertDuration,
-        ticketAge = concertAge,
-        ticketLikedCount = "162",
-        ticketHyperText = hyperText,
-        ticketNotice = notice,
-        ticketPerformanceTimes = time,
-        ticketPricing = ticketPricing.map { it.toTicketPricingEntity() },
-    )
+    fun toTicketDetailEntity() =
+        TicketDetailEntity(
+            ticketId = concertId,
+            ticketTitle = concertTitle,
+            ticketGenre = "콘서트",
+            ticketArea = concertArea,
+            ticketImg = concertImg,
+            ticketDate = concertDate,
+            ticketDuration = concertDuration,
+            ticketAge = concertAge,
+            ticketLikedCount = "162",
+            ticketHyperText = hyperText,
+            ticketNotice = notice,
+            ticketPerformanceTimes = time,
+            ticketPricing = ticketPricing.map { it.toTicketPricingEntity() },
+        )
 }
-
