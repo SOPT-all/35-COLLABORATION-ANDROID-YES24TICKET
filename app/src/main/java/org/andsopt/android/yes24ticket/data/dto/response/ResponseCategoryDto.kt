@@ -9,8 +9,9 @@ data class ResponseCategoryDto(
     @SerialName("result")
     val result: String,
     @SerialName("concerts")
-    val concerts: List<CategoryDetailDto>
+    val concerts: List<CategoryDetailDto>,
 )
+
 @kotlinx.serialization.Serializable
 data class CategoryDetailDto(
     @SerialName("concert_id")
@@ -30,6 +31,6 @@ data class CategoryDetailDto(
             contentImg = concertImg,
             contentTitle = concertTitle,
             contentPlace = concertArea,
-            contentPeriod = concertDate
+            contentPeriod = concertDate,
         )
 }

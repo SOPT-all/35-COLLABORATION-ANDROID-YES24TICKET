@@ -20,52 +20,52 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CategoryDetailViewModel
-@Inject
-constructor(
-    private val categoryRepository: CategoryRepository
-) : ViewModel() {
-    private val _bottomSheetState = MutableStateFlow(CategoryDetailBottomSheetState())
-    val bottomSheetState: StateFlow<CategoryDetailBottomSheetState>
-        get() = _bottomSheetState.asStateFlow()
+    @Inject
+    constructor(
+        private val categoryRepository: CategoryRepository,
+    ) : ViewModel() {
+        private val _bottomSheetState = MutableStateFlow(CategoryDetailBottomSheetState())
+        val bottomSheetState: StateFlow<CategoryDetailBottomSheetState>
+            get() = _bottomSheetState.asStateFlow()
 
-    private val _categoryDetailState = MutableStateFlow(CategoryDetailState())
-    val categoryDetailState: StateFlow<CategoryDetailState>
-        get() = _categoryDetailState.asStateFlow()
+        private val _categoryDetailState = MutableStateFlow(CategoryDetailState())
+        val categoryDetailState: StateFlow<CategoryDetailState>
+            get() = _categoryDetailState.asStateFlow()
 
-    val categoryDetailUiState: StateFlow<CategoryDetailUiState> =
-        flow<CategoryDetailUiState> {
-            runCatching {
-                categoryRepository.getCategoryDetailList(sortBy = _bottomSheetState.value.selectedFilterType?.id)
-            }.onSuccess { contentList ->
-                _categoryDetailState.value = _categoryDetailState.value.copy(categoryDetailList = contentList)
-                emit(CategoryDetailUiState.Success(contentList))
-            }.onFailure { throwable ->
+        val categoryDetailUiState: StateFlow<CategoryDetailUiState> =
+            flow<CategoryDetailUiState> {
+                runCatching {
+                    categoryRepository.getCategoryDetailList(sortBy = _bottomSheetState.value.selectedFilterType?.id)
+                }.onSuccess { contentList ->
+                    _categoryDetailState.value = _categoryDetailState.value.copy(categoryDetailList = contentList)
+                    emit(CategoryDetailUiState.Success(contentList))
+                }.onFailure { throwable ->
+                    emit(CategoryDetailUiState.Error(throwable.message))
+                }
+            }.catch { throwable ->
                 emit(CategoryDetailUiState.Error(throwable.message))
-            }
-        }.catch { throwable ->
-            emit(CategoryDetailUiState.Error(throwable.message))
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = CategoryDetailUiState.Loading,
-        )
+            }.stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = CategoryDetailUiState.Loading,
+            )
 
-    fun setFilterType(selectedFilterType: FilterType?) {
-        _bottomSheetState.value = _bottomSheetState.value.copy(selectedFilterType = selectedFilterType)
-        fetchCategoryDetails()
-    }
+        fun setFilterType(selectedFilterType: FilterType?) {
+            _bottomSheetState.value = _bottomSheetState.value.copy(selectedFilterType = selectedFilterType)
+            fetchCategoryDetails()
+        }
 
-    fun changeBottomSheetVisibility() {
-        _bottomSheetState.value = _bottomSheetState.value.copy(isBottomSheetVisible = !_bottomSheetState.value.isBottomSheetVisible)
-    }
+        fun changeBottomSheetVisibility() {
+            _bottomSheetState.value = _bottomSheetState.value.copy(isBottomSheetVisible = !_bottomSheetState.value.isBottomSheetVisible)
+        }
 
-    private fun fetchCategoryDetails() {
-        viewModelScope.launch {
-            runCatching {
-                categoryRepository.getCategoryDetailList(sortBy = _bottomSheetState.value.selectedFilterType?.id)
-            }.onSuccess { categoryContent ->
-                _categoryDetailState.value = _categoryDetailState.value.copy(categoryDetailList = categoryContent)
+        private fun fetchCategoryDetails() {
+            viewModelScope.launch {
+                runCatching {
+                    categoryRepository.getCategoryDetailList(sortBy = _bottomSheetState.value.selectedFilterType?.id)
+                }.onSuccess { categoryContent ->
+                    _categoryDetailState.value = _categoryDetailState.value.copy(categoryDetailList = categoryContent)
+                }
             }
         }
     }
-}

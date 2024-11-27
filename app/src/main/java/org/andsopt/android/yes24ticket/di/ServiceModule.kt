@@ -21,5 +21,4 @@ object ServiceModule {
     @Singleton
     fun providesCategoryService(retrofit: Retrofit): CategoryService =
         retrofit.create(CategoryService::class.java)
-
 }

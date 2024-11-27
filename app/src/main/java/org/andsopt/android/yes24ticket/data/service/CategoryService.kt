@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CategoryService {
-    @GET("${TICKETS}/${LIST}")
+    @GET("$TICKETS/$LIST")
     suspend fun getCategoryDetailList(
         @Query(SORT_BY) sortBy: String?,
     ): ResponseCategoryDto

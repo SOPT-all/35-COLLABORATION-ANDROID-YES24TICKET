@@ -4,6 +4,6 @@ import org.andsopt.android.yes24ticket.domain.model.CategoryContentEntity
 
 interface CategoryRepository {
     suspend fun getCategoryDetailList(
-        sortBy: String?
+        sortBy: String?,
     ): List<CategoryContentEntity>
 }
