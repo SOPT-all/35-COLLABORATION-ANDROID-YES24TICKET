@@ -19,6 +19,6 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun providesTicketingService(retrofit: Retrofit): TicketingService =
+    fun provideTicketingService(retrofit: Retrofit): TicketingService =
         retrofit.create(TicketingService::class.java)
 }

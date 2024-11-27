@@ -6,4 +6,5 @@ object ApiConstants {
 
     const val AVAILABLE_DATE = "availableDate"
     const val AVAILABLE_TIME_SLOTS = "availableTimeSlots"
+    const val TICKET_ID = "ticket_id"
 }
