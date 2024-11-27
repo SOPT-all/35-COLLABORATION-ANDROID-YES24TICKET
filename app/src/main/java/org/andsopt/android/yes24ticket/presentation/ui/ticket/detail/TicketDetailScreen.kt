@@ -39,6 +39,7 @@ fun TicketDetailScreen(
     ticketDetail: TicketDetailEntity,
     ticketTypeList: List<TicketPricingEntity>,
     isExpanded: Boolean,
+    likedCount: String,
     isLiked: Boolean,
     modifier: Modifier = Modifier,
     onExpandedChanged: () -> Unit = {},
@@ -66,7 +67,7 @@ fun TicketDetailScreen(
                 ticketPlace = ticketDetail.ticketArea,
                 ticketRatings = ticketDetail.ticketAge,
                 ticketRunningTime = ticketDetail.ticketDuration,
-                likedCount = ticketDetail.ticketLikedCount,
+                likedCount = likedCount,
                 isLiked = isLiked,
                 onLikedChanged = onLikedChanged,
             )
@@ -214,6 +215,7 @@ private fun TicketDetailScreenPreview() {
             ticketTypeList = ticketType,
             isExpanded = true,
             onLikedChanged = {},
+            likedCount = "162"
         )
     }
 }

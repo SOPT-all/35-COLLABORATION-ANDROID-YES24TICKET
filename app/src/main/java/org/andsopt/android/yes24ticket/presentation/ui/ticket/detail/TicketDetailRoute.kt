@@ -22,6 +22,7 @@ fun TicketDetailRoute(
                 ticketTypeList = (ticketDetailUiState as TicketDetailUiState.Success).ticketDetail.ticketPricing,
                 isExpanded = expandableState.isExpanded,
                 isLiked = heartState.isClicked,
+                likedCount = heartState.likedCount,
                 onExpandedChanged = viewModel::changeExpanded,
                 onLikedChanged = viewModel::changeHeart,
             )

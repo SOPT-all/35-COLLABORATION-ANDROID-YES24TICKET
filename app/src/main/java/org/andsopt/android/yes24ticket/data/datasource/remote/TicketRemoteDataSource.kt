@@ -8,4 +8,7 @@ class TicketRemoteDataSource @Inject constructor(
 ) {
     suspend fun getTicketDetail(ticketId: Int) =
         ticketService.getTicketDetail(ticketId)
+
+    suspend fun patchTicketLike(ticketId: Int) =
+        ticketService.patchTicketLike(ticketId)
 }

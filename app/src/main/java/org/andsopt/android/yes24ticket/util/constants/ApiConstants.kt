@@ -5,4 +5,5 @@ object ApiConstants {
     const val TICKETS = "tickets"
     const val DETAILS = "details"
     const val TICKET_ID = "ticket_id"
+    const val LIKE = "like"
 }
