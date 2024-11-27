@@ -5,7 +5,9 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.andsopt.android.yes24ticket.data.repositoryImpl.DummyRepositoryImpl
+import org.andsopt.android.yes24ticket.data.repositoryImpl.TicketRepositoryImpl
 import org.andsopt.android.yes24ticket.domain.repository.DummyRepository
+import org.andsopt.android.yes24ticket.domain.repository.TicketRepository
 import javax.inject.Singleton
 
 @Module
@@ -14,4 +16,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindsDummyRepository(repositoryImpl: DummyRepositoryImpl): DummyRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindsTicketRepository(repositoryImpl: TicketRepositoryImpl): TicketRepository
 }
