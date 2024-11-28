@@ -12,6 +12,8 @@ fun CategoryDetailRoute(
     moveToBackStack: () -> Unit,
 ) {
     val bottomSheetState by viewModel.bottomSheetState.collectAsStateWithLifecycle()
+    val categoryDetailUiState by viewModel.categoryDetailUiState.collectAsStateWithLifecycle()
+    val categoryDetailState by viewModel.categoryDetailState.collectAsStateWithLifecycle()
 
     when (categoryDetailUiState) {
         is CategoryDetailUiState.Success -> {
