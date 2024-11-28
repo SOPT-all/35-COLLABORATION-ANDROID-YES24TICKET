@@ -61,6 +61,7 @@ import org.andsopt.android.yes24ticket.domain.model.AdBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.LiveTicketRankingEntity
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
 import org.andsopt.android.yes24ticket.domain.model.WhatsHotEntity
+import org.andsopt.android.yes24ticket.domain.model.WhatsHotItem
 import org.andsopt.android.yes24ticket.presentation.type.HomeCategoryType
 import org.andsopt.android.yes24ticket.presentation.ui.component.InformationFooter
 import org.andsopt.android.yes24ticket.presentation.ui.component.ScrollToTopFloatingButton
@@ -80,11 +81,11 @@ fun HomeScreen(
     navigateToCategoryDetail: () -> Unit,
     headDisplayedPagerState: PagerState,
     adDisplayedPagerState: PagerState,
-    mainBannerItemList: List<MainBannerEntity>,
+    mainBannerItemList: MainBannerEntity,
     categoryList: List<HomeCategoryType>,
-    ticketRankingItemList: List<LiveTicketRankingEntity>,
-    adBannerItemList: List<AdBannerEntity>,
-    whatsHotItemList: List<WhatsHotEntity>,
+    ticketRankingItemList: LiveTicketRankingEntity,
+    adBannerItemList: AdBannerEntity,
+    whatsHotItemList: WhatsHotEntity,
 ) {
     val lazyScrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -162,7 +163,7 @@ fun HomeScreen(
             }
 
             items(
-                items = whatsHotItemList,
+                items = whatsHotItemList.bannerLists,
                 key = { item -> item.id },
                 contentType = { item -> item.title },
             ) { hotItem ->
@@ -324,7 +325,7 @@ fun HomeGridCategory(
 @Composable
 fun LiveTicketRanking(
     @StringRes text: Int,
-    ticketRankingItemList: List<LiveTicketRankingEntity>,
+    ticketRankingItemList: LiveTicketRankingEntity,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -414,9 +415,13 @@ fun WhatsHotText(
 
 @Composable
 fun HotContentItem(
-    whatsHotItem: WhatsHotEntity,
+    whatsHotItem: WhatsHotItem,
     modifier: Modifier = Modifier,
 ) {
+    val descriptionIsNotEmpty =
+        whatsHotItem.title.isNotEmpty() &&
+            whatsHotItem.area.isNotEmpty() &&
+            whatsHotItem.date.isNotEmpty()
     Column(
         modifier =
             modifier
@@ -444,7 +449,7 @@ fun HotContentItem(
                 .background(color = Yes24TicketTheme.colorScheme.white)
                 .padding(horizontal = 9.dp, vertical = 7.dp),
         ) {
-            if (!whatsHotItem.comment.isNullOrEmpty()) {
+            if (whatsHotItem.comment.isNotEmpty()) {
                 Text(
                     text = whatsHotItem.comment,
                     style = Yes24TicketTheme.typography.bodySemiBold12,
@@ -452,35 +457,36 @@ fun HotContentItem(
                 )
                 Spacer(modifier = Modifier.height(6.dp))
             }
-
-            Text(
-                text = whatsHotItem.title,
-                style = Yes24TicketTheme.typography.titleExtraBold17,
-                color = Yes24TicketTheme.colorScheme.gray800,
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
+            if (descriptionIsNotEmpty) {
                 Text(
-                    text = whatsHotItem.area,
-                    style = Yes24TicketTheme.typography.bodyBold14,
+                    text = whatsHotItem.title,
+                    style = Yes24TicketTheme.typography.titleExtraBold17,
                     color = Yes24TicketTheme.colorScheme.gray800,
                 )
 
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_divide_line_17),
-                    contentDescription = stringResource(R.string.icon_divider_description),
-                    tint = Color.Unspecified,
-                )
+                Spacer(modifier = Modifier.height(10.dp))
 
-                Text(
-                    text = whatsHotItem.date,
-                    style = Yes24TicketTheme.typography.bodyBold13,
-                    color = Yes24TicketTheme.colorScheme.gray400,
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = whatsHotItem.area,
+                        style = Yes24TicketTheme.typography.bodyBold14,
+                        color = Yes24TicketTheme.colorScheme.gray800,
+                    )
+
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.ic_divide_line_17),
+                        contentDescription = stringResource(R.string.icon_divider_description),
+                        tint = Color.Unspecified,
+                    )
+
+                    Text(
+                        text = whatsHotItem.date,
+                        style = Yes24TicketTheme.typography.bodyBold13,
+                        color = Yes24TicketTheme.colorScheme.gray400,
+                    )
+                }
             }
         }
     }
