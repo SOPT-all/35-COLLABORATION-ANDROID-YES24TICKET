@@ -113,6 +113,7 @@ fun CalendarView(
                             .size(9.dp)
                             .background(color = color),
                 )
+
                 Text(
                     text = text,
                     style = Yes24TicketTheme.typography.captionRegular10,

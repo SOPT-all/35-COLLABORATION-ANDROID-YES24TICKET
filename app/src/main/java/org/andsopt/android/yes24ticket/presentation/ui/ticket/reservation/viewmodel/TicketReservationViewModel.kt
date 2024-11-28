@@ -8,21 +8,22 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.transformLatest
-import org.andsopt.android.yes24ticket.domain.model.RemainingSeat
-import org.andsopt.android.yes24ticket.domain.model.TimeSlots
 import org.andsopt.android.yes24ticket.domain.model.TimeSlotsDataEntity
+import org.andsopt.android.yes24ticket.domain.repository.TicketingRepository
 import java.time.DayOfWeek
 import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
+@OptIn(ExperimentalCoroutinesApi::class)
 class TicketReservationViewModel
     @Inject
-    constructor() : ViewModel() {
+    constructor(
+        private val ticketingRepository: TicketingRepository,
+    ) : ViewModel() {
         val dayOfWeeks =
             buildList {
                 add(DayOfWeek.SUNDAY)
@@ -55,9 +56,13 @@ class TicketReservationViewModel
             )
 
         val selectableDays =
-            flow {
-                // TODO: API
-                emit(listOf(11, 14, 20))
+            currentCalendar.transformLatest { currentCalendar ->
+                emit(emptyList())
+                ticketingRepository.fetchAvailableTimes(21) // TODO ticketId
+                    .performanceTimes
+                    .filter { it.monthValue == currentCalendar.monthValue }
+                    .map { it.dayOfMonth }
+                    .let { emit(it) }
             }.stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
@@ -67,35 +72,18 @@ class TicketReservationViewModel
         private val _selectedDay = MutableStateFlow(-1)
         val selectedDay = _selectedDay.asStateFlow()
 
-        @OptIn(ExperimentalCoroutinesApi::class)
         val currentTimeSlots =
             selectedDay.transformLatest {
-                // TODO: API
+                if (it == -1) {
+                    return@transformLatest emit(TimeSlotsDataEntity(emptyList()))
+                }
                 emit(
-                    TimeSlotsDataEntity(
-                        slots =
-                            listOf(
-                                TimeSlots(
-                                    performanceTime = "오후 5:30",
-                                    remainingSeats =
-                                        listOf(
-                                            RemainingSeat(
-                                                type = "R",
-                                                remainingSeats = "10",
-                                            ),
-                                            RemainingSeat(
-                                                type = "S",
-                                                remainingSeats = "20",
-                                            ),
-                                            RemainingSeat(
-                                                type = "T",
-                                                remainingSeats = "0",
-                                            ),
-                                        ),
-                                ),
-                            ),
-                    ),
-                )
+                    ticketingRepository
+                        .fetchTimeSlots(
+                            "21",
+                            currentCalendar.value.withDayOfMonth(it).toString(),
+                        ),
+                ) // TODO concertId
             }.stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
