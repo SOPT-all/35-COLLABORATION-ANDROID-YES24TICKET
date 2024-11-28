@@ -8,7 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun Modifier.noRippleClickable(
@@ -62,5 +66,42 @@ fun Modifier.leftBorder(
         start = Offset(0f, 0f),
         end = Offset(0f, size.height),
         strokeWidth = width,
+    )
+}
+
+fun Modifier.rightBorder(
+    color: Color,
+    width: Float,
+) = this.drawWithContent {
+    drawContent()
+    drawLine(
+        color = color,
+        start = Offset(size.width, 0f),
+        end = Offset(size.width, size.height),
+        strokeWidth = width,
+    )
+}
+
+fun Modifier.dashedBottomBorder(
+    color: Color,
+    strokeWidth: Dp = 2.dp,
+    dashLength: Dp = 4.dp,
+    gapLength: Dp = 4.dp,
+    cap: StrokeCap = StrokeCap.Round,
+) = this.drawWithContent {
+    drawContent()
+
+    val pathEffect =
+        PathEffect.dashPathEffect(
+            intervals = floatArrayOf(dashLength.toPx(), gapLength.toPx()),
+        )
+
+    drawLine(
+        color = color,
+        start = Offset(0f, size.height),
+        end = Offset(size.width, size.height),
+        strokeWidth = strokeWidth.toPx(),
+        pathEffect = pathEffect,
+        cap = cap,
     )
 }
