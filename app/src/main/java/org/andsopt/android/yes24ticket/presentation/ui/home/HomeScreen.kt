@@ -418,6 +418,10 @@ fun HotContentItem(
     whatsHotItem: WhatsHotItem,
     modifier: Modifier = Modifier,
 ) {
+    val descriptionIsNotEmpty =
+        whatsHotItem.title.isNotEmpty() &&
+            whatsHotItem.area.isNotEmpty() &&
+            whatsHotItem.date.isNotEmpty()
     Column(
         modifier =
             modifier
@@ -445,7 +449,7 @@ fun HotContentItem(
                 .background(color = Yes24TicketTheme.colorScheme.white)
                 .padding(horizontal = 9.dp, vertical = 7.dp),
         ) {
-            if (!whatsHotItem.comment.isNullOrEmpty()) {
+            if (whatsHotItem.comment.isNotEmpty()) {
                 Text(
                     text = whatsHotItem.comment,
                     style = Yes24TicketTheme.typography.bodySemiBold12,
@@ -453,10 +457,7 @@ fun HotContentItem(
                 )
                 Spacer(modifier = Modifier.height(6.dp))
             }
-            if (!whatsHotItem.title.isNullOrEmpty() &&
-                !whatsHotItem.area.isNullOrEmpty() &&
-                !whatsHotItem.date.isNullOrEmpty()
-            ) {
+            if (descriptionIsNotEmpty) {
                 Text(
                     text = whatsHotItem.title,
                     style = Yes24TicketTheme.typography.titleExtraBold17,

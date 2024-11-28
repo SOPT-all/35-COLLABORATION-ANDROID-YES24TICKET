@@ -18,11 +18,11 @@ data class ResponseWhatsHotListDto(
                 data.map { whatsHotItem ->
                     WhatsHotItem(
                         id = whatsHotItem.ticketId,
-                        title = whatsHotItem.ticketTitle,
-                        area = whatsHotItem.ticketArea,
-                        date = whatsHotItem.ticketDate,
+                        title = whatsHotItem.ticketTitle ?: "",
+                        area = whatsHotItem.ticketArea ?: "",
+                        date = whatsHotItem.ticketDate ?: "",
                         imgUrl = whatsHotItem.ticketImg,
-                        comment = whatsHotItem.comment,
+                        comment = whatsHotItem.comment ?: "",
                     )
                 },
         )
@@ -33,11 +33,11 @@ data class WhatsHot(
     @SerialName("ticket_id")
     val ticketId: Long,
     @SerialName("ticket_title")
-    val ticketTitle: String? = "",
+    val ticketTitle: String?,
     @SerialName("ticket_area")
-    val ticketArea: String? = "",
+    val ticketArea: String?,
     @SerialName("ticket_date")
-    val ticketDate: String? = "",
+    val ticketDate: String?,
     @SerialName("img_url")
     val ticketImg: String,
     @SerialName("comment")

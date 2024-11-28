@@ -18,9 +18,9 @@ data class ResponseMainBannerListDto(
                 data.map { mainBannerItem ->
                     MainBannerItem(
                         id = mainBannerItem.ticketId,
-                        title = mainBannerItem.ticketTitle,
-                        area = mainBannerItem.ticketArea,
-                        date = mainBannerItem.ticketDate,
+                        title = mainBannerItem.ticketTitle ?: "",
+                        area = mainBannerItem.ticketArea ?: "",
+                        date = mainBannerItem.ticketDate ?: "",
                         imgUrl = mainBannerItem.ticketImg,
                     )
                 },
@@ -32,11 +32,11 @@ data class MainTicket(
     @SerialName("ticketId")
     val ticketId: Long,
     @SerialName("area")
-    val ticketArea: String? = "",
+    val ticketArea: String?,
     @SerialName("title")
-    val ticketTitle: String? = "",
+    val ticketTitle: String?,
     @SerialName("period")
-    val ticketDate: String? = "",
+    val ticketDate: String?,
     @SerialName("img")
     val ticketImg: String,
 )

@@ -24,40 +24,43 @@ class HomeViewModel
                 val mainBannerList =
                     viewModelScope.async {
                         homeRepository.fetchMainBannerList()
-                    }.await().getOrElse { throwable ->
-                        emit(HomeUiState.Error(throwable.message))
-                        return@flow
                     }
 
                 val ticketRankingList =
                     viewModelScope.async {
                         homeRepository.fetchTicketRankingList()
-                    }.await().getOrElse { throwable ->
-                        emit(HomeUiState.Error(throwable.message))
-                        return@flow
                     }
                 val adBannerList =
                     viewModelScope.async {
                         homeRepository.fetchAdBannerList()
-                    }.await().getOrElse { throwable ->
-                        emit(HomeUiState.Error(throwable.message))
-                        return@flow
                     }
 
                 val whatsHotList =
                     viewModelScope.async {
                         homeRepository.fetchWhatsHotList()
-                    }.await().getOrElse { throwable ->
-                        emit(HomeUiState.Error(throwable.message))
-                        return@flow
                     }
-
                 emit(
                     HomeUiState.Success(
-                        mainBannerItemList = mainBannerList,
-                        ticketRankingItemList = ticketRankingList,
-                        adBannerItemList = adBannerList,
-                        whatsHotItemList = whatsHotList,
+                        mainBannerItemList =
+                            mainBannerList.await().getOrElse { throwable ->
+                                emit(HomeUiState.Error(throwable.message))
+                                return@flow
+                            },
+                        ticketRankingItemList =
+                            ticketRankingList.await().getOrElse { throwable ->
+                                emit(HomeUiState.Error(throwable.message))
+                                return@flow
+                            },
+                        adBannerItemList =
+                            adBannerList.await().getOrElse { throwable ->
+                                emit(HomeUiState.Error(throwable.message))
+                                return@flow
+                            },
+                        whatsHotItemList =
+                            whatsHotList.await().getOrElse { throwable ->
+                                emit(HomeUiState.Error(throwable.message))
+                                return@flow
+                            },
                     ),
                 )
             }.catch { throwable ->
