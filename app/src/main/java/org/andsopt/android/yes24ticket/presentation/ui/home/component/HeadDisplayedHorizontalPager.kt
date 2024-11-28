@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
@@ -27,15 +26,16 @@ import coil3.request.crossfade
 import kotlinx.coroutines.delay
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.MainBannerEntity
+import org.andsopt.android.yes24ticket.domain.model.MainBannerItem
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
 @Composable
 fun HeadDisplayedHorizontalPager(
     state: PagerState,
-    mainBannerList: List<MainBannerEntity>,
+    mainBannerList: MainBannerEntity,
     modifier: Modifier = Modifier,
 ) {
-    val totalPageNum = mainBannerList.size
+    val totalPageNum = mainBannerList.bannerLists.size
     LaunchedEffect(Unit) {
         while (true) {
             delay(4000)
@@ -55,7 +55,7 @@ fun HeadDisplayedHorizontalPager(
         state = state,
     ) { index ->
         HeadDisplayedBannerItem(
-            bannerItem = mainBannerList[index % totalPageNum],
+            bannerItem = mainBannerList.bannerLists[index % totalPageNum],
             totalPage = totalPageNum,
             currentPage = index % totalPageNum + 1,
         )
@@ -64,7 +64,7 @@ fun HeadDisplayedHorizontalPager(
 
 @Composable
 fun HeadDisplayedBannerItem(
-    bannerItem: MainBannerEntity,
+    bannerItem: MainBannerItem,
     totalPage: Int,
     currentPage: Int,
 ) {
@@ -96,15 +96,20 @@ fun HeadDisplayedBannerItem(
                     .padding(20.dp),
         )
 
-        MainBannerTextInfo(
-            title = bannerItem.title,
-            area = bannerItem.area,
-            date = bannerItem.date,
-            modifier =
-                Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(20.dp),
-        )
+        if (!bannerItem.title.isNullOrEmpty() &&
+            !bannerItem.area.isNullOrEmpty() &&
+            !bannerItem.date.isNullOrEmpty()
+        ) {
+            MainBannerTextInfo(
+                title = bannerItem.title,
+                area = bannerItem.area,
+                date = bannerItem.date,
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(20.dp),
+            )
+        }
     }
 }
 
@@ -147,22 +152,4 @@ fun MainBannerTextInfo(
             modifier = shadowModifier,
         )
     }
-}
-
-@Preview
-@Composable
-private fun HeadDisplayedBannerPreview() {
-    val dummyBannerItem =
-        MainBannerEntity(
-            id = 1,
-            imgUrl = "https://image.wavve.com/v1/thumbnails/480_720_20_80/meta/image/202409/1725362669902656119.webp",
-            title = "뮤지컬 시지프스",
-            area = "예스24스테이지 2관",
-            date = "2024. 12 - 2025. 03",
-        )
-    HeadDisplayedBannerItem(
-        bannerItem = dummyBannerItem,
-        totalPage = 5,
-        currentPage = 1,
-    )
 }

@@ -5,4 +5,8 @@ object ApiConstants {
     const val TICKETS = "tickets"
     const val LIST = "list"
     const val SORT_BY = "sortBy"
+    const val ADS = "ads"
+    const val HOT = "hot"
+    const val MAIN = "main"
+    const val RANKED = "ranked"
 }

@@ -11,8 +11,6 @@ fun CategoryDetailRoute(
     viewModel: CategoryDetailViewModel = hiltViewModel(),
     moveToBackStack: () -> Unit,
 ) {
-    val categoryDetailUiState by viewModel.categoryDetailUiState.collectAsStateWithLifecycle()
-    val categoryDetailState by viewModel.categoryDetailState.collectAsStateWithLifecycle()
     val bottomSheetState by viewModel.bottomSheetState.collectAsStateWithLifecycle()
 
     when (categoryDetailUiState) {
