@@ -2,6 +2,24 @@
 
 <br>
 
+## _**👐🏻 Contributors**_
+| 하지은 <br> [@HAJIEUN02](https://github.com/HAJIEUN02) | 이상일 <br> [@ThirFir](https://github.com/ThirFir) | 이승범 <br>[@beom84](https://github.com/beom84) |
+|:---:| :---: | :---: |
+| <img width="250" src="https://avatars.githubusercontent.com/u/83916472?v=4"/> | <img width="250" src="https://avatars.githubusercontent.com/u/86772949?v=4"/> | <img width="250" src="https://avatars.githubusercontent.com/u/127933902?v=4"/> |
+| `카테고리 상세`, `티켓 상세` |`예매하기` |`홈`|
+
+<br>
+
+## _**📸 ScreenShot**_
+
+| `홈 뷰` | `카테고리 상세 뷰` |
+|:---:|:---:|
+| <img width="50%" src="https://github.com/user-attachments/assets/087bbbfd-fcf9-4759-9bc7-4634ce76e5c7"/> | <img width="50%" src="https://github.com/user-attachments/assets/6fb2b259-be20-4187-9791-169c603f50ab"/> |
+|`티켓 상세 뷰`|`예매하기 뷰`|
+| <img width="50%" src="https://github.com/user-attachments/assets/23398e1f-06ff-4382-ad10-d0d893f855f2"/> | <img width="50%" src="https://github.com/user-attachments/assets/6d59674c-9128-47f3-80dd-f2968f2ab9c7"/> |
+
+<br>
+
 ## _**🍀 우리만의 협업 룰**_
 
 > ### 🩷 그라운드룰
@@ -25,7 +43,7 @@
 - Act: 행동 (핵심 결과를 도출하기 위해 해야 하는)
 - Task: 업무 (행동을 이루는 작은 업무 단위)
 ```
-[🔗NOTION TRACKING](https://statuesque-newt-c60.notion.site/7-13925329d59b8066828acf259d5161ee?pvs=4)<br>
+[🔗NOTION TRACKING](https://statuesque-newt-c60.notion.site/7-14125329d59b8043bcd6da4c23491ad8?pvs=74)<br>
 [🔗GITHUB PROJECTS](https://github.com/orgs/SOPT-all/projects/1)
 
 <br>
@@ -41,12 +59,24 @@
 
 <br>
 
+> ### 📜 회의록
+[✅ 킥오프 회의록](https://statuesque-newt-c60.notion.site/14125329d59b80d680e0da01238ef8a8?pvs=74)<br>
+[✅ 1차 회의록](https://statuesque-newt-c60.notion.site/1-14125329d59b804491b9f50bbfafbab5?pvs=74)<br>
+[✅ 2차 회의록](https://statuesque-newt-c60.notion.site/2-14125329d59b80d89060c9b3a663b9a7?pvs=74)
+
+<br>
+
+> ### 🎨 UI 설계
+[🖼️ 뷰 스케치](https://statuesque-newt-c60.notion.site/14125329d59b8004ab11f371f7898cfa)
+
+<br>
+
 ##  _**📚 CONVENTION**_
 
-[☀️Git Convention & Branch Strategy](https://statuesque-newt-c60.notion.site/Git-Convention-Branch-Strategy-13725329d59b8055ac8bfc2e83220d20?pvs=4) <br>
-[🌧️Android Coding Convention](https://statuesque-newt-c60.notion.site/Android-Coding-Convention-13725329d59b80988a46c1c4dd4daa9a?pvs=4) <br>
-[🌀Package Convention](https://statuesque-newt-c60.notion.site/) <br>
-[❄️Issue & PR Convetion](https://statuesque-newt-c60.notion.site/ISSUE-PR-Convention-13725329d59b8061a277dd9925ca12b7?pvs=4)
+[☀️Git Convention & Branch Strategy](https://statuesque-newt-c60.notion.site/Git-Convention-Branch-Strategy-14125329d59b804b9eacc055ead1a9d5) <br>
+[🌧️Android Coding Convention](https://statuesque-newt-c60.notion.site/Android-Coding-Convention-14125329d59b80c0829de6cfec60bb93) <br>
+[🌀Package Convention](https://statuesque-newt-c60.notion.site/Package-Convention-14125329d59b80dab457f595e45bd6d1) <br>
+[❄️Issue & PR Convetion](https://statuesque-newt-c60.notion.site/ISSUE-PR-Convention-14125329d59b801db009cde6dba7b762)
 
 <br>
 
