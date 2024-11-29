@@ -9,7 +9,7 @@ import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.state.Ticke
 @Composable
 fun TicketDetailRoute(
     viewModel: TicketDetailViewModel = hiltViewModel(),
-    // TODO navigateToTicketReservation: () -> Unit
+    navigateToTicketReservation: (Long, title: String, place: String) -> Unit
 ) {
     val ticketDetailUiState by viewModel.categoryDetailUiState.collectAsStateWithLifecycle()
     val heartState by viewModel.heartState.collectAsStateWithLifecycle()
@@ -25,6 +25,7 @@ fun TicketDetailRoute(
                 likedCount = heartState.likedCount,
                 onExpandedChanged = viewModel::changeExpanded,
                 onLikedChanged = viewModel::fetchTicketDetailHeart,
+                onNavigateToTicketReservation = navigateToTicketReservation,
             )
         }
 

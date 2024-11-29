@@ -1,7 +1,9 @@
 package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -12,6 +14,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.andsopt.android.yes24ticket.domain.repository.TicketRepository
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.navigation.TicketDetailRoute
 import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.state.TicketDetailExpandableState
 import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.state.TicketDetailHeartState
 import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.state.TicketDetailUiState
@@ -22,8 +25,13 @@ import javax.inject.Inject
 class TicketDetailViewModel
     @Inject
     constructor(
+        private val savedStateHandle: SavedStateHandle,
         private val ticketRepository: TicketRepository,
     ) : ViewModel() {
+
+        private val arguments = savedStateHandle.toRoute<TicketDetailRoute>()
+        private val ticketId = arguments.ticketId
+
         private val _heartState = MutableStateFlow(TicketDetailHeartState())
         val heartState: StateFlow<TicketDetailHeartState>
             get() = _heartState.asStateFlow()
@@ -35,7 +43,7 @@ class TicketDetailViewModel
         val categoryDetailUiState: StateFlow<TicketDetailUiState> =
             flow<TicketDetailUiState> {
                 runCatching {
-                    ticketRepository.getTicketDetail(ticketId = 23)
+                    ticketRepository.getTicketDetail(ticketId = ticketId.toInt())
                 }.onSuccess { ticketDetail ->
                     _heartState.value = _heartState.value.copy(likedCount = ticketDetail.ticketLikedCount, isClicked = ticketDetail.ticketIsLiked)
                     emit(TicketDetailUiState.Success(ticketDetail))

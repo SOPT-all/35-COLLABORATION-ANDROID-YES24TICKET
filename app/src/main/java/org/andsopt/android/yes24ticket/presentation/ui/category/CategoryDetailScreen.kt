@@ -73,6 +73,7 @@ fun CategoryDetailScreen(
     onSelectedFilterChanged: (FilterType) -> Unit,
     onCloseButtonClick: (FilterType?) -> Unit,
     onClickFilterSelector: () -> Unit,
+    onNavigateToTicketDetail: (Long) -> Unit,
 ) {
     val lazyScrollState = rememberLazyGridState()
     val coroutineScope = rememberCoroutineScope()
@@ -105,6 +106,7 @@ fun CategoryDetailScreen(
             CategoryContentLazyVerticalGrid(
                 categoryContentList = categoryContentList,
                 lazyScrollState = lazyScrollState,
+                onItemClicked = { onNavigateToTicketDetail(it.contentId) },
             )
 
             Row(
@@ -278,6 +280,7 @@ private fun CategoryContentLazyVerticalGrid(
     categoryContentList: List<CategoryContentEntity>,
     modifier: Modifier = Modifier,
     lazyScrollState: LazyGridState = rememberLazyGridState(),
+    onItemClicked: (CategoryContentEntity) -> Unit = {},
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(GRID_CELLS_DEFAULT),
@@ -299,6 +302,9 @@ private fun CategoryContentLazyVerticalGrid(
                 contentPlace = item.contentPlace,
                 contentPeriod = item.contentPeriod,
                 imageWidth = (LocalConfiguration.current.screenWidthDp.dp) / 2,
+                onContentClick = {
+                    onItemClicked(item)
+                }
             )
         }
 
@@ -431,6 +437,7 @@ private fun CategoryDetailScreenPreview() {
             onSelectedFilterChanged = {},
             onCloseButtonClick = {},
             onClickFilterSelector = {},
+            onNavigateToTicketDetail = {},
         )
     }
 }

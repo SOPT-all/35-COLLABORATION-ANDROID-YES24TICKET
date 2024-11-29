@@ -21,6 +21,8 @@ import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
 
 @Composable
 fun ReservationProgressRow(
+    title: String,
+    place: String,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -30,7 +32,7 @@ fun ReservationProgressRow(
     ) {
         Text(
             modifier = Modifier.padding(horizontal = 10.dp),
-            text = "TODO: 콘서트 제목",
+            text = title,
             style = Yes24TicketTheme.typography.headExtraBold17,
             color = Color(0xFF171717),
         )
@@ -39,7 +41,7 @@ fun ReservationProgressRow(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "TODO: 콘서트 장소",
+                text = place,
                 style = Yes24TicketTheme.typography.titleRegular12,
                 color = Yes24TicketTheme.colorScheme.gray500,
             )

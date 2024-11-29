@@ -30,5 +30,7 @@ fun TicketReservationRoute(
         onDaySelected = viewModel::onDaySelected,
         onNextMonth = viewModel::onNextMonth,
         onPrevMonth = viewModel::onPrevMonth,
+        title = viewModel.title,
+        place = viewModel.place,
     )
 }

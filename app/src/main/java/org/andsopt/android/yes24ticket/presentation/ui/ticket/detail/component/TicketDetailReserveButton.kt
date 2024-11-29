@@ -3,6 +3,7 @@ package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.component
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +23,7 @@ import org.andsopt.android.yes24ticket.util.compose.topBorder
 @Composable
 fun TicketDetailReserveButton(
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     @StringRes buttonText: Int = R.string.ticket_detail_reservation_button,
 ) {
     Column(
@@ -29,8 +31,9 @@ fun TicketDetailReserveButton(
             modifier
                 .fillMaxWidth()
                 .background(Yes24TicketTheme.colorScheme.white)
+                .clickable { onClick() }
                 .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-                .padding(vertical = 12.dp, horizontal = 14.dp),
+                .padding(vertical = 12.dp, horizontal = 14.dp)
     ) {
         Text(
             text = stringResource(buttonText),
