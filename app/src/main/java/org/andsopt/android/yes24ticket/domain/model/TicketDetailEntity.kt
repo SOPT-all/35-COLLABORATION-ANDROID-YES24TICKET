@@ -10,6 +10,7 @@ data class TicketDetailEntity(
     val ticketDuration: String,
     val ticketAge: String,
     val ticketLikedCount: String,
+    val ticketIsLiked: Boolean,
     val ticketHyperText: String,
     val ticketNotice: List<String>,
     val ticketPerformanceTimes: List<String>,
