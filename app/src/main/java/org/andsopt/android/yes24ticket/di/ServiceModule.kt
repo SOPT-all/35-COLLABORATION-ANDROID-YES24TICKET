@@ -7,8 +7,8 @@ import dagger.hilt.components.SingletonComponent
 import org.andsopt.android.yes24ticket.data.service.CategoryService
 import org.andsopt.android.yes24ticket.data.service.DummyService
 import org.andsopt.android.yes24ticket.data.service.HomeService
-import org.andsopt.android.yes24ticket.data.service.TicketingService
 import org.andsopt.android.yes24ticket.data.service.TicketService
+import org.andsopt.android.yes24ticket.data.service.TicketingService
 import retrofit2.Retrofit
 import javax.inject.Singleton
 

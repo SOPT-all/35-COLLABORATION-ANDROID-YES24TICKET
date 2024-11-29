@@ -7,13 +7,13 @@ import dagger.hilt.components.SingletonComponent
 import org.andsopt.android.yes24ticket.data.repositoryImpl.CategoryRepositoryImpl
 import org.andsopt.android.yes24ticket.data.repositoryImpl.DummyRepositoryImpl
 import org.andsopt.android.yes24ticket.data.repositoryImpl.HomeRepositoryImpl
+import org.andsopt.android.yes24ticket.data.repositoryImpl.TicketRepositoryImpl
 import org.andsopt.android.yes24ticket.data.repositoryImpl.TicketingRepositoryImpl
 import org.andsopt.android.yes24ticket.domain.repository.CategoryRepository
-import org.andsopt.android.yes24ticket.data.repositoryImpl.TicketRepositoryImpl
 import org.andsopt.android.yes24ticket.domain.repository.DummyRepository
 import org.andsopt.android.yes24ticket.domain.repository.HomeRepository
-import org.andsopt.android.yes24ticket.domain.repository.TicketingRepository
 import org.andsopt.android.yes24ticket.domain.repository.TicketRepository
+import org.andsopt.android.yes24ticket.domain.repository.TicketingRepository
 import javax.inject.Singleton
 
 @Module
