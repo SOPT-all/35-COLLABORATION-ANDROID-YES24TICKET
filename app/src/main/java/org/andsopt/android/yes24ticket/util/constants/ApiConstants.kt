@@ -6,4 +6,12 @@ object ApiConstants {
     const val DETAILS = "details"
     const val TICKET_ID = "ticket_id"
     const val LIKE = "like"
+    const val LIST = "list"
+    const val SORT_BY = "sortBy"
+    const val ADS = "ads"
+    const val HOT = "hot"
+    const val MAIN = "main"
+    const val RANKED = "ranked"
+    const val AVAILABLE_DATE = "availableDate"
+    const val AVAILABLE_TIME_SLOTS = "availableTimeSlots"
 }

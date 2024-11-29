@@ -18,14 +18,15 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.domain.model.AdBannerEntity
+import org.andsopt.android.yes24ticket.domain.model.AdBannerItem
 
 @Composable
 fun AdDisplayedHorizontalPager(
     state: PagerState,
-    adBannerList: List<AdBannerEntity>,
+    adBannerList: AdBannerEntity,
     modifier: Modifier = Modifier,
 ) {
-    val totalPageNum = adBannerList.size
+    val totalPageNum = adBannerList.bannerLists.size
 
     HorizontalPager(
         modifier =
@@ -34,7 +35,7 @@ fun AdDisplayedHorizontalPager(
         state = state,
     ) { index ->
         AdDisplayedBannerItem(
-            bannerItem = adBannerList[index % totalPageNum],
+            bannerItem = adBannerList.bannerLists[index % totalPageNum],
             totalPage = totalPageNum,
             currentPage = index % totalPageNum + 1,
         )
@@ -43,7 +44,7 @@ fun AdDisplayedHorizontalPager(
 
 @Composable
 fun AdDisplayedBannerItem(
-    bannerItem: AdBannerEntity,
+    bannerItem: AdBannerItem,
     totalPage: Int,
     currentPage: Int,
 ) {
