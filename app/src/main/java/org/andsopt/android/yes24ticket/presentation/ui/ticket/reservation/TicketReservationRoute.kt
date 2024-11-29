@@ -10,6 +10,7 @@ import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.viewmo
 @Composable
 fun TicketReservationRoute(
     modifier: Modifier = Modifier,
+    onNavigateUp: () -> Unit,
     viewModel: TicketReservationViewModel = hiltViewModel(),
 ) {
     val dayOfWeeks = viewModel.dayOfWeeks
@@ -32,5 +33,6 @@ fun TicketReservationRoute(
         onPrevMonth = viewModel::onPrevMonth,
         title = viewModel.title,
         place = viewModel.place,
+        onBackClicked = onNavigateUp,
     )
 }

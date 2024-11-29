@@ -8,7 +8,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -70,6 +69,7 @@ import org.andsopt.android.yes24ticket.presentation.ui.home.component.HeadDispla
 import org.andsopt.android.yes24ticket.presentation.ui.home.component.LiveTicketRankingLazyRow
 import org.andsopt.android.yes24ticket.presentation.ui.home.component.SectionHeaderWithBlueArrow
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
+import org.andsopt.android.yes24ticket.util.compose.noRippleClickable
 import org.andsopt.android.yes24ticket.util.compose.rightBorder
 import org.andsopt.android.yes24ticket.util.compose.topBorder
 
@@ -311,7 +311,7 @@ fun HomeGridCategory(
                             .padding(vertical = 12.dp)
                             .then(
                                 if (idx == 0) {
-                                    Modifier.clickable { navigateToCategoryDetail() }
+                                    Modifier.noRippleClickable { navigateToCategoryDetail() }
                                 } else {
                                     Modifier
                                 },

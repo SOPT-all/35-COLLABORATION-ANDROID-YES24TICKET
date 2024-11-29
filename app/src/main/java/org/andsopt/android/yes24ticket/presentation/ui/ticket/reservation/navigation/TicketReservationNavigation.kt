@@ -20,9 +20,12 @@ fun NavController.navigationTicketReservation(
     )
 }
 
-fun NavGraphBuilder.ticketReservationNavGraph() {
+fun NavGraphBuilder.ticketReservationNavGraph(
+    onNavigateUp: () -> Unit,
+) {
     composable<TicketReservationRoute> {
         TicketReservationRoute(
+            onNavigateUp = onNavigateUp,
             modifier = Modifier.fillMaxSize().background(Yes24TicketTheme.colorScheme.white),
         )
     }

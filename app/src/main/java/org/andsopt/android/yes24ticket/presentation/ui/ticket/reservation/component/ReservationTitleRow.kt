@@ -25,9 +25,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.andsopt.android.yes24ticket.R
 import org.andsopt.android.yes24ticket.ui.theme.Yes24TicketTheme
+import org.andsopt.android.yes24ticket.util.compose.noRippleClickable
 
 @Composable
 fun ReservationTitleRow(
+    onCloseIconClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val triWidth =
@@ -98,7 +100,10 @@ fun ReservationTitleRow(
             textAlign = TextAlign.Center,
         )
         Icon(
-            modifier = Modifier.padding(end = 10.dp),
+            modifier =
+                Modifier.padding(end = 10.dp).noRippleClickable {
+                    onCloseIconClicked()
+                },
             imageVector = ImageVector.vectorResource(R.drawable.ic_reservation_close_24),
             contentDescription = "Close",
             tint = Yes24TicketTheme.colorScheme.gray250,

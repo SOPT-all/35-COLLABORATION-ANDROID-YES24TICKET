@@ -29,15 +29,20 @@ fun TicketReservationScreen(
     onDaySelected: (Int) -> Unit,
     onNextMonth: () -> Unit,
     onPrevMonth: () -> Unit,
-    modifier: Modifier = Modifier,
     title: String,
     place: String,
+    onBackClicked: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
     ) {
         Yes24TopAppBar()
-        ReservationTitleRow()
+        ReservationTitleRow(
+            onCloseIconClicked = {
+                onBackClicked()
+            },
+        )
         ReservationProgressRow(
             title = title,
             place = place,

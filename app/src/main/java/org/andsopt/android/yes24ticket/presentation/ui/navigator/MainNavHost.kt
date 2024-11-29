@@ -53,7 +53,11 @@ fun MainNavHost(
                     )
                 },
             )
-            ticketReservationNavGraph()
+            ticketReservationNavGraph(
+                onNavigateUp = {
+                    navigator.navHostController.popBackStack()
+                },
+            )
         }
     }
 }
