@@ -12,6 +12,7 @@ import org.andsopt.android.yes24ticket.presentation.model.BottomNavigationRoute
 import org.andsopt.android.yes24ticket.presentation.model.Route
 import org.andsopt.android.yes24ticket.presentation.type.BottomNavigationType
 import org.andsopt.android.yes24ticket.presentation.ui.home.navigation.navigationHome
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.navigation.TicketReservationRoute
 
 class MainNavigator(
     val navHostController: NavHostController,
@@ -21,11 +22,8 @@ class MainNavigator(
 
     val startDestination = BottomNavigationType.HOME.route
 
-    val currentMainNavigationBarItem: BottomNavigationType?
-        @Composable get() =
-            BottomNavigationType.find { mainBottomNavigationRoute ->
-                currentDestination?.route == mainBottomNavigationRoute::class.qualifiedName
-            }
+    val currentMainNavigationBarItem: BottomNavigationType
+        @Composable get() = BottomNavigationType.HOME
 
     fun navigateMainNavigation(bottomNavigationType: BottomNavigationType) {
         navOptions {
@@ -56,10 +54,9 @@ class MainNavigator(
         navHostController.currentDestination?.route == T::class.qualifiedName
 
     @Composable
-    fun showBottomBar(): Boolean =
-        BottomNavigationType.any {
-            currentDestination?.route == it::class.qualifiedName
-        }
+    fun showBottomBar(): Boolean {
+        return currentDestination?.route != TicketReservationRoute::class.qualifiedName
+    }
 }
 
 @Composable

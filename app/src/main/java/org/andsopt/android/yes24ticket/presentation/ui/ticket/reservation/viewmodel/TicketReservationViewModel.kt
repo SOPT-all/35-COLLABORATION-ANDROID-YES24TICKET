@@ -1,7 +1,9 @@
 package org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.transformLatest
 import org.andsopt.android.yes24ticket.domain.model.TimeSlotsDataEntity
 import org.andsopt.android.yes24ticket.domain.repository.TicketingRepository
+import org.andsopt.android.yes24ticket.presentation.ui.ticket.reservation.navigation.TicketReservationRoute
 import java.time.DayOfWeek
 import java.time.LocalDate
 import javax.inject.Inject
@@ -22,8 +25,13 @@ import javax.inject.Inject
 class TicketReservationViewModel
     @Inject
     constructor(
+        private val savedStateHandle: SavedStateHandle,
         private val ticketingRepository: TicketingRepository,
     ) : ViewModel() {
+        private val arguments = savedStateHandle.toRoute<TicketReservationRoute>()
+        val title = arguments.title
+        val place = arguments.place
+
         val dayOfWeeks =
             buildList {
                 add(DayOfWeek.SUNDAY)
@@ -45,8 +53,10 @@ class TicketReservationViewModel
                         add(0)
                     }
                     addAll(1..it.lengthOfMonth())
-                    repeat(7 - (size % 7)) {
-                        add(0)
+                    if (size % 7 != 0) {
+                        repeat(7 - (size % 7)) {
+                            add(0)
+                        }
                     }
                 }.chunked(7)
             }.stateIn(
@@ -58,7 +68,7 @@ class TicketReservationViewModel
         val selectableDays =
             currentCalendar.transformLatest { currentCalendar ->
                 emit(emptyList())
-                ticketingRepository.fetchAvailableTimes(21) // TODO ticketId
+                ticketingRepository.fetchAvailableTimes(arguments.ticketId.toInt()) // TODO ticketId
                     .performanceTimes
                     .filter { it.monthValue == currentCalendar.monthValue }
                     .map { it.dayOfMonth }

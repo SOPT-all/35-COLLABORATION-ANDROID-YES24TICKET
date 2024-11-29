@@ -13,7 +13,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface TicketingService {
-    @GET("$TICKETS/${AVAILABLE_DATE}/${TICKET_ID}")
+    @GET("$TICKETS/${AVAILABLE_DATE}/{${TICKET_ID}}")
     suspend fun fetchAvailableTimes(
         @Path(TICKET_ID) ticketId: Int,
     ): ResponseTicketAvailableTimesDto

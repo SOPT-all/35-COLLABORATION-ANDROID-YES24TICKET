@@ -2,25 +2,31 @@ package org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.andsopt.android.yes24ticket.presentation.ui.ticket.detail.TicketDetailRoute
 
-fun NavController.navigationTicketDetail(navOptions: NavOptions) {
+fun NavController.navigationTicketDetail(
+    ticketId: Long,
+) {
     navigate(
-        route = TicketDetailRoute.TICKET_DETAIL_ROUTE,
-        navOptions = navOptions,
+        route = TicketDetailRoute(ticketId),
     )
 }
 
-fun NavGraphBuilder.ticketDetailNavGraph() {
-    composable(route = TicketDetailRoute.TICKET_DETAIL_ROUTE) {
-        TicketDetailRoute()
+fun NavGraphBuilder.ticketDetailNavGraph(
+    navigationTicketReservation: (Long, String, String) -> Unit,
+) {
+    composable<TicketDetailRoute> {
+        TicketDetailRoute(
+            navigateToTicketReservation = { ticketId, title, place ->
+                navigationTicketReservation(ticketId, title, place)
+            },
+        )
     }
 }
 
 @Serializable
-object TicketDetailRoute {
-    const val TICKET_DETAIL_ROUTE = "ticketDetail"
-}
+data class TicketDetailRoute(
+    val ticketId: Long,
+)

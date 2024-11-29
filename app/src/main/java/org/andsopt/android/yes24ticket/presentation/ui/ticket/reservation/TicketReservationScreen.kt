@@ -29,14 +29,25 @@ fun TicketReservationScreen(
     onDaySelected: (Int) -> Unit,
     onNextMonth: () -> Unit,
     onPrevMonth: () -> Unit,
+    title: String,
+    place: String,
+    onBackClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
     ) {
         Yes24TopAppBar()
-        ReservationTitleRow()
-        ReservationProgressRow(modifier = Modifier.background(Yes24TicketTheme.colorScheme.gray50))
+        ReservationTitleRow(
+            onCloseIconClicked = {
+                onBackClicked()
+            },
+        )
+        ReservationProgressRow(
+            title = title,
+            place = place,
+            modifier = Modifier.background(Yes24TicketTheme.colorScheme.gray50),
+        )
 
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState()),
@@ -59,7 +70,7 @@ fun TicketReservationScreen(
 
             SelectConcertTimeView(
                 timeSlots = currentTimeSlots,
-                modifier = Modifier.padding(top = 12.dp),
+                modifier = Modifier.padding(top = 72.dp),
             )
         }
     }
