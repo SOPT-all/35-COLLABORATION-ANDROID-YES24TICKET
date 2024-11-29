@@ -9,7 +9,7 @@ import org.andsopt.android.yes24ticket.presentation.ui.category.state.CategoryDe
 @Composable
 fun CategoryDetailRoute(
     viewModel: CategoryDetailViewModel = hiltViewModel(),
-    moveToBackStack: () -> Unit={},
+    moveToBackStack: () -> Unit = {},
     onNavigateToTicketDetail: (Long) -> Unit,
 ) {
     val bottomSheetState by viewModel.bottomSheetState.collectAsStateWithLifecycle()

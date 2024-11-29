@@ -28,7 +28,6 @@ class TicketDetailViewModel
         private val savedStateHandle: SavedStateHandle,
         private val ticketRepository: TicketRepository,
     ) : ViewModel() {
-
         private val arguments = savedStateHandle.toRoute<TicketDetailRoute>()
         private val ticketId = arguments.ticketId
 

@@ -49,7 +49,7 @@ fun MainNavHost(
                     navigator.navHostController.navigationTicketReservation(
                         ticketId = ticketId,
                         title = title,
-                        place = place
+                        place = place,
                     )
                 },
             )

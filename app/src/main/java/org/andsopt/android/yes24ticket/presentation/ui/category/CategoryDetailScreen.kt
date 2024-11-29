@@ -304,7 +304,7 @@ private fun CategoryContentLazyVerticalGrid(
                 imageWidth = (LocalConfiguration.current.screenWidthDp.dp) / 2,
                 onContentClick = {
                     onItemClicked(item)
-                }
+                },
             )
         }
 

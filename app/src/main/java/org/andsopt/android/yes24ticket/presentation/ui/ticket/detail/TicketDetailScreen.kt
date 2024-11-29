@@ -44,7 +44,7 @@ fun TicketDetailScreen(
     modifier: Modifier = Modifier,
     onExpandedChanged: () -> Unit = {},
     onLikedChanged: () -> Unit = {},
-    onNavigateToTicketReservation: (Long, title: String, place: String) -> Unit = {_,_,_ ->},
+    onNavigateToTicketReservation: (Long, title: String, place: String) -> Unit = { _, _, _ -> },
 ) {
     Column(
         modifier =
@@ -225,7 +225,7 @@ private fun TicketDetailScreenPreview() {
             ticketTypeList = ticketType,
             isExpanded = true,
             onLikedChanged = {},
-            likedCount = "162"
+            likedCount = "162",
         )
     }
 }

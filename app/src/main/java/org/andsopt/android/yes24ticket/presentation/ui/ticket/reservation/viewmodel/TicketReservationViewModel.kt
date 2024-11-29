@@ -28,7 +28,6 @@ class TicketReservationViewModel
         private val savedStateHandle: SavedStateHandle,
         private val ticketingRepository: TicketingRepository,
     ) : ViewModel() {
-
         private val arguments = savedStateHandle.toRoute<TicketReservationRoute>()
         val title = arguments.title
         val place = arguments.place
@@ -54,10 +53,11 @@ class TicketReservationViewModel
                         add(0)
                     }
                     addAll(1..it.lengthOfMonth())
-                    if (size % 7 != 0)
+                    if (size % 7 != 0) {
                         repeat(7 - (size % 7)) {
                             add(0)
                         }
+                    }
                 }.chunked(7)
             }.stateIn(
                 scope = viewModelScope,

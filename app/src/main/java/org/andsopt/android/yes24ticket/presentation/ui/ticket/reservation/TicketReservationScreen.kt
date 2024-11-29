@@ -41,7 +41,7 @@ fun TicketReservationScreen(
         ReservationProgressRow(
             title = title,
             place = place,
-            modifier = Modifier.background(Yes24TicketTheme.colorScheme.gray50)
+            modifier = Modifier.background(Yes24TicketTheme.colorScheme.gray50),
         )
 
         Column(

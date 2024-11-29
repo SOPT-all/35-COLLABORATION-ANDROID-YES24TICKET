@@ -33,7 +33,7 @@ fun TicketDetailReserveButton(
                 .background(Yes24TicketTheme.colorScheme.white)
                 .clickable { onClick() }
                 .topBorder(color = Yes24TicketTheme.colorScheme.gray200, height = 1f)
-                .padding(vertical = 12.dp, horizontal = 14.dp)
+                .padding(vertical = 12.dp, horizontal = 14.dp),
     ) {
         Text(
             text = stringResource(buttonText),
