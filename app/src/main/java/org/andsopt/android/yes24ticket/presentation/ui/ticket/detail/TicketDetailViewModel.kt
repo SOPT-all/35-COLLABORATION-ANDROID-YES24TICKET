@@ -60,7 +60,7 @@ class TicketDetailViewModel
         fun fetchTicketDetailHeart() {
             viewModelScope.launch {
                 runCatching {
-                    ticketRepository.patchTicketDetailLike(ticketId = 23)
+                    ticketRepository.patchTicketDetailLike(ticketId = ticketId.toInt())
                 }.onSuccess { detailLike ->
                     _heartState.value = _heartState.value.copy(isClicked = detailLike.isLiked, likedCount = detailLike.likedCount)
                     Timber.d("[티켓 상세] -> ${_heartState.value.likedCount}")
